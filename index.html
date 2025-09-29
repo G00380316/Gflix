@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gflix Repository</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0d1117; /* Dark GitHub background */
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen p-4">
+    <div class="max-w-md w-full bg-gray-800 text-gray-100 p-8 rounded-xl shadow-2xl border border-gray-700">
+        <header class="text-center mb-6">
+            <h1 class="text-4xl font-bold text-green-400 mb-2">Gflix Repository</h1>
+            <p class="text-gray-400 text-lg">Official source for Gflix Addons.</p>
+        </header>
+
+        <section class="mb-8">
+            <h2 class="text-2xl font-semibold mb-4 border-b border-gray-700 pb-2">Installation Guide</h2>
+            <ol class="list-decimal list-inside space-y-3 text-gray-300">
+                <li>
+                    In Kodi, go to **Settings** (gear icon) -> **File Manager**.
+                </li>
+                <li>
+                    Select **Add source**.
+                </li>
+                <li>
+                    Enter the URL for this repository:
+                    <code class="block bg-gray-700 p-2 mt-1 rounded text-sm text-yellow-300 select-all overflow-auto">https://G00380316.github.io/Gflix/</code>
+                </li>
+                <li>
+                    Name it **Gflix Repo**.
+                </li>
+                <li>
+                    Return to **Add-ons** > **Install from zip file** and select the **Gflix Repo** source.
+                </li>
+            </ol>
+        </section>
+
+        <a href="https://raw.githubusercontent.com/G00380316/Gflix/main/Kodi21/zips/repository.G00380316.kodi-1.0.1.zip"
+           download
+           class="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-lg text-gray-900 bg-green-500 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-400 transition duration-150 ease-in-out transform hover:scale-[1.02]">
+            Download Gflix Repository ZIP
+        </a>
+
+        <p class="text-xs text-gray-500 mt-4 text-center">
+            The ZIP file name will change as new versions are released.
+        </p>
+    </div>
+</body>
+</html>
