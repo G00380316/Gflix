@@ -18,6 +18,10 @@ from mako.template import Template  # How install: python -m pip install mako
 # This is the full path to the directory containing all your addon folders.
 ADDONS_MAIN_PATH = 'C:/Users/Enoch/Documents/GitHub/Gflix/Kodi21'
 
+# >>> CONFIGURATION: Addons to skip zipping due to file size limits (GitHub 100MB limit)
+ZIP_EXCLUDED_ADDONS = [
+]
+
 # > Files and folders to be excluded per add-on
 ZIP_EXCLUDED_FILES = {}
 ZIP_EXCLUDED_DIRS = {}
@@ -50,24 +54,26 @@ class Generator:
     def generate_addons_index(self):
         """Generates the main addons.xml file from each addon's addon.xml."""
         print("--- Generating addon index file ---")
+        # Start with the XML declaration and the single, correct opening tag
         addons_xml_content = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n<addons>\n'
         addons_found = False
 
         for addon_path in get_addons_folders():
             addon_xml_path = os.path.join(addon_path, 'addon.xml')
             try:
-                # IMPORTANT FIX: Use encoding='utf-8' to prevent 'charmap' errors
+                # Use encoding='utf-8' to prevent 'charmap' errors
                 with open(addon_xml_path, 'r', encoding='utf-8') as f:
-                    # Read the XML content and add it to the main index file
+                    # Read the XML content
                     addon_xml = f.read()
+                    # Append the formatted content (which now excludes the external <addon> tags)
                     addons_xml_content += self._format_xml_lines(addon_xml.splitlines())
                     print(f"  Success: {os.path.basename(addon_path)}")
                     addons_found = True
             except Exception as exc:
-                # If there's an error (like missing file or corrupted XML), we skip it
                 print(f"  Excluding {os.path.basename(addon_path)}: Exception: {exc}")
                 continue
         
+        # End with the single, correct closing tag
         addons_xml_content += '</addons>\n'
 
         if not addons_found:
@@ -84,7 +90,7 @@ class Generator:
             print("Error: Cannot generate md5. addons.xml does not exist.")
             return
 
-        # IMPORTANT FIX: Use encoding='utf-8' here too
+        # Use encoding='utf-8' here too
         with open(self.addons_xml_file, 'r', encoding='utf-8') as f:
             file_content = f.read()
         
@@ -97,10 +103,16 @@ class Generator:
         print("--- Generating addon zip files ---")
         for addon_path in get_addons_folders():
             addon_name = os.path.basename(addon_path)
+            
+            # Skip zipping large files based on the exclusion list
+            if addon_name in ZIP_EXCLUDED_ADDONS:
+                print(f"  [SKIPPED] Zipping of '{addon_name}' skipped due to file size exclusion list.")
+                continue
+            
             addon_xml_path = os.path.join(addon_path, 'addon.xml')
             
             try:
-                # IMPORTANT FIX: Use encoding='utf-8' when reading the XML version
+                # Use encoding='utf-8' when reading the XML version
                 with open(addon_xml_path, 'r', encoding='utf-8') as f:
                     addon_xml = f.read()
                 addon_version = re.findall(r'version=\"(.*?[0-9])\"', addon_xml)[0]
@@ -136,11 +148,19 @@ class Generator:
         
 
     def _format_xml_lines(self, xml_lines):
-        """Format and clean the xml rows."""
+        """
+        Format and clean the xml rows, removing the XML declaration and 
+        the top-level <addons> tag if present, to prevent XML nesting errors.
+        """
         xml_formatted = ''
         for line in xml_lines:
+            # Skip XML declaration (<?xml...>)
             if line.find('<?xml') >= 0:
                 continue
+            # Skip top-level <addons> or </addons> tags to prevent nesting
+            if '<addons>' in line or '</addons>' in line:
+                continue
+            
             xml_formatted += '  ' + line.rstrip() + '\n'
         return xml_formatted.rstrip() + '\n\n'
 
