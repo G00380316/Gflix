@@ -437,25 +437,25 @@
   	</extension>
   </addon>
 
-  	<addon id="repository.G00380316.kodi" name="Gflix" version="1.0.0" provider-name="G00380316">
-  		<extension point="xbmc.addon.repository" name="Gflix Repository">
-  		<dir minversion="19.0.0">
-  		<info compressed="false">https://raw.githubusercontent.com/G00380316/Gflix/refs/heads/main/Kodi21/addons.xml</info>
-  		<checksum>https://raw.githubusercontent.com/G00380316/Gflix/refs/heads/main/Kodi21/addons.xml.md5</checksum>
-  		<datadir zip="true">https://github.com/G0038016/gflix/raw/main/kodi21</datadir>
-  		<hashes>false</hashes>
-  		</dir>
-  		</extension>
-  		<extension point="xbmc.addon.metadata">
-  		<summary>Home Entertainment Repository</summary>
-  		<description>This repository contains add-ons for the ultimate entertainment system.</description>
-  		<platform>all</platform>
-  		<assets>
-  			<fanart>fanart.png</fanart>
-  			<icon>icon.png</icon>
-  		</assets>
-  		</extension>
-  	</addon>
+  <addon id="repository.G00380316.kodi" name="Gflix" version="1.0.0" provider-name="G00380316">
+      <extension point="xbmc.addon.repository" name="Gflix Repository">
+          <dir minversion="19.0.0">
+          <info compressed="false">https://raw.githubusercontent.com/G00380316/Gflix/main/Kodi21/zips/addons.xml</info>
+          <checksum>https://raw.githubusercontent.com/G00380316/Gflix/main/Kodi21/zips/addons.xml.md5</checksum>
+          <datadir zip="true">https://raw.githubusercontent.com/G00380316/Gflix/main/Kodi21/zips/</datadir>
+          <hashes>false</hashes>
+          </dir>
+          </extension>
+          <extension point="xbmc.addon.metadata">
+          <summary>Home Entertainment Repository</summary>
+          <description>This repository contains add-ons for the ultimate entertainment system.</description>
+          <platform>all</platform>
+          <assets>
+              <fanart>fanart.png</fanart>
+              <icon>icon.png</icon>
+          </assets>
+          </extension>
+  </addon>
 
   <addon id="repository.cocoscrapers" name="CocoScrapers Repository" version="1.0.0" provider-name="CocoScrapers">
       <extension point="xbmc.addon.repository" name="CocoScrapers Repository">
