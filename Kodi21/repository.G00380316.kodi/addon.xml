@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addons>
-<addons>
 	<addon id="repository.G00380316.kodi" name="Gflix" version="1.0.0" provider-name="G00380316">
 		<extension point="xbmc.addon.repository" name="Gflix Repository">
 		<dir minversion="19.0.0">
@@ -20,5 +19,4 @@
 		</assets>
 		</extension>
 	</addon>
-</addons>
 </addons>
