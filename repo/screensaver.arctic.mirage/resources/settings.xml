@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<settings>
+    <category label="$ADDON[screensaver.arctic.mirage 32000]">
+        <setting type="action" label="$ADDON[screensaver.arctic.mirage 32001]" option="close" action="RunScript(screensaver.arctic.mirage, mode=choose)" />
+        <setting type="action" label="$ADDON[screensaver.arctic.mirage 32002]" option="close" action="RunScript(screensaver.arctic.mirage, mode=label)" enabled="!eq(1,)" />
+    </category>
+</settings>
+

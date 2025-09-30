@@ -1,0 +1,4 @@
+ [COLOR cyan][B]Version 1.0.0[/B][/COLOR]
+- Credits To kodifitzwell,Tikipeter And Venom.
+  This is a clone of the Dradis addon.
+  Use the original instead this.
