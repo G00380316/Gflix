@@ -62,6 +62,14 @@ class Generator:
         addons_found = False
 
         for addon_path in get_addons_folders():
+            addon_name = os.path.basename(addon_path)
+            
+            # --- FIX: Skip the repository folder from the index ---
+            if addon_name.startswith('repository.'):
+                print(f"  Skipping indexing of repository folder: {addon_name}")
+                continue
+            # -----------------------------------------------------
+
             addon_xml_path = os.path.join(addon_path, 'addon.xml')
             try:
                 # Use encoding='utf-8' to prevent 'charmap' errors
