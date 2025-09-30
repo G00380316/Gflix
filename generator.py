@@ -48,8 +48,11 @@ def get_addons_folders():
 class Generator:
     """Handles generation of addon index and zip files."""
     def __init__(self):
-        self.addons_xml_file = os.path.join(ADDONS_MAIN_PATH, 'addons.xml')
-        self.addons_md5_file = os.path.join(ADDONS_MAIN_PATH, 'addons.xml.md5')
+        # --- FIX: Set the output directory to be the 'zips' subfolder ---
+        self.zip_dir = os.path.join(ADDONS_MAIN_PATH, 'zips')
+        self.addons_xml_file = os.path.join(self.zip_dir, 'addons.xml')
+        self.addons_md5_file = os.path.join(self.zip_dir, 'addons.xml.md5')
+        # -----------------------------------------------------------------
 
     def generate_addons_index(self):
         """Generates the main addons.xml file from each addon's addon.xml."""
@@ -101,6 +104,11 @@ class Generator:
     def generate_zip_files(self):
         """Creates a zip file for each addon found."""
         print("--- Generating addon zip files ---")
+        # Define zip directory here just to ensure the zips directory is created, 
+        # though it's now handled by _save_file as well.
+        zip_dir = self.zip_dir
+        os.makedirs(zip_dir, exist_ok=True)
+        
         for addon_path in get_addons_folders():
             addon_name = os.path.basename(addon_path)
             
@@ -118,9 +126,7 @@ class Generator:
                 addon_version = re.findall(r'version=\"(.*?[0-9])\"', addon_xml)[0]
                 
                 zip_filename = f"{addon_name}-{addon_version}.zip"
-                # Save zips to a 'zips' subfolder for better organization
-                zip_dir = os.path.join(ADDONS_MAIN_PATH, 'zips')
-                os.makedirs(zip_dir, exist_ok=True)
+                # Save zips to the 'zips' subfolder
                 zip_path = os.path.join(zip_dir, zip_filename)
 
                 with ZipFile(zip_path, 'w', ZIP_DEFLATED) as zip_obj:
@@ -165,8 +171,10 @@ class Generator:
         return xml_formatted.rstrip() + '\n\n'
 
     def _save_file(self, data, file_path):
-        """Write data to the specified file."""
+        """Write data to the specified file, creating the necessary directory structure."""
         try:
+            # Create the directory path if it doesn't exist
+            os.makedirs(os.path.dirname(file_path), exist_ok=True)
             with open(file_path, "wb") as f:
                 f.write(data)
         except Exception as exc:
