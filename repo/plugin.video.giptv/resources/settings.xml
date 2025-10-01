@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<settings>
+    <category label="30000"> <!-- Account Details -->
+        <setting id="server" type="text" label="30001" default="" />
+        <setting id="username" type="text" label="30002" default="" />
+        <setting id="password" type="text" label="30003" default="" option="hidden" />
+        <setting type="action" label="30050" action="Close(DialogSettings)" />
+    </category>
+</settings>

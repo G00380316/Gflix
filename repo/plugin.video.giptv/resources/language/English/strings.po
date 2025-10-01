@@ -1,0 +1,72 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-10-01 11:45+0000\n"
+"PO-Revision-Date: 2025-10-01 11:48+0000\n"
+"Last-Translator: \n"
+"Language-Team: G00380316\n"
+"Language: en\n"
+"Plural-Forms: nplurals=2; plural=n!=1;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Loco-Source-Locale: en_IE\n"
+"X-Loco-Parser: loco_parse_po\n"
+"X-Generator: Loco https://localise.biz/"
+
+msgctxt "#30000"
+msgid "Account Details"
+msgstr ""
+
+msgctxt "#30001"
+msgid "Server URL (e.g., http://yourserver.xyz:port)"
+msgstr ""
+
+msgctxt "#30002"
+msgid "Username"
+msgstr ""
+
+msgctxt "#30003"
+msgid "Password"
+msgstr ""
+
+msgctxt "#30009"
+msgid "Category Grouping"
+msgstr ""
+
+msgctxt "#30010"
+msgid "Group 1 Name"
+msgstr ""
+
+msgctxt "#30011"
+msgid "Group 1 Keywords (comma separated)"
+msgstr ""
+
+msgctxt "#30012"
+msgid "Group 2 Name"
+msgstr ""
+
+msgctxt "#30013"
+msgid "Group 2 Keywords (comma separated)"
+msgstr ""
+
+msgctxt "#30014"
+msgid "Group 3 Name"
+msgstr ""
+
+msgctxt "#30015"
+msgid "Group 3 Keywords (comma separated)"
+msgstr ""
+
+msgctxt "#30016"
+msgid "---"
+msgstr ""
+
+msgctxt "#30017"
+msgid "Example: UK, US, CA, Case insensitive."
+msgstr ""
+
+msgctxt "#30050"
+msgid "<---"
+msgstr ""
