@@ -1,4 +1,0 @@
-<contents>
-    <value name="grouplist_item_x">{item_x}</value>
-    <value name="widget_category_visible">String.IsEqual(Container(300).ListItem.Property(guid),{item_guid})</value>
-</contents>
