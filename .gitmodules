@@ -1,0 +1,3 @@
+[submodule "repo/plugin.video.giptv"]
+	path = repo/plugin.video.giptv
+	url = https://github.com/G00380316/plugin.video.giptv
