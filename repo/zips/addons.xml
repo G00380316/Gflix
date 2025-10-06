@@ -348,7 +348,7 @@ fix to properly get English videos as fallback
         </assets>
         <news>INFO: For latest changes see Changelog within Tools of add-on.</news>
     </extension>
-</addon><addon id="plugin.video.giptv" name="GIPTV" version="1.2.0" provider-name="G00380316">
+</addon><addon id="plugin.video.giptv" name="GIPTV" version="1.2.1" provider-name="G00380316">
 	<requires>
 		<import addon="xbmc.python" version="3.0.0" />
 		<import addon="script.module.requests" version="2.22.0" />
@@ -426,7 +426,7 @@ fix to properly get English videos as fallback
 		<news>INFO: For latest changes see Changelog within add-on.</news>
 		<assets><icon>icon.png</icon><fanart>fanart.jpg</fanart><screenshot>screenshot.jpg</screenshot></assets>
 	</extension>
-</addon><addon id="repository.G00380316" name="Gflix" version="1.2.0" provider-name="G00380316">
+</addon><addon id="repository.G00380316" name="Gflix" version="1.2.1" provider-name="G00380316">
     <extension point="xbmc.addon.repository" name="Gflix Repository">
         <dir>
             <info compressed="false">https://raw.githubusercontent.com/G00380316/gflix/main/repo/zips/addons.xml</info>

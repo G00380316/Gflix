@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addon id="plugin.video.giptv"
 	   name="GIPTV"
-	   version="1.2.0"
+	   version="1.2.1"
 	   provider-name="G00380316">
 	<requires>
 		<import addon="xbmc.python" version="3.0.0"/>
