@@ -1,3 +1,6 @@
 [submodule "repo/plugin.video.giptv"]
 	path = repo/plugin.video.giptv
 	url = https://github.com/G00380316/plugin.video.giptv
+[submodule "repo/skin.bingie"]
+	path = repo/skin.bingie
+	url = https://github.com/G00380316/skin.bingie
