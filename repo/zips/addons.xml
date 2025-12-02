@@ -324,7 +324,7 @@ fix to properly get English videos as fallback
             <screenshot>resources/screenshot-03.jpg</screenshot>
         </assets>
     </extension>
-</addon><addon id="plugin.video.fenlight" name="FenLightAM" provider-name="Tikipeter/AnonyMouse" version="2.1.40">
+</addon><addon id="plugin.video.fenlight" name="FenLightAM" provider-name="Tikipeter/AnonyMouse" version="2.1.59">
     <requires>
         <import addon="xbmc.python" version="3.0.0" />
         <import addon="script.module.pil" version="1.1.7" />
@@ -348,7 +348,7 @@ fix to properly get English videos as fallback
         </assets>
         <news>INFO: For latest changes see Changelog within Tools of add-on.</news>
     </extension>
-</addon><addon id="plugin.video.giptv" name="GIPTV" version="1.2.2" provider-name="G00380316">
+</addon><addon id="plugin.video.giptv" name="GIPTV" version="1.9.0" provider-name="G00380316">
 	<requires>
 		<import addon="xbmc.python" version="3.0.0" />
 		<import addon="script.module.requests" version="2.22.0" />
@@ -359,7 +359,7 @@ fix to properly get English videos as fallback
 	<extension point="xbmc.service" library="service.py" />
 	<extension point="xbmc.addon.metadata">
 		<summary lang="en">A super fast and simple Xtream IPTV client for Kodi.</summary>
-		<description lang="en">An efficient video plugin to stream IPTV channels from a Xtream Code API Servers, Future updates might include Vods aswell and improved functionality.</description>
+		<description lang="en">An efficient video plugin to stream IPTV channels from a Xtream Code API Servers, Future updates might include Vods aswell and improved functionality. Please Keep sharing this addon!!! Really motivates me to keep going!</description>
 		<disclaimer lang="en">This addon does not contain any content. You must provide your own credentials to view content.</disclaimer>
 		<platform>all</platform>
 		<license>GPL-2.0-or-later</license>
@@ -565,7 +565,7 @@ fix to properly get English videos as fallback
 		<news>INFO: For latest changes see Changelog within add-on.</news>
 		<assets><icon>icon.png</icon><fanart>fanart.jpg</fanart><screenshot>screenshot.jpg</screenshot></assets>
 	</extension>
-</addon><addon id="repository.G00380316" name="Gflix" version="1.2.2" provider-name="G00380316">
+</addon><addon id="repository.G00380316" name="Gflix" version="1.9.0" provider-name="G00380316">
     <extension point="xbmc.addon.repository" name="Gflix Repository">
         <dir>
             <info compressed="false">https://raw.githubusercontent.com/G00380316/gflix/main/repo/zips/addons.xml</info>
