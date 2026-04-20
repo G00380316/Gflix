@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+    <include name="Custom1Widgets">
+        <include content="WidgetListEpisodes">
+            <param name="content_path" value="plugin://plugin.video.giptv/?mode=recently_watched"/>
+            <param name="widget_header" value="[COLOR orange]Recently Watched[/COLOR]"/>
+            <param name="widget_target" value="videos"/>
+            <param name="list_id" value="23011"/>
+        </include>
+        <include content="WidgetListEpisodes">
+            <param name="content_path" value="plugin://plugin.video.giptv/?mode=list_categories&amp;stream_type=live"/>
+            <param name="widget_header" value="Live TV"/>
+            <param name="widget_target" value="videos"/>
+            <param name="list_id" value="23012"/>
+        </include>
+    </include>
+</includes>

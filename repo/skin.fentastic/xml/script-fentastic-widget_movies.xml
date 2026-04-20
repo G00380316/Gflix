@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+    <include name="MovieWidgets">
+        <include content="WidgetListLandscape">
+            <param name="content_path" value="plugin://plugin.video.fenlight/?name=In+Progress&amp;mode=build_movie_list&amp;action=in_progress_movies&amp;iconImage=player"/>
+            <param name="widget_header" value="Finish Watching"/>
+            <param name="widget_target" value="videos"/>
+            <param name="list_id" value="19011"/>
+        </include>
+        <include content="WidgetListLandscape">
+            <param name="content_path" value="plugin://plugin.video.fenlight/?name=Trending&amp;mode=build_movie_list&amp;action=trakt_movies_trending&amp;random_support=true&amp;iconImage=trending"/>
+            <param name="widget_header" value="Trending"/>
+            <param name="widget_target" value="videos"/>
+            <param name="list_id" value="19012"/>
+        </include>
+        <include content="WidgetListLandscape">
+            <param name="content_path" value="plugin://plugin.video.fenlight/?name=Popular&amp;mode=build_movie_list&amp;action=tmdb_movies_popular&amp;random_support=true&amp;iconImage=popular"/>
+            <param name="widget_header" value="Popular"/>
+            <param name="widget_target" value="videos"/>
+            <param name="list_id" value="19013"/>
+        </include>
+    </include>
+</includes>

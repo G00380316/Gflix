@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+    <include name="TVShowWidgets">
+        <include content="WidgetListLandscape">
+            <param name="content_path" value="plugin://plugin.video.fenlight/?name=In+Progress+Episodes&amp;mode=build_in_progress_episode&amp;iconImage=player"/>
+            <param name="widget_header" value="Finish Watching"/>
+            <param name="widget_target" value="videos"/>
+            <param name="list_id" value="22011"/>
+        </include>
+        <include content="WidgetListLandscape">
+            <param name="content_path" value="plugin://plugin.video.fenlight/?name=Next+Episodes&amp;mode=build_next_episode&amp;iconImage=next_episodes"/>
+            <param name="widget_header" value="Next Episodes"/>
+            <param name="widget_target" value="videos"/>
+            <param name="list_id" value="22012"/>
+        </include>
+        <include content="WidgetListLandscape">
+            <param name="content_path" value="plugin://plugin.video.fenlight/?name=Popular+Today&amp;mode=build_tvshow_list&amp;action=tmdb_tv_popular_today&amp;random_support=true&amp;iconImage=popular_today"/>
+            <param name="widget_header" value="Popular Today"/>
+            <param name="widget_target" value="videos"/>
+            <param name="list_id" value="22013"/>
+        </include>
+    </include>
+</includes>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+    <include name="SearchHistory">
+        <item>
+            <label>$NUMBER[in your radiant season]</label>
+            <onclick>RunScript(script.fentastic.helper,mode=re_search)</onclick>
+        </item>
+        <item>
+            <label>$NUMBER[your best time ]</label>
+            <onclick>RunScript(script.fentastic.helper,mode=re_search)</onclick>
+        </item>
+        <item>
+            <label>$NUMBER[paradise]</label>
+            <onclick>RunScript(script.fentastic.helper,mode=re_search)</onclick>
+        </item>
+        <item>
+            <label>$NUMBER[peaky blinders ]</label>
+            <onclick>RunScript(script.fentastic.helper,mode=re_search)</onclick>
+        </item>
+        <item>
+            <label>$NUMBER[battle]</label>
+            <onclick>RunScript(script.fentastic.helper,mode=re_search)</onclick>
+        </item>
+        <item>
+            <label>$NUMBER[one battle]</label>
+            <onclick>RunScript(script.fentastic.helper,mode=re_search)</onclick>
+        </item>
+        <item>
+            <label>$NUMBER[one battle after another]</label>
+            <onclick>RunScript(script.fentastic.helper,mode=re_search)</onclick>
+        </item>
+        <item>
+            <label>$NUMBER[the Witcher]</label>
+            <onclick>RunScript(script.fentastic.helper,mode=re_search)</onclick>
+        </item>
+    </include>
+</includes>
