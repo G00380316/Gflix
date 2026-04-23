@@ -348,7 +348,7 @@ fix to properly get English videos as fallback
         </assets>
         <news>INFO: For latest changes see Changelog within Tools of add-on.</news>
     </extension>
-</addon><addon id="plugin.video.giptv" name="GIPTV" version="2.9.0" provider-name="G00380316">
+</addon><addon id="plugin.video.giptv" name="GIPTV" version="2.9.1" provider-name="G00380316">
 	<requires>
 		<import addon="xbmc.python" version="3.0.0" />
 		<import addon="script.module.requests" version="2.22.0" />
