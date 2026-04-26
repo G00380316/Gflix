@@ -21,7 +21,7 @@ Repository page:
 5. Go back and open the **Add-on Browser** (package icon).
 6. Select **Install from zip file**.
 7. Browse to the downloaded file:
-   - `repository.G00380316-2.9.3.zip`
+   - `repository.G00380316-2.9.4.zip`
 8. Wait for the repository installed notification.
 
 Kodi’s documentation confirms that zip installation from private repositories requires **Unknown sources** to be enabled. :contentReference[oaicite:1]{index=1}
