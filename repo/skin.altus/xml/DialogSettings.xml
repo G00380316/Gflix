@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<defaultcontrol>5</defaultcontrol>
+	<include>Animation_DialogPopupOpenClose</include>
+	<controls>
+		<control type="group">
+			<centertop>50%</centertop>
+			<centerleft>50%</centerleft>
+			<width>1520</width>
+			<height>815</height>
+			<include>Animation_DialogPopupVisible</include>
+			<visible>!Window.IsVisible(sliderdialog)</visible>
+			<include content="DialogBackgroundCommons">
+				<param name="header_label" value="" />
+				<param name="header_id" value="2" />
+				<param name="width" value="1470" />
+				<param name="height" value="815" />
+				<param name="header_top" value="15" />
+				<param name="divider_top" value="90" />
+			</include>
+			<control type="grouplist" id="5">
+				<description>control area</description>
+				<left>40</left>
+				<top>130</top>
+				<width>1090</width>
+				<height>630</height>
+				<pagecontrol>60</pagecontrol>
+				<onleft>9000</onleft>
+				<onright>60</onright>
+				<onup>5</onup>
+				<ondown>5</ondown>
+			</control>
+			<control type="button" id="7">
+				<description>Default Button</description>
+				<include>DefaultSettingButton</include>
+			</control>
+			<control type="radiobutton" id="8">
+				<description>Default RadioButton</description>
+				<include>DefaultSettingButton</include>
+			</control>
+			<control type="spincontrolex" id="9">
+				<description>Default SpinControlex</description>
+				<include>DefaultSettingButton</include>
+			</control>
+			<!-- <control type="image" id="11">
+				<description>separator image</description>
+				<height>3</height>
+				<texture colordiffuse="$VAR[FocusColorTheme]" border="3">dialogs/separator-grey.png</texture>
+			</control> -->
+			<control type="edit" id="12">
+				<include>DefaultSettingButton</include>
+			</control>
+			<control type="sliderex" id="13">
+				<description>Default Slider</description>
+				<include>DefaultSettingButton</include>
+				<textwidth>800</textwidth>
+			</control>
+			<control type="label" id="14">
+				<description>Default Label</description>
+				<include>DefaultSettingLabel</include>
+			</control>
+			<control type="grouplist" id="9000">
+				<left>1210</left>
+				<top>130</top>
+				<orientation>vertical</orientation>
+				<width>300</width>
+				<height>250</height>
+				<itemgap>dialogbuttons_itemgap</itemgap>
+				<onleft>5</onleft>
+				<onright>5</onright>
+				<include content="DefaultDialogButton">
+					<param name="id" value="28" />
+					<param name="label" value="" />
+				</include>
+				<include content="DefaultDialogButton">
+					<param name="id" value="29" />
+					<param name="label" value="" />
+				</include>
+				<include content="DefaultDialogButton">
+					<param name="id" value="30" />
+					<param name="label" value="" />
+				</include>
+			</control>
+			<control type="image">
+				<left>1170</left>
+				<top>130</top>
+				<width>1</width>
+				<height>630</height>
+				<texture colordiffuse="$VAR[FocusColorTheme]">colors/dark.png</texture>
+			</control>
+			<control type="scrollbar" id="60">
+				<left>1170</left>
+				<top>130</top>
+				<width>1</width>
+				<height>630</height>
+				<orientation>vertical</orientation>
+				<onleft>5</onleft>
+				<onright>9000</onright>
+				<animation effect="fade" start="0" end="100" delay="300" time="320">WindowOpen</animation>
+				<animation effect="fade" start="100" end="0" time="150">WindowClose</animation>
+			</control>
+		</control>
+	</controls>
+</window>

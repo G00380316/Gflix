@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window id="1100">
+	<defaultcontrol always="true">9000</defaultcontrol>
+	<backgroundcolor>background</backgroundcolor>
+	<controls>
+		<include>ZeroFadeBackground</include>
+		<include>DefaultBackground</include>
+		<control type="group">
+			<animation effect="fade" start="100" end="0" time="200" tween="sine" condition="$EXP[infodialog_active]">Conditional</animation>
+			<control type="group" id="400">
+			<include>AddonsMenuAnimations</include>
+				<include>OpenClose_Right</include>
+				<include content="TieredAddonLauncherList">
+					<param name="group_id" value="501" />
+					<param name="id" value="Manage add-ons" />
+					<param name="container_path" value="addons://user" />
+					<param name="container_target" value="addonbrowser" />
+				</include>
+				<include content="AddonLauncherList">
+					<param name="group_id" value="502" />
+					<param name="id" value="Recently updated" />
+					<param name="container_path" value="addons://recently_updated/" />
+					<param name="container_target" value="addonbrowser" />
+					<param name="sortby" value="lastupdate" />
+					<param name="sortorder" value="descending" />
+					<param name="imagewidget_onclick" value="ActivateWindow(addonbrowser,addons://recently_updated/,return)" />
+				</include>
+				<include content="TieredAddonLauncherList">
+					<param name="group_id" value="503" />
+					<param name="id" value="Repositories" />
+					<param name="container_path" value="addons://repos/" />
+					<param name="container_target" value="addonbrowser" />
+					<param name="imagewidget_onclick" value="ActivateWindow(addonbrowser,addons://repos/,return)" />
+				</include>
+				<include content="AddonLauncherList">
+					<param name="group_id" value="504" />
+					<param name="id" value="Manage dependencies" />
+					<param name="container_path" value="addons://dependencies/" />
+					<param name="container_target" value="addonbrowser" />
+					<param name="imagewidget_onclick" value="ActivateWindow(addonbrowser,addons://dependencies/,return)" />
+				</include>
+				<include content="AddonLauncherList">
+					<param name="group_id" value="505" />
+					<param name="id" value="Running add-ons" />
+					<param name="container_path" value="addons://running/" />
+					<param name="container_target" value="addonbrowser" />
+					<param name="imagewidget_onclick" value="ActivateWindow(addonbrowser,addons://running/,return)" />
+				</include>
+				<include content="TieredAddonLauncherList">
+					<param name="group_id" value="506" />
+					<param name="id" value="Download" />
+					<param name="container_path" value="addons://all/" />
+					<param name="container_target" value="addonbrowser" />
+				</include>
+				<include content="AddonLauncherList" condition="System.Platform.Android">
+					<param name="group_id" value="507" />
+					<param name="id" value="Android" />
+					<param name="container_path" value="androidapp://sources/apps/" />
+					<param name="container_target" value="programs" />
+				</include>
+				<control type="label">
+					<top>930</top>
+					<right>40</right>
+					<align>right</align>
+					<aligny>center</aligny>
+					<width>1440</width>
+					<font>font27</font>
+					<textcolor>$VAR[FocusColorTheme]</textcolor>
+					<label>[COLOR unfocused_text]$INFO[ListItem.AddonVersion][/COLOR] • [COLOR unfocused_text]$INFO[ListItem.AddonCreator][/COLOR]</label>
+					<visible>ControlGroup(400).HasFocus + !ControlGroup(507).HasFocus + ![String.StartsWith(ListItem.Property(Addon.ID),repository) | ListItem.IsFolder]</visible>
+					<animation effect="fade" time="200" tween="cubic" easing="out">VisibleChange</animation>
+				</control>
+			</control>
+			<control type="group">
+				<include>OpenClose_Left</include>
+				<animation effect="slide" time="400" start="-442,0" end="0,0" tween="cubic" easing="inout">VisibleChange</animation>
+				<visible allowhiddenfocus="true">!ControlGroup(400).HasFocus</visible>
+				<control type="fixedlist" id="9000">
+					<left>45</left>
+					<top>250</top>
+					<width>378</width>
+					<height>850</height>
+					<pagecontrol>70</pagecontrol>
+					<movement>9</movement>
+					<focusposition>0</focusposition>
+					<onup>700</onup>
+					<ondown>9000</ondown>
+					<onright>SetFocus($INFO[Container(9000).ListItem.Property(menu_id)])</onright>
+					<scrolltime tween="cubic" easing="out">500</scrolltime>
+					<include content="List">
+						<param name="id" value="9000" />
+					</include>
+					<content>
+						<item id="1">
+							<label>$LOCALIZE[24998]</label>
+							<onclick>ActivateWindow(addonbrowser,addons://user/,return)</onclick>
+							<property name="id">Manage add-ons</property>
+							<property name="path">addons://user/</property>
+							<property name="menu_id">$NUMBER[501]</property>
+							<property name="icon">icons/sidemenu/myaddons.png</property>
+						</item>
+						<item id="2">
+							<label>$LOCALIZE[24004]</label>
+							<onclick>ActivateWindow(addonbrowser,addons://recently_updated/,return)</onclick>
+							<property name="id">Recently updated</property>
+							<property name="path">addons://recently_updated/</property>
+							<property name="menu_id">$NUMBER[502]</property>
+							<property name="icon">icons/sidemenu/time.png</property>
+							<visible>Integer.IsGreater(Container(50250).NumItems,0)</visible>
+						</item>
+						<item id="3">
+							<label>$LOCALIZE[24087]</label>
+							<onclick>ActivateWindow(addonbrowser,addons://repos/,return)</onclick>
+							<property name="id">Repositories</property>
+							<property name="path">addons://repos/</property>
+							<property name="menu_id">$NUMBER[503]</property>
+							<property name="icon">icons/sidemenu/repos.png</property>
+						</item>
+						<item id="4">
+							<label>$LOCALIZE[39024]</label>
+							<onclick>ActivateWindow(addonbrowser,addons://dependencies/,return)</onclick>
+							<property name="id">Manage dependencies</property>
+							<property name="path">addons://dependencies/</property>
+							<property name="menu_id">$NUMBER[504]</property>
+							<property name="icon">icons/sidemenu/dependencies.png</property>
+						</item>
+						<item id="5">
+							<label>$LOCALIZE[23054]</label>
+							<onclick>ActivateWindow(videos,addons://running/,return)</onclick>
+							<property name="id">Running add-ons</property>
+							<property name="path">addons://running/</property>
+							<property name="menu_id">$NUMBER[505]</property>
+							<property name="icon">icons/sidemenu/running.png</property>
+						</item>
+						<item id="6">
+							<label>$LOCALIZE[33003]</label>
+							<onclick>ActivateWindow(addonbrowser,addons://all/,return)</onclick>
+							<property name="id">Download</property>
+							<property name="path">addons://all/</property>
+							<property name="menu_id">$NUMBER[506]</property>
+							<property name="icon">icons/sidemenu/download.png</property>
+						</item>
+						<item id="7">
+							<label>$LOCALIZE[20244]</label>
+							<onclick>ActivateWindow(programs,androidapp://sources/apps/,return)</onclick>
+							<property name="id">Android</property>
+							<property name="path">androidapp://sources/apps/</property>
+							<property name="menu_id">$NUMBER[507]</property>
+							<visible>System.Platform.Android</visible>
+							<property name="icon">icons/sidemenu/android.png</property>
+						</item>
+					</content>
+				</control>
+				<control type="group">
+					<left>28</left>
+					<top>130</top>
+					<width>415</width>
+					<height>140</height>
+					<control type="grouplist" id="700">
+						<orientation>horizontal</orientation>
+						<itemgap>4</itemgap>
+						<width>415</width>
+						<height>100</height>
+						<onup>SetFocus(9000,99,absolute)</onup>
+						<ondown>SetFocus(9000,0,absolute)</ondown>
+						<onright>400</onright>
+						<onback>9000</onback>
+						<align>left</align>
+						<include content="IconButton">
+							<param name="control_id" value="801" />
+							<param name="onclick" value="ActivateWindow(addonbrowser,root)" />
+							<param name="icon" value="icons/submenu/addons.png" />
+						</include>
+						<include content="IconButton">
+							<param name="control_id" value="802" />
+							<param name="onclick" value="InstallFromZip" />
+							<param name="icon" value="icons/submenu/installfromzip.png" />
+						</include>
+						<include content="IconButton">
+							<param name="control_id" value="803" />
+							<param name="onclick" value="ActivateWindow(addonbrowser,addons://search/,return)" />
+							<param name="icon" value="icons/submenu/search.png" />
+						</include>
+						<include content="IconButton">
+							<param name="control_id" value="804" />
+							<param name="onclick" value="ActivateWindow(addonbrowser,addons://outdated/,return)" />
+							<param name="icon" value="icons/submenu/updates.png" />
+							<param name="visible" value="Integer.IsGreater(System.AddonUpdateCount,0)" />
+						</include>
+					</control>
+					<control type="label">
+						<left>20</left>
+						<top>-38</top>
+						<width>415</width>
+						<height>30</height>
+						<font>font12</font>
+						<align>left</align>
+						<aligny>center</aligny>
+						<textcolor>unfocused_text</textcolor>
+						<label>$VAR[AddonLauncherSubmenuButtonLabelsVar]</label>
+					</control>
+				</control>
+			</control>
+			<include content="TopBar">
+				<param name="breadcrumbs_label" value="[COLOR unfocused_text]$LOCALIZE[24001][/COLOR]" />
+			</include>
+			<include>BottomBar</include>
+			<control type="group">
+				<left>-10000</left>
+				<include content="InfoList">
+					<param name="path" value="addons://outdated/" />
+					<param name="bottom" value="1" />
+					<param name="width" value="1" />
+					<param name="list_id" value="8000" />
+					<param name="item_label" value="" />
+				</include>
+				<include content="InfoList">
+					<param name="bottom" value="108" />
+					<param name="width" value="540" />
+					<param name="sortby" value="year" />
+					<param name="sortorder" value="ascending" />
+					<param name="font" value="font13" />
+				</include>
+			</control>
+		</control>
+	</controls>
+</window>

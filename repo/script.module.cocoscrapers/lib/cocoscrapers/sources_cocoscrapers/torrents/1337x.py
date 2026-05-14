@@ -9,6 +9,7 @@ from urllib.parse import quote, unquote_plus
 from cocoscrapers.modules import client
 from cocoscrapers.modules import source_utils
 from cocoscrapers.modules import log_utils
+from cocoscrapers.modules import workers
 from time import time
 
 

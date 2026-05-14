@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<defaultcontrol>10</defaultcontrol>
+	<include content="OpenClose_Slide_Right">
+		<param name="distance" value="1220" />
+	</include>
+	<controls>
+		<control type="group">
+			<top>0</top>
+			<right>0</right>
+			<height>100%</height>
+			<width>1220</width>
+			<include content="DialogBackgroundCommons">
+				<param name="header_label" value="$LOCALIZE[13406]" />
+				<param name="header_id" value="2" />
+				<param name="top" value="40" />
+				<param name="bottom" value="40" />
+				<param name="right" value="-42" />
+				<param name="border_texture" value="masks/bordertexture-46-thin_left.png" />
+				<param name="diffuse_texture" value="masks/radius_46_left.png" />
+				<param name="border_value" value="46,46,0,46" />
+			</include>
+			<control type="label">
+				<description>path label</description>
+				<left>40</left>
+				<top>170</top>
+				<width>930</width>
+				<height>30</height>
+				<align>left</align>
+				<aligny>center</aligny>
+				<font>font12</font>
+				<label>$LOCALIZE[1021]</label>
+				<textcolor>unfocused_text</textcolor>
+			</control>
+			<control type="panel" id="10">
+				<left>40</left>
+				<top>220</top>
+				<width>850</width>
+				<height>245</height>
+				<onup>9001</onup>
+				<onleft>9000</onleft>
+				<onright>60</onright>
+				<ondown>12</ondown>
+				<pagecontrol>60</pagecontrol>
+				<scrolltime>200</scrolltime>
+				<itemlayout height="70" width="850">
+					<control type="image">
+						<texture border="23"  colordiffuse="$VAR[FocusColorTheme]">masks/radius_23_dark.png</texture>
+					</control>
+					<control type="label">
+						<left>30</left>
+						<right>30</right>
+						<aligny>center</aligny>
+						<align>center</align>
+						<textcolor>unfocused_text</textcolor>
+						<label>$INFO[ListItem.Label]</label>
+					</control>
+				</itemlayout>
+				<focusedlayout height="70" width="850">
+					<control type="image">
+						<visible>Control.HasFocus(10)</visible>
+						<texture border="23"  colordiffuse="$VAR[FocusColorTheme]">masks/radius_23.png</texture>
+					</control>
+					<control type="label">
+						<left>30</left>
+						<right>30</right>
+						<aligny>center</aligny>
+						<align>center</align>
+						<label>$INFO[ListItem.Label]</label>
+						<textcolor>$VAR[FocusedTextColorVar]</textcolor>
+					</control>
+				</focusedlayout>
+			</control>
+			
+			<control type="label">
+				<description>Name label</description>
+				<left>40</left>
+				<right>30</right>
+				<top>350</top>
+				<width>890</width>
+				<height>30</height>
+				<align>center</align>
+				<aligny>center</aligny>
+				<font>font12</font>
+				<label>$LOCALIZE[1022]</label>
+				<textcolor>darkgrey</textcolor>
+			</control>
+			<control type="edit" id="12">
+				<description>Name Button</description>
+				<left>40</left>
+				<top>400</top>
+				<width>850</width>
+				<height>60</height>
+				<align>center</align>
+				<aligny>center</aligny>
+				<label></label>
+				<onup>10</onup>
+				<onright>9000</onright>
+				<ondown>9001</ondown>
+				<texturefocus border="23"  colordiffuse="$VAR[FocusColorTheme]">masks/radius_23.png</texturefocus>
+				<texturenofocus border="23" colordiffuse="$VAR[FocusColorTheme]">masks/radius_23_dark.png</texturenofocus>
+			</control>
+			<control type="grouplist" id="9001">
+				<left>40</left>
+				<bottom>440</bottom>
+				<height>100</height>
+				<width>890</width>
+				<align>center</align>
+				<itemgap>dialogbuttons_itemgap</itemgap>
+				<orientation>horizontal</orientation>
+				<onup>12</onup>
+				<onright>9000</onright>
+				<!-- <onleft condition="!Control.IsVisible(60)">9000</onleft>
+				<onleft condition="Control.IsVisible(60)">60</onleft>
+				<onright condition="!Control.IsVisible(60)">9000</onright>
+				<onright condition="Control.IsVisible(60)">60</onright> -->
+				<include content="DefaultDialogButton">
+					<param name="id" value="18" />
+					<param name="label" value="$LOCALIZE[186]" />
+				</include>
+				<include content="DefaultDialogButton">
+					<param name="id" value="19" />
+					<param name="label" value="$LOCALIZE[222]" />
+				</include>
+			</control>
+		</control>
+		<control type="scrollbar" id="60">
+			<left>870</left>
+			<top>166</top>
+			<width>12</width>
+			<height>243</height>
+			<onleft>10</onleft>
+			<onright>9000</onright>
+			<orientation>vertical</orientation>
+		</control>
+		<control type="grouplist" id="9000">
+			<!-- <animation condition="Control.HasFocus(10) | Control.HasFocus(12) | ControlGroup(9001).HasFocus | Control.HasFocus(60)">
+				<effect type="fade" start="100" end="0" time="300" tween="cubic" easing="in"/>
+				<effect type="slide" start="0,0" end="200,0" time="300" tween="cubic" easing="in" />
+			</animation> -->
+			<left>1662</left>
+			<top>160</top>
+			<orientation>vertical</orientation>
+			<onleft>10</onleft>
+			<onright>10</onright>
+			<ondown>12</ondown>
+			<itemgap>dialogbuttons_itemgap</itemgap>
+			<include content="DefaultDialogButton">
+				<param name="id" value="11" />
+				<param name="label" value="$LOCALIZE[1024]" />
+			</include>
+			<include content="DefaultDialogButton">
+				<param name="id" value="13" />
+				<param name="label" value="$LOCALIZE[15019]" />
+			</include>
+			<include content="DefaultDialogButton">
+				<param name="id" value="14" />
+				<param name="label" value="$LOCALIZE[1210]" />
+			</include>
+		</control>
+	</controls>
+</window>

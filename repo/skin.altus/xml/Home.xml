@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<defaultcontrol always="true">9000</defaultcontrol>
+	<backgroundcolor>background</backgroundcolor>
+	<!-- <onload condition="!String.IsEmpty(Skin.String(TrailerPlaying))">Skin.Reset(TrailerPlaying)</onload> -->
+	<include condition="!Skin.HasSetting(firsttimerun)">AltusSkinStringsInitialization</include>
+	<controls>
+		<!-- <control type="button" id="20000">
+			<include>HiddenObject</include>
+			<animation effect="fade" time="300" start="100" end="0">Focus</animation>
+			<onfocus>SetFocus($INFO[Window(Home).Property(LastWidgetID)])</onfocus>
+			<onclick>noop</onclick>
+			<visible allowhiddenfocus="true">Control.HasFocus(20000)</visible>
+		</control>
+		<control type="button" id="20001">
+			<include>HiddenObject</include>
+			<animation effect="fade" time="300" start="100" end="0">Focus</animation>
+			<onfocus>SetFocus($INFO[Window(Home).Property(FirstWidgetID)])</onfocus>
+			<onclick>noop</onclick>
+			<visible allowhiddenfocus="true">Control.HasFocus(20001)</visible>
+		</control> -->
+		<include>DefaultBackground</include>
+		<include>PlayerLogoProcessor</include>
+		<control type="image" id="100000">
+			<top>-2</top>
+			<right>-2</right>
+			<width>1427</width>
+			<height>803</height>
+			<fadetime>500</fadetime>
+			<bordersize>2</bordersize>
+			<texture border="2" colordiffuse="artwork_dim" background="true" diffuse="overlays/flixinfo-fanartdiffuse.png" fallback="$VAR[AltusCustomBackgroundImage]">$VAR[MediaFanartVar]</texture>
+			<aspectratio align="right" aligny="top">stretch</aspectratio>
+			<bordertexture colordiffuse="$VAR[FocusColorTheme]" infill="false">overlays/flixinfo-fanartdiffuse_border.png</bordertexture>
+			<include>ArtworkAnimations</include>
+			<visible>[![Player.HasVideo | [Player.HasAudio + Visualisation.Enabled + !String.IsEmpty(Visualisation.Name)]] | !String.IsEmpty(Window(Videos).Property(PlayingBackgroundMedia))] + !Window.IsVisible(movieinformation) + !String.IsEmpty(Window(Home).Property(FlixWidget))</visible>
+		</control>
+		<control type="multiimage" id="100000">
+			<include>FullScreenDimensions</include>
+			<include>ArtworkAnimations</include>
+			<aspectratio>scale</aspectratio>
+			<fadetime>500</fadetime>
+			<imagepath background="true" colordiffuse="FF404040">$VAR[WeatherFanartVar]</imagepath>
+			<visible>[![Player.HasVideo | [Player.HasAudio + Visualisation.Enabled + !String.IsEmpty(Visualisation.Name)]] | !String.IsEmpty(Window(Videos).Property(PlayingBackgroundMedia))] + [String.IsEqual(Skin.String(BackgroundSetting),1) | String.IsEqual(Skin.String(BackgroundSetting),2)] + [ControlGroup(15000).HasFocus | String.IsEqual(Container(9000).ListItem.Property(id),weather)] + Skin.HasSetting(Enable.WeatherFanart)</visible>
+		</control>
+		<control type="group">
+			<animation effect="fade" start="100" end="0" time="200" tween="sine" condition="$EXP[infodialog_active]">Conditional</animation>
+			<animation effect="fade" start="100" end="0" time="500" tween="sine" condition="Player.HasVideo + !String.IsEmpty(Skin.String(TrailerPlaying))">Conditional</animation>
+			<!-- WIDGETS GROUP -->
+			<control type="group" id="2000">
+				<left>-1</left>
+				<animation condition="Skin.HasSetting(Enable.MainMenuWidgetDimming) + String.IsEqual(Skin.String(BackgroundSetting),1) + !ControlGroup(2000).HasFocus" reversible="true">
+					<effect type="fadediffuse" start="FFE9E9E9" end="FF777777" time="300" />
+				</animation>
+				<animation condition="Skin.HasSetting(Enable.MainMenuWidgetDimming) + [String.IsEqual(Skin.String(BackgroundSetting),0) | String.IsEqual(Skin.String(BackgroundSetting),2)] + !ControlGroup(2000).HasFocus" reversible="true">
+					<effect type="fade" start="100" end="60" time="300" tween="sine" easing="inout" />
+					<effect type="fadediffuse" start="FFE9E9E9" end="FF777777" time="300" />
+				</animation>
+				<!-- <animation effect="slide" condition="!String.IsEmpty(Window(Home).Property(FlixWidget))" time="0" start="0,0" end="-498,0" tween="cubic" easing="inout">Conditional</animation> -->
+				<animation effect="slide" condition="!ControlGroup(15000).HasFocus" time="500" start="0,0" end="498,0" tween="cubic" easing="inout">Conditional</animation>
+				<!-- <animation type="Conditional" condition="Control.IsVisible(20000)" reversible="false">
+					<effect type="slide" end="0,20" time="60" tween="sine" />
+					<effect type="slide" end="0,-20" time="180" tween="sine" delay="80" />
+				</animation>
+				<animation type="Conditional" condition="Control.IsVisible(20001)" reversible="false">
+					<effect type="slide" end="0,-20" time="60" tween="sine" />
+					<effect type="slide" end="0,20" time="180" tween="sine" delay="80" />
+				</animation> -->
+				<!-- <include>MainMenuAnimations</include> -->
+				<include>OpenClose_Right</include>
+				<control type="group" id="27000">
+					<visible>false</visible>
+					<include content="Visible_Right_Delayed">
+						<param name="id" value="addons"/>
+					</include>
+					<control type="grouplist" id="27001">
+						<include>WidgetGroupListCommon</include>
+						<pagecontrol>27010</pagecontrol>
+						<include content="WidgetListSquare">
+							<param name="content_path" value="addons://sources/video/"/>
+							<param name="widget_header" value="$LOCALIZE[1037]"/>
+							<param name="widget_target" value="videos"/>
+							<param name="sortby" value="lastused"/>
+							<param name="sortorder" value="descending"/>
+							<param name="list_id" value="27100"/>
+							<param name="fallback_icon" value="DefaultAddon.png"/>
+						</include>
+						<include content="WidgetListSquare">
+							<param name="content_path" value="addons://sources/executable/"/>
+							<param name="widget_header" value="$LOCALIZE[1043]"/>
+							<param name="widget_target" value="programs"/>
+							<param name="sortby" value="lastused"/>
+							<param name="sortorder" value="descending"/>
+							<param name="list_id" value="27300"/>
+							<param name="fallback_icon" value="DefaultAddon.png"/>
+						</include>
+					</control>
+				</control>
+				<include>HomeWidgetGroups</include>
+				<control type="group" id="15000">
+					<visible>String.IsEqual(Container(9000).ListItem.Property(id),weather)</visible>
+					<include content="Visible_Right_Delayed">
+						<param name="id" value="weather"/>
+					</include>
+					<include>WeatherPanel</include>
+					<control type="grouplist" id="15001">
+						<top>170</top>
+						<include>WidgetGroupListCommon</include>
+						<pagecontrol>15010</pagecontrol>
+						<include content="WeatherWidget" condition="!String.IsEmpty(Weather.Plugin)">
+							<param name="content_include" value="DailyItems" />
+							<param name="list_id" value="15200" />
+							<param name="widget_header" value="$LOCALIZE[31019]"/>
+							<param name="visible" value="!String.IsEmpty(Window(weather).Property(Daily.IsFetched))" />
+						</include>
+						<include content="WeatherWidget" condition="!String.IsEmpty(Weather.Plugin)">
+							<param name="content_include" value="HourlyItems" />
+							<param name="list_id" value="15100" />
+							<param name="widget_header" value="$LOCALIZE[33036]"/>
+							<param name="visible" value="!String.IsEmpty(Window(weather).Property(Hourly.IsFetched))" />
+						</include>
+						<include content="WeatherMapItem">
+							<param name="item_id" value="1" />
+							<param name="onup_id" value="15200" />
+							<param name="ondown_id" value="70020" />
+						</include>
+						<include content="WeatherMapItem">
+							<param name="item_id" value="2" />
+							<param name="onup_id" value="70010" />
+							<param name="ondown_id" value="70030" />
+						</include>
+						<include content="WeatherMapItem">
+							<param name="item_id" value="3" />
+							<param name="onup_id" value="70020" />
+							<param name="ondown_id" value="70040" />
+						</include>
+						<include content="WeatherMapItem">
+							<param name="item_id" value="4" />
+							<param name="onup_id" value="70030" />
+							<param name="ondown_id" value="70050" />
+						</include>
+						<include content="WeatherMapItem">
+							<param name="item_id" value="5" />
+							<param name="onup_id" value="70040" />
+							<param name="ondown_id" value="20001" />
+						</include>
+					</control>
+					<include content="ImageWidget" condition="String.IsEmpty(Weather.plugin)">
+						<param name="text_label" value="$LOCALIZE[31120]" />
+						<param name="button_label" value="$LOCALIZE[31121]" />
+						<param name="left">500</param>
+						<param name="button_onclick" value="ActivateWindow(servicesettings,weather)"/>
+						<param name="button_id" value="15300"/>
+						<param name="button2_onclick" value="Skin.SetBool(HomeMenuNoWeatherButton)"/>
+					</include>
+					<include content="WidgetScrollbar" condition="Skin.HasSetting(touchmode)">
+						<param name="scrollbar_id" value="15010"/>
+					</include>
+				</control>
+				<control type="group" id="21000">
+					<visible>String.IsEqual(Container(9000).ListItem.Property(id),disc)</visible>
+					<include content="Visible_Right_Delayed">
+						<param name="id" value="disc"/>
+					</include>
+					<include content="ImageWidget">
+						<param name="text_label" value="$INFO[System.DVDLabel]" />
+						<param name="left">500</param>
+						<param name="button_label" value="$LOCALIZE[341]" />
+						<param name="button_onclick" value="PlayDisc"/>
+						<param name="button_id" value="21100"/>
+						<param name="visible" value="true"/>
+						<param name="button2_label" value="$LOCALIZE[13391]"/>
+						<param name="button2_onclick" value="EjectTray()"/>
+						<param name="button3_label" value="$LOCALIZE[600]"/>
+						<param name="button3_onclick" value="RipCD"/>
+						<param name="visible_3" value="System.HasMediaAudioCD"/>
+					</include>
+				</control>
+			</control>
+			<include content="TopBar">
+				<param name="breadcrumbs_label" value="" />
+			</include>
+			<include>BottomBar</include>
+			<!-- <control type="textbox" id="9999">
+				<left>100</left>
+				<top>700</top>
+				<width>500</width>
+				<height>40</height>
+				<font>font12</font>
+				<textcolor>FFFFFFFF</textcolor>
+				<label>DB Type: $INFO[Window(Home).Property(CurrentDBType)]</label>
+				<label>Saved: $INFO[Window(Home).Property(altus_saved_list_id)][CR]Stacked: $INFO[Window(Home).Property(altus_stacked_saved_list_id)][CR]Linked: $INFO[Window(Home).Property(altus_flix_linked_list_id)]</label>
+				<label>Current Focus: $INFO[System.CurrentControlID]</label>
+				<label>First: $INFO[Window(Home).Property(FirstWidgetID)] • Last: $INFO[Window(Home).Property(LastWidgetID)] • Current Focus: $INFO[System.CurrentControlID]</label>
+				<label>Feature: $INFO[Window(Home).Property(FeatureWidgetFocused)]</label>
+				<label>Widget: $INFO[Window(Home).Property(FeatureWidgetFocused)]</label>
+				<label>$INFO[Window(Home).Property(fenlight.default_addon_fanart)]</label>
+				<label>$INFO[Window(home).Property(listitem_color)]</label>
+				<label>$INFO[Window(Weather).Property(Current.FanartCode)]</label>
+				<visible>true</visible>
+			</control> -->
+			<control type="group">
+				<depth>DepthContentPanel</depth>
+				<include>OpenClose_Left</include>
+				<!-- <animation effect="slide" condition="ControlGroup(2000).HasFocus + ![ControlGroup(19000).HasFocus | ControlGroup(22000).HasFocus | ControlGroup(23000).HasFocus | ControlGroup(24000).HasFocus | ControlGroup(25000).HasFocus]" time="500" start="0,0" end="-498,0" tween="cubic" easing="inout">Conditional</animation> -->
+				<animation effect="slide" condition="ControlGroup(15000).HasFocus" time="500" start="0,0" end="-498,0" tween="cubic" easing="inout">Conditional</animation>
+				<!-- <animation effect="slide" condition="ControlGroup(2000).HasFocus + !Control.HasFocus(9000) + !ControlGroup(15000).HasFocus" time="500" start="0,0" end="-498,0" tween="cubic" easing="inout">Conditional</animation> -->
+				<include>VerticalInfoPanel</include>
+				<control type="group">
+					<!-- <visible allowhiddenfocus="true">!ControlGroup(2000).HasFocus + !Control.HasFocus(20000) + !Control.HasFocus(20001)</visible> -->
+					<visible allowhiddenfocus="true">!$EXP[isContent]</visible>
+					<animation effect="fade" time="300">VisibleChange</animation>
+					<width>498</width>
+					<control type="list" id="9000">
+						<animation effect="slide" condition="!ControlGroup(2000).HasFocus + ![Control.HasFocus(9000) | ControlGroup(700).HasFocus]" time="300" start="0,0" end="-498,0" tween="cubic" easing="inout">Conditional</animation>
+						<left>70</left>
+						<top>180</top>
+						<width>378</width>
+						<height>850</height>
+						<onfocus>ClearProperty(listposition,home)</onfocus>
+						<!-- <onfocus>SetProperty(fenlight.default_addon_fanart,,home)</onfocus> -->
+						<onfocus>ClearProperty(FlixWidget,Home)</onfocus>
+						<onfocus>ClearProperty(FeatureWidgetFocused,Home)</onfocus>
+						<onfocus>ClearProperty(altus_stacked_linked_list_id,Home)</onfocus>
+						<onright>SetFocus($INFO[Container(9000).ListItem.Property(menu_id)])</onright>
+						<onleft>SetFocus($INFO[Container(9000).ListItem.Property(submenu_id)])</onleft>
+						<onback>700</onback>
+						<onup>700</onup>
+						<ondown>9000</ondown>
+						<scrolltime tween="cubic" easing="out">500</scrolltime>
+						<include content="MainMenuList">
+							<param name="id" value="9000" />
+						</include>
+						<content>
+							<!-- Dynamic sections from widget manager -->
+							<include>MainMenuItems</include>
+							<item>
+								<label>$LOCALIZE[427]</label>
+								<onclick>PlayDisc</onclick>
+								<property name="menu_id">$NUMBER[21000]</property>
+								<property name="id">disc</property>
+								<property name="icon">icons/sidemenu/disc.png</property>
+								<visible>System.HasMediaDVD</visible>
+							</item>
+						</content>
+					</control>
+					<!-- Section submenus (positioned right of main menu) -->
+					<control type="group">
+						<animation effect="slide" condition="ControlGroup(2000).HasFocus | Control.HasFocus(9000) | ControlGroup(700).HasFocus" time="300" start="0,0" end="-498,0" tween="cubic" easing="inout">Conditional</animation>
+						<left>70</left>
+						<top>180</top>
+						<width>378</width>
+						<height>832</height>
+						<include>HomeSubmenus</include>
+					</control>
+					<control type="group">
+						<left>53</left>
+						<top>70</top>
+						<width>415</width>
+						<height>140</height>
+						<control type="label">
+							<left>20</left>
+							<top>-38</top>
+							<width>415</width>
+							<height>30</height>
+							<font>font12</font>
+							<align>left</align>
+							<aligny>center</aligny>
+							<textcolor>lightgrey</textcolor>
+							<label>$VAR[HomeSubmenuButtonLabelsVar]</label>
+							<!-- <label>$INFO[System.Time] • $INFO[Window(Weather).Property(Current.Temperature)]$INFO[System.TemperatureUnits]</label> -->
+						</control>
+						<control type="grouplist" id="700">
+							<orientation>horizontal</orientation>
+							<itemgap>4</itemgap>
+							<width>415</width>
+							<height>100</height>
+							<onup>SetFocus(9000,99,absolute)</onup>
+							<ondown>SetFocus(9000,0,absolute)</ondown>
+							<onright>2000</onright>
+							<onback>9000</onback>
+							<align>left</align>
+							<include content="IconButton">
+								<param name="control_id" value="801" />
+								<param name="onclick" value="$VAR[HomePowerButtonActionVar]" />
+								<param name="icon" value="icons/submenu/power.png" />
+							</include>
+							<include content="IconButton">
+								<param name="control_id" value="802" />
+								<param name="onclick" value="ActivateWindow(settings)" />
+								<param name="icon" value="icons/submenu/settings.png" />
+							</include>
+							<include content="IconButton">
+								<param name="control_id" value="803" />
+								<param name="onclick" value="RunScript(script.altus.helper,mode=open_widget_manager)" />
+								<param name="icon" value="icons/submenu/edit.png" />
+								<param name="visible" value="Skin.HasSetting(Enable.WMButton)" />
+							</include>
+							<include content="IconButton">
+								<param name="control_id" value="804" />
+								<param name="onclick" value="$VAR[HomeSearchButtonActionVar]" />
+								<param name="icon" value="icons/submenu/search.png" />
+							</include>
+							<include content="IconButton">
+								<param name="control_id" value="805" />
+								<param name="onclick" value="ActivateWindow(addonbrowser,addons://outdated/,return)" />
+								<param name="icon" value="icons/submenu/updates.png" />
+								<param name="visible" value="Integer.IsGreater(System.AddonUpdateCount,0)" />
+							</include>
+							<include content="IconButton">
+								<param name="control_id" value="806" />
+								<param name="onclick" value="Fullscreen" />
+								<param name="icon" value="icons/submenu/fullscreen.png" />
+								<param name="visible" value="Player.HasMedia" />
+							</include>
+						</control>
+					</control>
+				</control>
+			</control>
+			
+			<control type="group">
+				<depth>DepthBars</depth>
+				<bottom>0</bottom>
+				<height>70</height>
+				<animation effect="fade" start="0" end="100" time="300" delay="300">WindowOpen</animation>
+				<animation effect="fade" start="100" end="0" time="200">WindowClose</animation>
+				<include condition="!Skin.HasSetting(hide_mediaflags)" content="MediaFlags">
+					<param name="infolabel_prefix" value="Container." />
+					<param name="resolution_var" value="$VAR[ContainerResolutionFlagVar]" />
+				</include>
+				<control type="rss">
+					<animation effect="slide" end="0,100" time="300" tween="sine" easing="inout" condition="$EXP[infodialog_active]">conditional</animation>
+					<left>0</left>
+					<bottom>0</bottom>
+					<height>39</height>
+					<width>100%</width>
+					<font>font12</font>
+					<urlset>1</urlset>
+					<hitrect x="-100" y="0" w="1" h="1" />
+					<titlecolor>$VAR[FocusColorTheme]</titlecolor>
+					<textcolor>$VAR[FocusColorTheme]</textcolor>
+					<shadowcolor>text_shadow</shadowcolor>
+					<headlinecolor>FFC0C0C0</headlinecolor>
+					<visible>Skin.HasSetting(hide_mediaflags) | !ControlGroup(2000).HasFocus</visible>
+					<animation effect="fade" time="300">VisibleChange</animation>
+				</control>
+			</control>
+		</control>
+	</controls>
+</window>

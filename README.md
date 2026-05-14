@@ -21,7 +21,7 @@ Repository page:
 5. Go back and open the **Add-on Browser** (package icon).
 6. Select **Install from zip file**.
 7. Browse to the downloaded file:
-   - `repository.G00380316-2.9.9.zip`
+   - `repository.G00380316-3.0.1.zip`
 8. Wait for the repository installed notification.
 
 Kodi’s documentation confirms that zip installation from private repositories requires **Unknown sources** to be enabled. :contentReference[oaicite:1]{index=1}
@@ -121,3 +121,47 @@ If you want to support the project, use the in-app:
 
 Users are responsible for the services and sources they configure in this add-on.  
 Only use content and services you are legally allowed to access.
+
+# Skins & Helpful Links
+
+Use the following skins to customize Kodi. Some skins are optimized for specific add-ons.  
+
+| Skin Name       | Recommended Add-on       | Notes / Description                                                                 |
+|-----------------|------------------------|-----------------------------------------------------------------------------------|
+| **Altus**       | Any add-on              | Lightweight and modern interface, suitable for general use.                        |
+| **Bingie**      | Any add-on              | Sleek, minimal design for fast navigation.                                         |
+| **FENtastic**   | FEN                     | Optimized skin for FEN add-on, smooth and responsive UI.                            |
+| **Nimbus**      | Any add-on(POV)              | Clean layout with easy access to content.                                          |
+| **Umbrestuary** | Umbrella                | Modified Estuary skin, designed specifically for Kodi Nexus with Umbrella add-on. |
+| **Artic Fuse** | Tmdb(with a Player)                | Modified Estuary skin, designed specifically for Kodi Nexus with Umbrella add-on. |
+| **Artic Horizon** | Tmdb(with a Player)                | Modified Estuary skin, designed specifically for Kodi Nexus with Umbrella add-on. |
+
+> ⚠️ A Player could be POV or Zoro etc  
+
+### Add-on Setup Guides
+
+| Add-on Name     | Setup Link                                                                 |
+|-----------------|----------------------------------------------------------------------------|
+| **POV**         | [POV Add-on Installation & Setup](https://troypoint.com/pov-kodi-addon/)   |
+| **Umbrella**    | [Umbrella Add-on Installation & Setup](https://troypoint.com/umbrella-kodi-addon/) |
+| **Zoro**        | [Zoro Add-on Installation & Setup](https://troypoint.com/zoro-kodi-addon/) |
+
+> ⚠️ Skip repository installation steps if the add-on is already included in this repo.  
+> ⚠️ Some skins are specifically built for certain add-ons; use the recommended combination for best experience.
+
+---
+
+# Supported Services / Accounts
+
+GIPTV and many Kodi add-ons can integrate with external streaming and caching services.  
+
+| Service Name      | Website / Info Link                             | Notes                                                   |
+|------------------|-------------------------------------------------|---------------------------------------------------------|
+| **Real-Debrid**   | [https://real-debrid.com](https://real-debrid.com) | Premium caching & streaming service for higher-quality links. |
+| **AllDebrid**     | [https://alldebrid.com](https://alldebrid.com/) | Similar to Real-Debrid, unlocks premium streams.       |
+| **Premiumize**    | [https://www.premiumize.me](https://www.premiumize.me) | Supports caching, Usenet, and cloud storage.          |
+| **TorBox**        | [https://www.torbox.app](https://www.torbox.app)        | VPN / proxy service, can be used with streaming add-ons. |
+| **Trakt.tv**      | [https://trakt.tv](https://trakt.tv)           | Keep track of your watched shows and movies across add-ons. |
+
+> ⚠️ Ensure you only connect services you have a valid account for. These services are optional but improve playback quality and functionality.
+> ⚠️ VPN although optional, can improve experience depending on what region you live in.

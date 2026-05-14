@@ -750,3 +750,15 @@ msgstr ""
 msgctxt "#32575"
 msgid "LIMETORRENTS (Pack Capable)"
 msgstr ""
+
+msgctxt "#32576"
+msgid "PROWLARR (PACK CAPABLE)"
+msgstr ""
+
+msgctxt "#32577"
+msgid "PROWLARR apikey"
+msgstr ""
+
+msgctxt "#32578"
+msgid "PROWLARR url"
+msgstr ""

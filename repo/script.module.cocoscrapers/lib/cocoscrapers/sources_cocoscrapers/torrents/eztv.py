@@ -8,7 +8,7 @@ import re
 from urllib.parse import quote_plus, unquote_plus
 from cocoscrapers.modules import client
 from cocoscrapers.modules import source_utils
-
+from cocoscrapers.modules import log_utils
 
 class source:
 	priority = 6

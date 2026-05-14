@@ -1,0 +1,1147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+
+	<variable name="Altus_Divider">
+		<value>[COLOR accent_color][B]|[/B][/COLOR]</value>
+	</variable>
+
+	<variable name="Altus_Video_Divider">
+		<value>[COLOR $VAR[PlayerProgressColor]][B]|[/B][/COLOR]</value>
+	</variable>
+
+	<variable name="Altus_PVR_Divider">
+		<value condition="!String.IsEmpty(ListItem.EpgEventTitle)">[B]|[/B]</value>
+	</variable>
+
+	<variable name="Altus_Focused_PVR_Divider">
+		<value condition="!String.IsEmpty(ListItem.EpgEventTitle)">|</value>
+	</variable>
+
+	<!-- <variable name="Flix_Divider">
+		<value>[COLOR $VAR[FocusColorTheme]][B]|[/B][/COLOR]</value>
+	</variable> -->
+
+	<variable name="Altus_Codec_Divider">
+		<value condition="!String.IsEmpty(VideoPlayer.AudioChannels)">[COLOR accent_color][B]|[/B][/COLOR]</value>
+	</variable>
+
+	<variable name="SeasonWatchedTextColor">
+		<value condition="String.IsEqual(ListItem.Property(UnwatchedEpisodes),0)">FF4CAF50</value>
+		<value condition="Integer.IsGreater(ListItem.Property(WatchedEpisodes),0)">FFFFC107</value>
+		<value>FFE57373</value>
+	</variable>
+
+	<variable name="SeasonPlot">
+		<value condition="Control.HasFocus(5057)">[COLOR unfocused_text]$INFO[Container(5057).ListItem.Plot][/COLOR]</value>
+		<value>[COLOR unfocused_text]$INFO[Container(57).ListItem.Plot][/COLOR]</value>
+  </variable>
+
+	<variable name="InfoBadgeSeasonTitle">
+		<value condition="Control.IsVisible(57)">$INFO[Container(5057).ListItem.Title]</value>
+		<value>$INFO[Container($PARAM[list_id]).ListItem.TVShowTitle]</value>
+	</variable>
+
+	<variable name="InfoBadgeEpisodeLabelVar">
+		<value condition="String.StartsWith(Container.PluginCategory,Season)">$INFO[ListItem.Season]$INFO[ListItem.Episode,x,] | $INFO[ListItem.Title]</value>
+		<value>[UPPERCASE][LIGHT]$INFO[ListItem.Season]$INFO[ListItem.Episode,x,] | $INFO[ListItem.TVShowTitle][/UPPERCASE][/LIGHT]</value>
+	</variable>
+
+	<!-- BigLandscape variant: on View 57 the layout is rendered inside the seasons list (57)
+	but data must come from the focused episodes list (5057). Outside View 57, bare refs
+	(current container/item) are correct. -->
+	<variable name="InfoBadgeEpisodeLabelBigVar">
+		<value condition="Control.IsVisible(57) + String.StartsWith(Container(5057).PluginCategory,Season)">$INFO[Container(5057).ListItem.Season]$INFO[Container(5057).ListItem.Episode,x,] | $INFO[Container(5057).ListItem.Title]</value>
+		<value condition="Control.IsVisible(57)">[UPPERCASE][LIGHT]$INFO[Container(5057).ListItem.Season]$INFO[Container(5057).ListItem.Episode,x,] | $INFO[Container(5057).ListItem.Title][/UPPERCASE][/LIGHT]</value>
+		<value condition="String.StartsWith(Container.PluginCategory,Season)">$INFO[ListItem.Season]$INFO[ListItem.Episode,x,] | $INFO[ListItem.Title]</value>
+		<value>[UPPERCASE][LIGHT]$INFO[ListItem.Season]$INFO[ListItem.Episode,x,] | $INFO[ListItem.TVShowTitle][/UPPERCASE][/LIGHT]</value>
+	</variable>
+
+	<!-- Return a single genre -->
+  <variable name="GenreVar">
+		<!-- Specific Genre Combinations -->
+    <value condition="!String.IsEmpty(ListItem.Genre) + String.Contains(ListItem.Genre,Documentary) + String.Contains(ListItem.Genre,Drama) + String.Contains(ListItem.Genre,History)">Historical Docudrama</value>
+    <value condition="!String.IsEmpty(ListItem.Genre) + String.Contains(ListItem.Genre,History) + String.Contains(ListItem.Genre,Drama) + String.Contains(ListItem.Genre,Comedy)">Historical Dramedy</value>
+    <value condition="!String.IsEmpty(ListItem.Genre) + String.Contains(ListItem.Genre,Documentary) + String.Contains(ListItem.Genre,Drama) + String.Contains(ListItem.Genre,Crime)">Crime Docudrama</value>
+    <value condition="!String.IsEmpty(ListItem.Genre) + String.Contains(ListItem.Genre,Animation) + String.Contains(ListItem.Genre,Drama) + String.Contains(ListItem.Genre,Comedy)">Animated Dramedy</value>
+    <value condition="!String.IsEmpty(ListItem.Genre) + String.Contains(ListItem.Genre,Crime) + String.Contains(ListItem.Genre,Drama) + String.Contains(ListItem.Genre,Comedy)">Crime Dramedy</value>
+    <value condition="!String.IsEmpty(ListItem.Genre) + String.Contains(ListItem.Genre,Romance) + String.Contains(ListItem.Genre,Drama) + String.Contains(ListItem.Genre,Comedy)">Romantic Dramedy</value>
+    <value condition="!String.IsEmpty(ListItem.Genre) + String.Contains(ListItem.Genre,Sports) + String.Contains(ListItem.Genre,Drama) + String.Contains(ListItem.Genre,Comedy)">Sports Dramedy</value>
+    <value condition="!String.IsEmpty(ListItem.Genre) + String.Contains(ListItem.Genre,Animation) + String.Contains(ListItem.Genre,Romance) + String.Contains(ListItem.Genre,Comedy)">Animated Rom-Com</value>
+    <value condition="!String.IsEmpty(ListItem.Genre) + String.Contains(ListItem.Genre,Action) + String.Contains(ListItem.Genre,Romance) + String.Contains(ListItem.Genre,Comedy)">Action Rom-Com</value>
+    <value condition="!String.IsEmpty(ListItem.Genre) + String.Contains(ListItem.Genre,Science Fiction) + String.Contains(ListItem.Genre,Romance) + String.Contains(ListItem.Genre,Comedy)">Sci-Fi Rom-Com</value>
+		<value condition="!String.IsEmpty(ListItem.Genre) + String.Contains(ListItem.Genre,Ecchi) + String.Contains(ListItem.Genre,Romance) + String.Contains(ListItem.Genre,Comedy)">Ecchi Rom-Com</value>
+		<value condition="!String.IsEmpty(ListItem.Genre) + String.Contains(ListItem.Genre,Slice of Life) + String.Contains(ListItem.Genre,Romance) + String.Contains(ListItem.Genre,Comedy)">Slice of Life Rom-Com</value>
+    <value condition="!String.IsEmpty(ListItem.Genre) + String.Contains(ListItem.Genre,Sci-Fi) + String.Contains(ListItem.Genre,Romance) + String.Contains(ListItem.Genre,Comedy)">Sci-Fi Rom-Com</value>
+		<value condition="!String.IsEmpty(ListItem.Genre) + !String.Contains(ListItem.Genre,Family) + String.Contains(ListItem.Genre,Animation) + String.Contains(ListItem.Genre,Science Fiction) + String.Contains(ListItem.Genre,Drama)">Animated Sci-Fi Drama</value>
+		<value condition="!String.IsEmpty(ListItem.Genre) + !String.Contains(ListItem.Genre,Family) + String.Contains(ListItem.Genre,Animation) + String.Contains(ListItem.Genre,Sci-Fi) + String.Contains(ListItem.Genre,Drama)">Animated Sci-Fi Drama</value>
+    <value condition="!String.IsEmpty(ListItem.Genre) + String.Contains(ListItem.Genre,Music) + String.Contains(ListItem.Genre,Romance) + String.Contains(ListItem.Genre,Comedy)">Musical Rom-Com</value>
+    <value condition="!String.IsEmpty(ListItem.Genre) + String.Contains(ListItem.Genre,Music) + String.Contains(ListItem.Genre,Comedy) + String.Contains(ListItem.Genre,Drama)">Musical Dramedy</value>
+		<value condition="!String.IsEmpty(ListItem.Genre) + !String.Contains(ListItem.Genre,Science Fiction) + String.Contains(ListItem.Genre,War) + !String.Contains(ListItem.Genre,Adventure) + String.Contains(ListItem.Genre,Drama) + String.Contains(ListItem.Genre,Comedy)">Comedic War Drama</value>
+		<value condition="!String.IsEmpty(ListItem.Genre) + !String.Contains(ListItem.Genre,Sci-Fi) + String.Contains(ListItem.Genre,War) + !String.Contains(ListItem.Genre,Adventure) + String.Contains(ListItem.Genre,Drama) + String.Contains(ListItem.Genre,Comedy)">Comedic War Drama</value>
+		<value condition="!String.IsEmpty(ListItem.Genre) + String.Contains(ListItem.Genre,History) + String.Contains(ListItem.Genre,War) + String.Contains(ListItem.Genre,Drama)">Historical War Drama</value>
+    <value condition="!String.IsEmpty(ListItem.Genre) + !String.Contains(ListItem.Genre,Politics) + String.Contains(ListItem.Genre,War) + String.Contains(ListItem.Genre,Drama) + String.Contains(ListItem.Genre,Fantasy)">Fantastical War Drama</value>
+    <value condition="!String.IsEmpty(ListItem.Genre) + String.Contains(ListItem.Genre,History) + String.Contains(ListItem.Genre,War) + String.Contains(ListItem.Genre,Thriller)">Historical War Thriller</value>
+    <value condition="!String.IsEmpty(ListItem.Genre) + String.Contains(ListItem.Genre,War) + String.Contains(ListItem.Genre,Action) + String.Contains(ListItem.Genre,Thriller)">War Thriller</value>
+		<value condition="!String.IsEmpty(ListItem.Genre) + String.Contains(ListItem.Genre,Western) + String.Contains(ListItem.Genre,Action) + String.Contains(ListItem.Genre,Thriller)">Western Thriller</value>
+    <value condition="!String.IsEmpty(ListItem.Genre) + String.Contains(ListItem.Genre,Western) + String.Contains(ListItem.Genre,Action) + !String.Contains(ListItem.Genre,Thriller)">Western-Action</value>
+		<value condition="!String.IsEmpty(ListItem.Genre) + !String.Contains(ListItem.Genre,War) + String.Contains(ListItem.Genre,Drama) + String.Contains(ListItem.Genre,Politics)">Political Drama</value>
+		<value condition="!String.IsEmpty(ListItem.Genre) + !String.Contains(ListItem.Genre,Politics) + !String.Contains(ListItem.Genre,Science Fiction) + String.Contains(ListItem.Genre,War) + !String.Contains(ListItem.Genre,Adventure) + String.Contains(ListItem.Genre,Drama)">War Drama</value>
+		<value condition="!String.IsEmpty(ListItem.Genre) + !String.Contains(ListItem.Genre,Politics) + !String.Contains(ListItem.Genre,Adventure) + !String.Contains(ListItem.Genre,Sci-Fi) + String.Contains(ListItem.Genre,War) + String.Contains(ListItem.Genre,Drama)">War Drama</value>
+		<value condition="!String.IsEmpty(ListItem.Genre) + !String.Contains(ListItem.Genre,Kids) + String.Contains(ListItem.Genre,Sci-Fi) + String.Contains(ListItem.Genre,Fantasy)">Sci-Fi Fantasy</value>
+		<value condition="!String.IsEmpty(ListItem.Genre) + !String.Contains(ListItem.Genre,Comedy) + String.Contains(ListItem.Genre,Kids) + String.Contains(ListItem.Genre,Sci-Fi) + String.Contains(ListItem.Genre,Fantasy)">Sci-Fi Kids</value>
+    <value condition="!String.IsEmpty(ListItem.Genre) + !String.Contains(ListItem.Genre,Drama) + !String.Contains(ListItem.Genre,Thriller) + !String.Contains(ListItem.Genre,Crime) + String.Contains(ListItem.Genre,Action) + String.Contains(ListItem.Genre,Adventure)">Action-Adventure</value>
+    <value condition="!String.IsEmpty(ListItem.Genre) + String.Contains(ListItem.Genre,Adventure) + String.Contains(ListItem.Genre,Fantasy)">Adventure-Fantasy</value>
+    <value condition="!String.IsEmpty(ListItem.Genre) + String.Contains(ListItem.Genre,Animation) + String.Contains(ListItem.Genre,Comedy)">Animated Comedy</value>
+    <value condition="!String.IsEmpty(ListItem.Genre) + String.Contains(ListItem.Genre,Action) + String.Contains(ListItem.Genre,Comedy)">Action-Comedy</value>
+		<value condition="!String.IsEmpty(ListItem.Genre) + String.Contains(ListItem.Genre,Science Fiction) + String.Contains(ListItem.Genre,Thriller)">Sci-Fi Thriller</value>
+    <value condition="!String.IsEmpty(ListItem.Genre) + String.Contains(ListItem.Genre,Action) + String.Contains(ListItem.Genre,Thriller)">Action Thriller</value>
+    <value condition="!String.IsEmpty(ListItem.Genre) + String.Contains(ListItem.Genre,Action) + String.Contains(ListItem.Genre,Drama)">Action-Drama</value>
+    <value condition="!String.IsEmpty(ListItem.Genre) + String.Contains(ListItem.Genre,Action) + String.Contains(ListItem.Genre,History)">Action-History</value>
+    <value condition="!String.IsEmpty(ListItem.Genre) + String.Contains(ListItem.Genre,Action) + String.Contains(ListItem.Genre,Horror)">Action-Horror</value>
+    <value condition="!String.IsEmpty(ListItem.Genre) + String.Contains(ListItem.Genre,Action) + String.Contains(ListItem.Genre,War)">War-Action</value>
+    <value condition="!String.IsEmpty(ListItem.Genre) + String.Contains(ListItem.Genre,Western) + String.Contains(ListItem.Genre,Romance)">Romantic Western</value>
+    <value condition="!String.IsEmpty(ListItem.Genre) + String.Contains(ListItem.Genre,Western) + String.Contains(ListItem.Genre,Comedy)">Comedic Western</value>
+    <value condition="!String.IsEmpty(ListItem.Genre) + String.Contains(ListItem.Genre,Western) + String.Contains(ListItem.Genre,Adventure)">Western-Adventure</value>
+    <value condition="!String.IsEmpty(ListItem.Genre) + String.Contains(ListItem.Genre,Romance) + String.Contains(ListItem.Genre,Comedy)">Romantic Comedy</value>
+    <value condition="!String.IsEmpty(ListItem.Genre) + String.Contains(ListItem.Genre,Comedy) + String.Contains(ListItem.Genre,Drama)">Dramedy</value>
+    <value condition="!String.IsEmpty(ListItem.Genre) + String.Contains(ListItem.Genre,Documentary) + String.Contains(ListItem.Genre,Drama)">Docudrama</value>
+    <value condition="!String.IsEmpty(ListItem.Genre) + !String.Contains(ListItem.Genre,History) + String.Contains(ListItem.Genre,Crime) + String.Contains(ListItem.Genre,Drama)">Crime Drama</value>
+    <value condition="!String.IsEmpty(ListItem.Genre) + String.Contains(ListItem.Genre,Crime) + String.Contains(ListItem.Genre,Fantasy)">Crime-Fantasy</value>
+    <value condition="!String.IsEmpty(ListItem.Genre) + String.Contains(ListItem.Genre,Comedy) + String.Contains(ListItem.Genre,Fantasy)">Comedic Fantasy</value>
+    <value condition="!String.IsEmpty(ListItem.Genre) + !String.Contains(ListItem.Genre,Comedy) + String.Contains(ListItem.Genre,Horror) + String.Contains(ListItem.Genre,Fantasy)">Dark Fantasy</value>
+    <value condition="!String.IsEmpty(ListItem.Genre) +  !String.Contains(ListItem.Genre,Horror) + String.Contains(ListItem.Genre,Drama) + String.Contains(ListItem.Genre,History)">Historical Drama</value>
+    <value condition="!String.IsEmpty(ListItem.Genre) + String.Contains(ListItem.Genre,Thriller) + String.Contains(ListItem.Genre,Romance)">Romantic Thriller</value>
+		<value condition="!String.IsEmpty(ListItem.Genre) + String.Contains(ListItem.Genre,Psychological) + String.Contains(ListItem.Genre,Drama)">Psychological Drama</value>
+    <value condition="!String.IsEmpty(ListItem.Genre) + String.Contains(ListItem.Genre,Drama) + String.Contains(ListItem.Genre,Romance)">Romantic Drama</value>
+    <value condition="!String.IsEmpty(ListItem.Genre) + String.Contains(ListItem.Genre,Music) + String.Contains(ListItem.Genre,Documentary)">Musical Documentary</value>
+    <value condition="!String.IsEmpty(ListItem.Genre) + String.Contains(ListItem.Genre,History) + String.Contains(ListItem.Genre,Documentary)">Historical Documentary</value>
+    <value condition="!String.IsEmpty(ListItem.Genre) + String.Contains(ListItem.Genre,Comedy) + String.Contains(ListItem.Genre,Documentary)">Comedic Documentary</value>
+    <value condition="!String.IsEmpty(ListItem.Genre) + String.Contains(ListItem.Genre,Crime) + String.Contains(ListItem.Genre,Documentary)">Crime Documentary</value>
+		<value condition="!String.IsEmpty(ListItem.Genre) + String.Contains(ListItem.Genre,Crime) + String.Contains(ListItem.Genre,Crime) + String.Contains(ListItem.Genre,Thriller)">Crime Thriller</value>
+    <value condition="!String.IsEmpty(ListItem.Genre) + !String.Contains(ListItem.Genre,Horror) + String.Contains(ListItem.Genre,Mystery) + String.Contains(ListItem.Genre,Thriller)">Mystery Thriller</value>
+    <value condition="!String.IsEmpty(ListItem.Genre) + String.Contains(ListItem.Genre,Crime) + String.Contains(ListItem.Genre,Comedy)">Crime-Comedy</value>
+    <value condition="!String.IsEmpty(ListItem.Genre) + String.Contains(ListItem.Genre,Fantasy) + String.Contains(ListItem.Genre,Adventure)">Fantasy-Adventure</value>
+    <value condition="!String.IsEmpty(ListItem.Genre) + String.Contains(ListItem.Genre,Western) + String.Contains(ListItem.Genre,Drama)">Western Drama</value>
+    <value condition="!String.IsEmpty(ListItem.Genre) + String.Contains(ListItem.Genre,Music) + String.Contains(ListItem.Genre,Drama)">Musical Drama</value>
+    <value condition="!String.IsEmpty(ListItem.Genre) + String.Contains(ListItem.Genre,Music) + String.Contains(ListItem.Genre,Comedy)">Musical Comedy</value>
+		<value condition="!String.IsEmpty(ListItem.Genre) + String.Contains(ListItem.Genre,Horror) + String.Contains(ListItem.Genre,Comedy)">Horror-Comedy</value>
+		<value condition="!String.IsEmpty(ListItem.Genre) + !String.Contains(ListItem.Genre,Crime) + String.Contains(ListItem.Genre,Horror) + String.Contains(ListItem.Genre,Thriller)">Horror Thriller</value>
+		<value condition="!String.IsEmpty(ListItem.Genre) + String.Contains(ListItem.Genre,Horror) + String.Contains(ListItem.Genre,Mystery)">Horror Mystery</value>
+		<value condition="!String.IsEmpty(ListItem.Genre) + !String.Contains(ListItem.Genre,Animation) + String.Contains(ListItem.Genre,Science Fiction) + String.Contains(ListItem.Genre,Action)">Sci-Fi Action</value>
+		<value condition="!String.IsEmpty(ListItem.Genre) + !String.Contains(ListItem.Genre,Animation) + String.Contains(ListItem.Genre,Sci-Fi) + String.Contains(ListItem.Genre,Action)">Sci-Fi Action</value>
+		<value condition="!String.IsEmpty(ListItem.Genre) + String.Contains(ListItem.Genre,Science Fiction) + String.Contains(ListItem.Genre,Comedy)">Comedic Sci-Fi</value>
+		<value condition="!String.IsEmpty(ListItem.Genre) + String.Contains(ListItem.Genre,Sci-Fi) + String.Contains(ListItem.Genre,Comedy)">Comedic Sci-Fi</value>
+		<value condition="!String.IsEmpty(ListItem.Genre) + String.Contains(ListItem.Genre,Sci-Fi) + String.Contains(ListItem.Genre,Horror)">Sci-Fi Horror</value>
+		<value condition="!String.IsEmpty(ListItem.Genre) + String.Contains(ListItem.Genre,Science Fiction) + String.Contains(ListItem.Genre,Horror)">Sci-Fi Horror</value>
+		<value condition="!String.IsEmpty(ListItem.Genre) + String.Contains(ListItem.Genre,Science Fiction) + String.Contains(ListItem.Genre,Drama)">Sci-Fi Drama</value>
+		<value condition="!String.IsEmpty(ListItem.Genre) + String.Contains(ListItem.Genre,Sci-Fi) + String.Contains(ListItem.Genre,Drama)">Sci-Fi Drama</value>
+		<value condition="!String.IsEmpty(ListItem.Genre) + String.Contains(ListItem.Genre,Science Fiction) + String.Contains(ListItem.Genre,Fantasy)">Sci-Fi Fantasy</value>
+		<value condition="!String.IsEmpty(ListItem.Genre) + String.Contains(ListItem.Genre,Sci-Fi) + String.Contains(ListItem.Genre,Thriller)">Sci-Fi Thriller</value>
+    <value condition="!String.IsEmpty(ListItem.Genre) + String.Contains(ListItem.Genre,Sci-Fi) + String.Contains(ListItem.Genre,Adventure)">Sci-Fi Adventure</value>
+    <value condition="!String.IsEmpty(ListItem.Genre) + String.Contains(ListItem.Genre,Science Fiction) + String.Contains(ListItem.Genre,Adventure)">Sci-Fi Adventure</value>
+		<value condition="!String.IsEmpty(ListItem.Genre) + String.Contains(ListItem.Genre,Comedy) + String.Contains(ListItem.Genre,Fantasy)">Comedic Fantasy</value>
+		<value condition="!String.IsEmpty(ListItem.Genre) + String.Contains(ListItem.Genre,Animation) + String.Contains(ListItem.Genre,Fantasy)">Animated Fantasy</value>
+		<value condition="!String.IsEmpty(ListItem.Genre) + String.Contains(ListItem.Genre,Action) + String.Contains(ListItem.Genre,Fantasy)">Action-Fantasy</value>
+		<value condition="!String.IsEmpty(ListItem.Genre) + String.Contains(ListItem.Genre,Music) + String.Contains(ListItem.Genre,Fantasy)">Musical Fantasy</value>
+		<value condition="!String.IsEmpty(ListItem.Genre) + String.Contains(ListItem.Genre,Animation) + String.Contains(ListItem.Genre,Family)">Animation-Family</value>
+		<value condition="!String.IsEmpty(ListItem.Genre) + !String.Contains(ListItem.Genre,Family) + String.Contains(ListItem.Genre,Animation) + String.Contains(ListItem.Genre,Science Fiction)">Animated Sci-Fi</value>
+		<value condition="!String.IsEmpty(ListItem.Genre) + !String.Contains(ListItem.Genre,Family) + String.Contains(ListItem.Genre,Animation) + String.Contains(ListItem.Genre,Sci-Fi)">Animated Sci-Fi</value>
+		<value condition="!String.IsEmpty(ListItem.Genre) + String.Contains(ListItem.Genre,Thriller) + String.Contains(ListItem.Genre,Drama)">Dramatic Thriller</value>
+		<value condition="!String.IsEmpty(ListItem.Genre) + String.Contains(ListItem.Genre,Horror) + String.Contains(ListItem.Genre,Drama)">Horror Drama</value>
+		<value condition="!String.IsEmpty(ListItem.Genre) + String.Contains(ListItem.Genre,Action) + String.Contains(ListItem.Genre,Crime)">Action-Crime</value>
+		<value condition="!String.IsEmpty(ListItem.Genre) + String.Contains(ListItem.Genre,Adventure) + String.Contains(ListItem.Genre,Thriller)">Adventure Thriller</value>
+		<value condition="!String.IsEmpty(ListItem.Genre) + String.Contains(ListItem.Genre,Supernatural) + String.Contains(ListItem.Genre,Comedy)">Supernatural Comedy</value>
+		<value condition="!String.IsEmpty(ListItem.Genre) + String.Contains(ListItem.Genre,Supernatural) + String.Contains(ListItem.Genre,Action)">Supernatural Action</value>
+		<value condition="!String.IsEmpty(ListItem.Genre) + String.Contains(ListItem.Genre,Supernatural) + String.Contains(ListItem.Genre,Drama)">Supernatural Drama</value>
+		<value condition="!String.IsEmpty(ListItem.Genre) + String.Contains(ListItem.Genre,Slice of Life) + String.Contains(ListItem.Genre,Comedy)">Comedy-Slice of Life</value>
+		<value condition="!String.IsEmpty(ListItem.Genre) + String.Contains(ListItem.Genre,Slice of Life) + String.Contains(ListItem.Genre,Mystery)">Mystery-Slice of Life</value>
+		<value condition="!String.IsEmpty(ListItem.Genre) + String.Contains(ListItem.Genre,Slice of Life) + String.Contains(ListItem.Genre,Romance)">Romantic Slice of Life</value>
+		<value condition="!String.IsEmpty(ListItem.Genre) + String.Contains(ListItem.Genre,Slice of Life) + String.Contains(ListItem.Genre,Drama)">Drama-Slice of Life</value>
+    <!-- Single Genres (fallback) -->
+    <value condition="!String.IsEmpty(ListItem.Genre) + String.StartsWith(ListItem.Genre,Action)">Action</value>
+    <value condition="!String.IsEmpty(ListItem.Genre) + String.StartsWith(ListItem.Genre,Adventure)">Adventure</value>
+    <value condition="!String.IsEmpty(ListItem.Genre) + String.StartsWith(ListItem.Genre,Animation)">Animation</value>
+    <value condition="!String.IsEmpty(ListItem.Genre) + String.StartsWith(ListItem.Genre,Comedy)">Comedy</value>
+    <value condition="!String.IsEmpty(ListItem.Genre) + String.StartsWith(ListItem.Genre,Crime)">Crime</value>
+    <value condition="!String.IsEmpty(ListItem.Genre) + String.StartsWith(ListItem.Genre,Documentary)">Documentary</value>
+    <value condition="!String.IsEmpty(ListItem.Genre) + String.StartsWith(ListItem.Genre,Drama)">Drama</value>
+    <value condition="!String.IsEmpty(ListItem.Genre) + String.StartsWith(ListItem.Genre,Family)">Family</value>
+    <value condition="!String.IsEmpty(ListItem.Genre) + String.StartsWith(ListItem.Genre,Fantasy)">Fantasy</value>
+    <value condition="!String.IsEmpty(ListItem.Genre) + String.StartsWith(ListItem.Genre,Kids)">Kids</value>
+    <value condition="!String.IsEmpty(ListItem.Genre) + String.StartsWith(ListItem.Genre,History)">History</value>
+    <value condition="!String.IsEmpty(ListItem.Genre) + String.StartsWith(ListItem.Genre,Horror)">Horror</value>
+    <value condition="!String.IsEmpty(ListItem.Genre) + String.StartsWith(ListItem.Genre,Music)">Music</value>
+    <value condition="!String.IsEmpty(ListItem.Genre) + String.StartsWith(ListItem.Genre,Mystery)">Mystery</value>
+    <value condition="!String.IsEmpty(ListItem.Genre) + String.StartsWith(ListItem.Genre,News)">News</value>
+    <value condition="!String.IsEmpty(ListItem.Genre) + String.StartsWith(ListItem.Genre,Reality)">Reality</value>
+    <value condition="!String.IsEmpty(ListItem.Genre) + String.StartsWith(ListItem.Genre,Romance)">Romance</value>
+    <value condition="!String.IsEmpty(ListItem.Genre) + String.StartsWith(ListItem.Genre,Science Fiction)">Sci-Fi</value>
+    <value condition="!String.IsEmpty(ListItem.Genre) + String.StartsWith(ListItem.Genre,Sci-Fi)">Sci-Fi</value>
+    <value condition="!String.IsEmpty(ListItem.Genre) + String.StartsWith(ListItem.Genre,Soap)">Soap</value>
+    <value condition="!String.IsEmpty(ListItem.Genre) + String.StartsWith(ListItem.Genre,Talk)">Talk</value>
+    <value condition="!String.IsEmpty(ListItem.Genre) + String.StartsWith(ListItem.Genre,TV Movie)">TV Movie</value>
+    <value condition="!String.IsEmpty(ListItem.Genre) + String.StartsWith(ListItem.Genre,Thriller)">Thriller</value>
+    <value condition="!String.IsEmpty(ListItem.Genre) + String.StartsWith(ListItem.Genre,War)">War</value>
+    <value condition="!String.IsEmpty(ListItem.Genre) + String.StartsWith(ListItem.Genre,Western)">Western</value>
+	</variable>
+
+	<variable name="StatusVar">
+		<value condition="!String.IsEmpty(ListItem.Status) + String.StartsWith(ListItem.Status,Returning)">Returning</value>
+		<value>$INFO[Container($PARAM[id]).ListItem.Status]</value>
+	</variable>
+
+	<variable name="HomeFlixTypes">
+		<value condition="$EXP[isEpisode] + !String.StartsWith(Container.PluginCategory,Season)"></value>
+		<value condition="$EXP[isEpisode] + String.StartsWith(Container.PluginCategory,Season)"> | [COLOR unfocused_text]$INFO[Container($PARAM[list_id]).ListItem.TVShowTitle][/COLOR] | [COLOR unfocused_text]$INFO[ListItem.Title][/COLOR]</value>
+		<value>| [COLOR unfocused_text]$INFO[ListItem.Label][/COLOR]</value>
+	</variable>
+
+	<variable name="HomeFlixCrumbsVar">
+		<!-- Home/Search windows -->
+		<value condition="!Skin.HasSetting(Disable.WidgetInfoLineTitle) + !String.StartsWith(Container.PluginCategory,Season) + !String.IsEmpty(ListItem.Genre)"> $VAR[HomeFlixTypes]</value>
+	</variable>
+
+	<variable name="BadgeColorVar">
+		<value condition="String.IsEqual(Skin.String(BadgeColorSetting),1)">FF39FF14</value>
+		<value condition="String.IsEqual(Skin.String(BadgeColorSetting),2)">FFDEDEDE</value>
+		<value condition="String.IsEqual(Skin.String(BadgeColorSetting),3)">FF1A1A2E</value>
+		<value>FF50E850</value>
+	</variable>
+
+	<variable name="BadgeBackgroundColorVar">
+		<value condition="String.IsEqual(Skin.String(BadgeBackgroundSetting),1)">FF000000</value>
+		<value condition="String.IsEqual(Skin.String(BadgeBackgroundSetting),2)">FFFFFFFF</value>
+		<value condition="String.IsEqual(Skin.String(BadgeBackgroundSetting),3)">FFE0E0E0</value>
+		<value condition="String.IsEqual(Skin.String(BadgeBackgroundSetting),4)">CCFFFFFF</value>
+		<value>CC111111</value>
+	</variable>
+
+	<variable name="BadgeColorSettingVar">
+		<value condition="String.IsEqual(Skin.String(BadgeColorSetting),1)">Neon Green</value>
+		<value condition="String.IsEqual(Skin.String(BadgeColorSetting),2)">White</value>
+		<value condition="String.IsEqual(Skin.String(BadgeColorSetting),3)">Dark</value>
+		<value>Muted Green</value>
+	</variable>
+
+	<variable name="BadgeColorToggleVar">
+		<value condition="String.IsEqual(Skin.String(BadgeColorSetting),0)">Skin.SetString(BadgeColorSetting,1)</value>
+		<value condition="String.IsEqual(Skin.String(BadgeColorSetting),1)">Skin.SetString(BadgeColorSetting,2)</value>
+		<value condition="String.IsEqual(Skin.String(BadgeColorSetting),2)">Skin.SetString(BadgeColorSetting,3)</value>
+		<value condition="String.IsEqual(Skin.String(BadgeColorSetting),3)">Skin.SetString(BadgeColorSetting,0)</value>
+		<value>Skin.SetString(BadgeColorSetting,0)</value>
+	</variable>
+
+	<variable name="BadgeBackgroundSettingVar">
+		<value condition="String.IsEqual(Skin.String(BadgeBackgroundSetting),1)">Black</value>
+		<value condition="String.IsEqual(Skin.String(BadgeBackgroundSetting),2)">White</value>
+		<value condition="String.IsEqual(Skin.String(BadgeBackgroundSetting),3)">Light Gray</value>
+		<value condition="String.IsEqual(Skin.String(BadgeBackgroundSetting),4)">Translucent White</value>
+		<value>Translucent Dark</value>
+	</variable>
+
+	<variable name="BadgeBackgroundToggleVar">
+		<value condition="String.IsEqual(Skin.String(BadgeBackgroundSetting),0)">Skin.SetString(BadgeBackgroundSetting,1)</value>
+		<value condition="String.IsEqual(Skin.String(BadgeBackgroundSetting),1)">Skin.SetString(BadgeBackgroundSetting,2)</value>
+		<value condition="String.IsEqual(Skin.String(BadgeBackgroundSetting),2)">Skin.SetString(BadgeBackgroundSetting,3)</value>
+		<value condition="String.IsEqual(Skin.String(BadgeBackgroundSetting),3)">Skin.SetString(BadgeBackgroundSetting,4)</value>
+		<value condition="String.IsEqual(Skin.String(BadgeBackgroundSetting),4)">Skin.SetString(BadgeBackgroundSetting,0)</value>
+		<value>Skin.SetString(BadgeBackgroundSetting,0)</value>
+	</variable>
+
+	<variable name="EpisodeTypeSettingVar">
+		<value condition="String.IsEqual(Skin.String(EpisodeTypeSetting),1)">Vertical InfoPanel</value>
+		<value condition="String.IsEqual(Skin.String(EpisodeTypeSetting),2)">Horizontal InfoPanel</value>
+		<value condition="String.IsEqual(Skin.String(EpisodeTypeSetting),3)">Artwork</value>
+		<value condition="String.IsEqual(Skin.String(EpisodeTypeSetting),4)">Vertical/Horizontal InfoPanel</value>
+		<value condition="String.IsEqual(Skin.String(EpisodeTypeSetting),5)">Vertical InfoPanel + Artwork</value>
+		<value condition="String.IsEqual(Skin.String(EpisodeTypeSetting),6)">Horizontal InfoPanel + Artwork</value>
+		<value condition="String.IsEqual(Skin.String(EpisodeTypeSetting),7)">All</value>
+		<value>Off</value>
+	</variable>
+
+	<variable name="EpisodeTypeToggleVar">
+		<value condition="String.IsEqual(Skin.String(EpisodeTypeSetting),0)">Skin.SetString(EpisodeTypeSetting,1)</value>
+		<value condition="String.IsEqual(Skin.String(EpisodeTypeSetting),1)">Skin.SetString(EpisodeTypeSetting,2)</value>
+		<value condition="String.IsEqual(Skin.String(EpisodeTypeSetting),2)">Skin.SetString(EpisodeTypeSetting,3)</value>
+		<value condition="String.IsEqual(Skin.String(EpisodeTypeSetting),3)">Skin.SetString(EpisodeTypeSetting,4)</value>
+		<value condition="String.IsEqual(Skin.String(EpisodeTypeSetting),4)">Skin.SetString(EpisodeTypeSetting,5)</value>
+		<value condition="String.IsEqual(Skin.String(EpisodeTypeSetting),5)">Skin.SetString(EpisodeTypeSetting,6)</value>
+		<value condition="String.IsEqual(Skin.String(EpisodeTypeSetting),6)">Skin.SetString(EpisodeTypeSetting,7)</value>
+		<value condition="String.IsEqual(Skin.String(EpisodeTypeSetting),7)">Skin.SetString(EpisodeTypeSetting,0)</value>
+		<value>Skin.SetString(EpisodeTypeSetting,0)</value>
+	</variable>
+
+	<variable name="FontSizeSettingVar">
+		<value condition="String.IsEqual(Skin.String(FontSizeSetting),0)">Default</value>
+		<value condition="String.IsEqual(Skin.String(FontSizeSetting),1)">Large</value>
+	</variable>
+
+	<variable name="FontSizeToggleVar">
+		<value condition="String.IsEqual(Skin.String(FontSizeSetting),0)">Skin.SetString(FontSizeSetting,1)</value>
+		<value>Skin.SetString(FontSizeSetting,0)</value>
+	</variable>
+
+	<variable name="EpisodeLabelVar">
+		<value condition="!String.StartsWith(Container($PARAM[list_id]).PluginCategory,Season)">$INFO[Container($PARAM[list_id]).ListItem.Season]$INFO[Container($PARAM[list_id]).ListItem.Episode,x,]$INFO[Container($PARAM[list_id]).ListItem.TVShowTitle, | ,]</value>
+		<value>INFO[Container($PARAM[list_id]).ListItem.Season]$INFO[Container($PARAM[list_id]).ListItem.Episode,x,]$INFO[Container($PARAM[list_id]).ListItem.Title, | ,]</value>
+	</variable>
+
+	<variable name="VideoFlixCrumbsVar">
+		<!-- Other windows -->
+		<value condition="$EXP[isEpisode] + Control.IsVisible(501) + !String.StartsWith(Container.PluginCategory,Season) + !String.IsEmpty(ListItem.Genre)"> | [COLOR unfocused_text]$INFO[Container($PARAM[list_id]).ListItem.Title][/COLOR]</value>
+		<value condition="$EXP[isEpisode] + ![Control.IsVisible(55) | Control.IsVisible(56) | Control.IsVisible(501)] + !String.StartsWith(Container.PluginCategory,Season) + !String.IsEmpty(ListItem.Genre)"> | [COLOR unfocused_text]$INFO[Container($PARAM[list_id]).ListItem.TVShowTitle][/COLOR] | [COLOR unfocused_text]$INFO[Container($PARAM[list_id]).ListItem.Season]$INFO[Container($PARAM[list_id]).ListItem.Episode,x,][/COLOR] | [COLOR unfocused_text]$INFO[Container($PARAM[list_id]).ListItem.Title][/COLOR]</value>
+		<value condition="$EXP[isEpisode] + Control.IsVisible(56) + !String.StartsWith(Container.PluginCategory,Season) + !String.IsEmpty(ListItem.Genre)"> | [COLOR unfocused_text]$INFO[Container($PARAM[list_id]).ListItem.TVShowTitle][/COLOR]</value>
+		<value condition="
+			[
+				[String.IsEqual(Container.ViewMode,$LOCALIZE[31101]) + !Skin.HasSetting(Enable.54Titles)] | 
+				[String.IsEqual(Container.ViewMode,$LOCALIZE[311012]) + !Skin.HasSetting(Enable.55Titles)] | 
+				[String.IsEqual(Container.ViewMode,$LOCALIZE[31107]) + !Skin.HasSetting(Enable.56Titles)] | 
+				[String.IsEqual(Container.ViewMode,$LOCALIZE[311022]) + !Skin.HasSetting(Enable.500Titles)] | 
+				[String.IsEqual(Container.ViewMode,$LOCALIZE[311023]) + !Skin.HasSetting(Enable.501Titles)] | 
+				!
+					[
+						String.IsEqual(Container.ViewMode,$LOCALIZE[31101]) | 
+						String.IsEqual(Container.ViewMode,$LOCALIZE[311012]) | 
+						String.IsEqual(Container.ViewMode,$LOCALIZE[31107]) | 
+						String.IsEqual(Container.ViewMode,$LOCALIZE[311022]) | 
+						String.IsEqual(Container.ViewMode,$LOCALIZE[311023])
+					]
+			] + 
+			!$EXP[isEpisode] + !String.StartsWith(Container.PluginCategory,Season) + !String.IsEmpty(ListItem.Genre)
+		"> | [COLOR unfocused_text]$INFO[ListItem.Title][/COLOR]</value>
+		<!-- <value condition="![Control.IsVisible(54) | Control.IsVisible(55)] + !$EXP[isEpisode] + !Control.IsVisible(56) + !String.StartsWith(Container.PluginCategory,Season) + !String.IsEmpty(ListItem.Genre)"> [B]|[/B] [COLOR unfocused_text]$INFO[ListItem.Title][/COLOR]</value> -->
+		<!-- <value condition="$EXP[isContent]"> [B]|[/B] [COLOR unfocused_text]$INFO[ListItem.Label][/COLOR]</value> -->
+	</variable>
+
+	<variable name="FlixCategory">
+    <value condition="!String.IsEmpty(Container.PluginCategory) + [!String.StartsWith(Container.PluginCategory,Season)]">[COLOR unfocused_text]$INFO[Container.PluginCategory][/COLOR]</value>
+    <value condition="!String.IsEmpty(Container.PluginCategory) + String.StartsWith(Container.PluginCategory,Season) + $EXP[isEpisode]">[COLOR unfocused_text]$INFO[Container($PARAM[list_id]).ListItem.TVShowTitle][/COLOR]</value>
+    <!-- <value condition="$EXP[isPlugin]">[COLOR unfocused_text]$INFO[Container.PluginName][/COLOR]</value> -->
+    <value>[COLOR unfocused_text]Videos[/COLOR]</value>
+	</variable>
+
+	<variable name="LeftVideoHeader">
+    <value>$VAR[FlixCategory]$VAR[VideoFlixCrumbsVar]</value>
+	</variable>
+
+	<variable name="RightVideoHeader">
+    <value>$VAR[FilterLabel][COLOR unfocused_text]$INFO[Container.CurrentItem][/COLOR] / [COLOR unfocused_text]$INFO[Container.NumItems][/COLOR]$VAR[ClockCrumbs]</value>
+
+		<!-- <value>[COLOR unfocused_text]$INFO[Control.GetLabel(10)][/COLOR] • [COLOR unfocused_text]$INFO[Container.CurrentItem][/COLOR] / [COLOR unfocused_text]$INFO[Container.NumItems][/COLOR] • [COLOR unfocused_text]$INFO[System.Time][/COLOR]</value> -->
+	</variable>
+
+	<variable name="FilterLabel">
+    <value condition="Window.IsVisible(videos)">[COLOR unfocused_text]$INFO[Control.GetLabel(10)][/COLOR] • </value>
+	</variable>
+
+	<variable name="ClockCrumbs">
+    <value> • [COLOR unfocused_text]$INFO[System.Time][/COLOR]</value>
+	</variable>
+
+	<variable name="SubstituteLabel">
+    <value condition="$EXP[isMovie] | $EXP[isTVShow] | $EXP[isSeason] | Container.Content(addons)">$INFO[ListItem.Label]</value>
+    <value condition="$EXP[isEpisode]">$INFO[ListItem.TVShowTitle]</value>
+		<value>$INFO[ListItem.Title]</value>
+	</variable>
+
+	<variable name="DialogInfoTitle">
+		<value condition="$EXP[isEpisode]">$INFO[ListItem.TVShowTitle,,[CR]][LIGHT]$INFO[ListItem.Season,S,: ]$INFO[ListItem.Episode,E, ]$INFO[ListItem.Title][/LIGHT]</value>
+		<value>$INFO[ListItem.Title]</value>
+	</variable>
+
+	<variable name="InfoTitle">
+		<value condition="$EXP[isEpisode]">[LIGHT]$INFO[ListItem.TVShowTitle][/LIGHT]</value>
+		<value>[LIGHT]$INFO[ListItem.Title][/LIGHT]</value>
+	</variable>
+
+	<variable name="LandscapeTextureVar">
+		<value condition="!Window.IsVisible(Home)">$VAR[SmallLandscapeVar]</value>
+		<value>$VAR[FlixScapeVar]</value>
+	</variable>
+	
+
+	<variable name="HomescreenFlixCrumbs">
+    <value condition="Window.IsActive(Home) + !Control.HasFocus(14100)">[COLOR unfocused_text]$INFO[Container(9000).ListItem.Label][/COLOR] » </value>
+		<value condition="Window.IsActive(Home) + Control.HasFocus(14100)">[COLOR unfocused_text]$INFO[Container(9000).ListItem.Label][/COLOR]</value>
+	</variable>
+
+	<!-- <variable name="WeatherLocationCyclingLabel">
+		<value condition="!String.IsEmpty(Window(Home).Property(weather_cycling))">[COLOR grey][LIGHT]Current location[/LIGHT][/COLOR][CR][COLOR $VAR[FocusColorTheme]][UPPERCASE]$INFO[Weather.Location][/UPPERCASE][/COLOR]</value>
+    <value>[COLOR grey]Click OK to activate location cycling[/COLOR]</value>
+	</variable> -->
+
+
+	<variable name="ListLandscapeEpisodesVar">
+    <value condition="$EXP[isEpisode] + !String.StartsWith(Container.PluginCategory,Season)"> | [COLOR unfocused_text]$INFO[Container($PARAM[list_id]).ListItem.TVShowTitle][/COLOR]</value>
+	</variable>
+
+	<variable name="ListLandscapeHeaderVar">
+    <value condition="Container.Content(favourites)">[COLOR unfocused_text]$LOCALIZE[1036][/COLOR]</value>
+    <value condition="$EXP[isPlugin]">$VAR[FlixCategory]$VAR[ListLandscapeEpisodesVar]</value>
+    <value condition="!$EXP[isPlugin]">[COLOR unfocused_text]$INFO[Container.FolderName][/COLOR]</value>
+	</variable>
+
+	<variable name="DefaultSearchWindowBehaviorVar">
+    <value condition="Skin.HasSetting(DefaultSearchWindowBehavior)">Open keyboard</value>
+    <value>Open search window</value>
+	</variable>
+
+	<variable name="OneClickCloseVar">
+    <value condition="Skin.HasSetting(OneClickClose)">Exit</value>
+    <value>Open shutdown menu</value>
+	</variable>
+
+	<!-- <variable name="LoadingLabelsVar">
+    <value condition="Container.IsUpdating + Window.IsActive(home) + String.IsEmpty(Skin.String(TrailerPlaying))">Loading widgets...</value>
+    <value condition="Container.IsUpdating + Window.IsActive(1121) + String.IsEmpty(Skin.String(TrailerPlaying))">Loading search results...</value>
+	</variable> -->
+
+	<!-- <variable name="FocusedChoiceColorVar">
+    <value condition="![Window.IsVisible(1100) | Skin.HasSetting(Disable.ColorThemeFocus)]">accent_color</value>
+    <value condition="Window.IsVisible(1100)">accent_color</value>
+    <value>unfocused_text</value>
+    <value>FFEAECED</value>
+    <value>FFC1C1C1</value>
+	</variable> -->
+
+	<variable name="FocusedColorVar">
+    <value condition="String.IsEqual(Skin.String(BackgroundSetting),0)">button_focus</value>
+    <value>FFD9D9D9</value>
+	</variable>
+
+	<variable name="FocusedTextColorVar">
+    <value condition="Player.HasVideo + !String.IsEmpty(Window(Home).Property(listitem_logo_color_alt_video)) + [String.IsEqual(Skin.String(BackgroundSetting),1) | String.IsEqual(Skin.String(BackgroundSetting),2)] + String.IsEqual(Skin.String(FocusColorThemeSetting),0)">FF141515</value>
+    <value condition="Player.HasVideo + !String.IsEmpty(Window(Home).Property(listitem_logo_text_color_video)) + [String.IsEqual(Skin.String(BackgroundSetting),1) | String.IsEqual(Skin.String(BackgroundSetting),2)] + String.IsEqual(Skin.String(FocusColorThemeSetting),0)">$INFO[Window(Home).Property(listitem_logo_text_color_video)]</value>
+    <!-- Rest of your conditions remain the same -->
+    <value condition="Player.HasVideo + [String.IsEqual(Skin.String(BackgroundSetting),1) | String.IsEqual(Skin.String(BackgroundSetting),2)] + String.IsEqual(Skin.String(FocusColorThemeSetting),1)">FF141515</value>
+    <value condition="Player.HasVideo + String.IsEqual(Skin.String(BackgroundSetting),0)">focused_text</value>
+    <value condition="String.IsEqual(Skin.String(FocusColorThemeSetting),0) + String.IsEqual(Skin.String(BackgroundSetting),0)">focused_text</value>
+    <value condition="String.IsEqual(Skin.String(FocusColorThemeSetting),0) + [String.IsEqual(Skin.String(BackgroundSetting),1) | String.IsEqual(Skin.String(BackgroundSetting),2)] + !String.IsEmpty(Window(home).Property(listitem_color)) + !Player.HasVideo">$INFO[Window(home).Property(listitem_textcolor)]</value>
+    <value>FF141515</value>
+	</variable>
+
+	<variable name="FocusColorTheme">
+    <value condition="Player.HasVideo + [String.IsEqual(Skin.String(BackgroundSetting),1) | String.IsEqual(Skin.String(BackgroundSetting),2)] + String.IsEqual(Skin.String(FocusColorThemeSetting),0)">$INFO[Window(Home).Property(listitem_logo_color_video)]</value>
+    <value condition="Player.HasVideo + [String.IsEqual(Skin.String(BackgroundSetting),1) | String.IsEqual(Skin.String(BackgroundSetting),2)] + String.IsEqual(Skin.String(FocusColorThemeSetting),1)">unfocused_text</value>
+		<value condition="Player.HasVideo + String.IsEqual(Skin.String(BackgroundSetting),0) + String.IsEqual(Skin.String(FocusColorThemeSetting),0)">accent_color</value>
+		<value condition="Player.HasVideo + String.IsEqual(Skin.String(BackgroundSetting),0) + String.IsEqual(Skin.String(FocusColorThemeSetting),1)">unfocused_text</value>
+    <value condition="Player.HasVideo + String.IsEqual(Skin.String(FocusColorThemeSetting),0)">unfocused_text</value>
+    <value condition="String.IsEqual(Skin.String(FocusColorThemeSetting),1)">unfocused_text</value>
+    <value condition="String.IsEqual(Skin.String(FocusColorThemeSetting),0) + String.IsEqual(Skin.String(BackgroundSetting),0)">accent_color</value>
+    <value condition="String.IsEqual(Skin.String(FocusColorThemeSetting),0) + [String.IsEqual(Skin.String(BackgroundSetting),1) | String.IsEqual(Skin.String(BackgroundSetting),2)] + !String.IsEmpty(Window(home).Property(listitem_color)) + !Player.HasVideo">$INFO[Window(home).Property(listitem_color)]</value>
+    <value>unfocused_text</value>
+	</variable>
+
+	<!-- <variable name="ContentFocusColorTheme">
+    <value condition="Integer.IsGreater(ListItem.Playcount,0)">limegreen</value>
+    <value condition="Player.HasVideo + String.IsEqual(Skin.String(FocusColorThemeSetting),1)">unfocused_text</value>
+    <value condition="String.IsEqual(Skin.String(FocusColorThemeSetting),1)">unfocused_text</value>
+    <value condition="String.IsEqual(Skin.String(FocusColorThemeSetting),0) + String.IsEqual(Skin.String(BackgroundSetting),0)">button_focus</value>
+    <value condition="String.IsEqual(Skin.String(FocusColorThemeSetting),0) + [String.IsEqual(Skin.String(BackgroundSetting),1) | String.IsEqual(Skin.String(BackgroundSetting),2)] + !String.IsEmpty(Window(home).Property(listitem_color)) + !Player.HasVideo">$INFO[Window(home).Property(listitem_color)]</value>
+    <value>unfocused_text</value>
+	</variable> -->
+
+	<variable name="MediaMenuDiffuse">
+		<value condition="Player.HasVideo">FF101010</value>
+    <!-- Blur enabled -->
+    <value condition="String.IsEqual(Skin.String(BackgroundSetting),1)">80000000</value>
+		<!-- Blur disabled -->
+    <value condition="String.IsEqual(Skin.String(BackgroundSetting),0) + [Control.IsVisible(51) | Control.IsVisible(52) | Control.IsVisible(500) | Control.IsVisible(501)]">80050505</value>
+		<value condition="String.IsEqual(Skin.String(BackgroundSetting),0) + ![Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)] + String.IsEqual(Skin.String(ListArtworkChoice.),2)">FF101010</value>
+    <value condition="String.IsEqual(Skin.String(BackgroundSetting),0) + ![Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)] + !String.IsEqual(Skin.String(ListArtworkChoice.),2)">80050505</value>
+    <!-- Movies -->
+    <value condition="String.IsEqual(Skin.String(BackgroundSetting),0) + Container.Content(movies) + String.IsEqual(Skin.String(ListArtworkChoice.movies),0)">80050505</value>
+    <value condition="String.IsEqual(Skin.String(BackgroundSetting),0) + Container.Content(movies) + String.IsEqual(Skin.String(ListArtworkChoice.movies),1)">80050505</value>
+    <value condition="String.IsEqual(Skin.String(BackgroundSetting),0) + Container.Content(movies) + String.IsEqual(Skin.String(ListArtworkChoice.movies),2)">FF101010</value>
+    <!-- TV Shows -->
+		<value condition="String.IsEqual(Skin.String(BackgroundSetting),0) + Container.Content(tvshows) + String.IsEqual(Skin.String(ListArtworkChoice.tvshows),0)">80050505</value>
+    <value condition="String.IsEqual(Skin.String(BackgroundSetting),0) + Container.Content(tvshows) + String.IsEqual(Skin.String(ListArtworkChoice.tvshows),1)">80050505</value>
+    <value condition="String.IsEqual(Skin.String(BackgroundSetting),0) + Container.Content(tvshows) + String.IsEqual(Skin.String(ListArtworkChoice.tvshows),2)">FF101010</value>
+    <!-- Seasons -->
+		<value condition="String.IsEqual(Skin.String(BackgroundSetting),0) + Container.Content(seasons) + String.IsEqual(Skin.String(ListArtworkChoice.seasons),0)">80050505</value>
+    <value condition="String.IsEqual(Skin.String(BackgroundSetting),0) + Container.Content(seasons) + String.IsEqual(Skin.String(ListArtworkChoice.seasons),1)">80050505</value>
+    <value condition="String.IsEqual(Skin.String(BackgroundSetting),0) + Container.Content(seasons) + String.IsEqual(Skin.String(ListArtworkChoice.seasons),2)">FF101010</value>
+    <!-- Episodes -->
+		<value condition="String.IsEqual(Skin.String(BackgroundSetting),0) + Container.Content(episodes) + String.IsEqual(Skin.String(ListArtworkChoice.episodes),0)">80050505</value>
+    <value condition="String.IsEqual(Skin.String(BackgroundSetting),0) + Container.Content(episodes) + String.IsEqual(Skin.String(ListArtworkChoice.episodes),1)">80050505</value>
+    <value condition="String.IsEqual(Skin.String(BackgroundSetting),0) + Container.Content(episodes) + String.IsEqual(Skin.String(ListArtworkChoice.episodes),2)">FF101010</value>
+    <!-- Non-content -->
+		<value condition="String.IsEqual(Skin.String(BackgroundSetting),0) + ![Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)] + String.IsEqual(Skin.String(ListArtworkChoice.),0)">80050505</value>
+		<value condition="String.IsEqual(Skin.String(BackgroundSetting),0) + ![Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)] + String.IsEqual(Skin.String(ListArtworkChoice.),1)">80050505</value>
+		<value condition="String.IsEqual(Skin.String(BackgroundSetting),0) + ![Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)] + String.IsEqual(Skin.String(ListArtworkChoice.),2)">FF101010</value>
+	</variable>
+
+	<variable name="MainMenuDiffuse">
+    <!-- <value condition="Player.HasVideo">80000000</value> -->
+    <!-- <value condition="String.IsEqual(Skin.String(BackgroundSetting),0)">80000000</value> -->
+    <value>4D000000</value>
+    <!-- <value>660a0a0a</value> -->
+	</variable>
+
+	<variable name="PosterFlowArtworkDiffuse">
+    <value condition="Skin.HasSetting(Disable.51Dim)">FFE9E9E9</value>
+    <value condition="Skin.HasSetting(Enable.SpineClearlogo)">FF4C4C4C</value>
+    <value>FF777777</value>
+	</variable>
+
+	<variable name="BorderColorVar">
+		<value>FF2E2E2E</value>
+	</variable>
+
+	<variable name="CategoryBorderColorVar">
+		<value condition="[String.IsEqual(Skin.String(BackgroundSetting),2) + String.IsEqual(Skin.String(MainBlurTexture),0)] | String.IsEqual(Skin.String(BackgroundSetting),1) | String.IsEqual(Skin.String(BackgroundSetting),0)">$VAR[FocusColorTheme]</value>
+		<value>FFFFFFFF</value>
+	</variable>
+
+	<variable name="BorderTextureVar">
+		<value condition="[String.IsEqual(Skin.String(BackgroundSetting),2) + String.IsEqual(Skin.String(MainBlurTexture),0)] | String.IsEqual(Skin.String(BackgroundSetting),1) | String.IsEqual(Skin.String(BackgroundSetting),0)">masks/bordertexture2.png</value>
+		<value>masks/bordertexture.png</value>
+	</variable>
+
+	<variable name="Capitalize_DimorFadeLabel">
+		<value condition="[String.IsEqual(Skin.String(BackgroundSetting),0) | String.IsEqual(Skin.String(BackgroundSetting),2)]">Fade</value>
+		<value>Dim</value>
+	</variable>
+	<variable name="Lowercase_DimorFadeLabel">
+		<value condition="[String.IsEqual(Skin.String(BackgroundSetting),0) | String.IsEqual(Skin.String(BackgroundSetting),2)]">fade</value>
+		<value>dim</value>
+	</variable>
+
+	<variable name="OpenWidgetManagerVar">
+    <value>RunScript(script.altus.helper,mode=open_widget_manager)</value>
+	</variable>
+
+	<variable name="WidgetClearlogoSettingVar">
+    <value condition="String.IsEqual(Skin.String(WidgetClearlogoSetting),0)">Clearlogo</value>
+    <value condition="String.IsEqual(Skin.String(WidgetClearlogoSetting),1)">Text</value>
+    <value condition="String.IsEqual(Skin.String(WidgetClearlogoSetting),2)">Off</value>
+	</variable>
+
+	<variable name="WidgetClearlogoToggleVar">
+		<value condition="String.IsEqual(Skin.String(WidgetClearlogoSetting),0)">Skin.SetString(WidgetClearlogoSetting,1)</value>
+		<value condition="String.IsEqual(Skin.String(WidgetClearlogoSetting),1)">Skin.SetString(WidgetClearlogoSetting,2)</value>
+		<value condition="String.IsEqual(Skin.String(WidgetClearlogoSetting),2)">Skin.SetString(WidgetClearlogoSetting,0)</value>
+		<value>Skin.SetString(WidgetClearlogoSetting,0)</value>
+	</variable>
+
+	<variable name="PlotSettingVar">
+    <value condition="String.IsEqual(Skin.String(PlotSetting),0)">On</value>
+    <value condition="String.IsEqual(Skin.String(PlotSetting),1)">Exclude episodes</value>
+    <value condition="String.IsEqual(Skin.String(PlotSetting),2)">Off</value>
+    <value>On</value>
+	</variable>
+
+	<variable name="PlotToggleVar">
+		<value condition="String.IsEqual(Skin.String(PlotSetting),0)">Skin.SetString(PlotSetting,1)</value>
+		<value condition="String.IsEqual(Skin.String(PlotSetting),1)">Skin.SetString(PlotSetting,2)</value>
+		<value condition="String.IsEqual(Skin.String(PlotSetting),2)">Skin.SetString(PlotSetting,0)</value>
+		<value>Skin.SetString(PlotSetting,0)</value>
+	</variable>
+
+	<variable name="PosterSizeSettingVar">
+    <value condition="String.IsEqual(Skin.String(PosterSizeSetting),0)">Default</value>
+    <value condition="String.IsEqual(Skin.String(PosterSizeSetting),1)">Large</value>
+	</variable>
+
+	<variable name="PosterSizeToggleVar">
+		<value condition="String.IsEqual(Skin.String(PosterSizeSetting),0)">Skin.SetString(PosterSizeSetting,1)</value>
+		<value condition="String.IsEqual(Skin.String(PosterSizeSetting),1)">Skin.SetString(PosterSizeSetting,0)</value>
+		<value>Skin.SetString(PosterSizeSetting,0)</value>
+	</variable>
+
+	<variable name="OnBackSettingVar">
+    <value condition="String.IsEqual(Skin.String(onBackSetting),0)">Open main menu</value>
+    <value condition="String.IsEqual(Skin.String(onBackSetting),1)">Reset widget</value>
+    <value condition="String.IsEqual(Skin.String(onBackSetting),2)">Both</value>
+	</variable>
+
+	<variable name="OnBackSettingToggleVar">
+    <value condition="String.IsEqual(Skin.String(onBackSetting),0) + String.IsEqual(Skin.String(onLeftSetting),0)">Skin.SetString(onBackSetting,1)</value>
+    <value condition="String.IsEqual(Skin.String(onBackSetting),1)">Skin.SetString(onBackSetting,2)</value>
+    <value condition="String.IsEqual(Skin.String(onBackSetting),2)">Skin.SetString(onBackSetting,0)</value>
+    <value condition="!String.IsEqual(Skin.String(onLeftSetting),0)">Skin.SetString(onBackSetting,0)</value>
+	</variable>
+
+	<variable name="OnLeftSettingVar">
+	<value condition="String.IsEqual(Skin.String(onLeftSetting),0)">Open main menu</value>
+	<value condition="String.IsEqual(Skin.String(onLeftSetting),1)">Wrap to end</value>
+	</variable>
+
+	<variable name="OnLeftSettingToggleVar">
+    <value condition="String.IsEqual(Skin.String(onLeftSetting),0) + String.IsEqual(Skin.String(onBackSetting),0)">Skin.SetString(onLeftSetting,1)</value>
+    <value condition="String.IsEqual(Skin.String(onLeftSetting),1)">Skin.SetString(onLeftSetting,0)</value>
+    <value condition="String.IsEqual(Skin.String(onLeftSetting),0) + String.IsEqual(Skin.String(onBackSetting),2)">Skin.SetString(onLeftSetting,1)</value>
+	</variable>
+
+	<variable name="OSDAudioButtonSettingVar">
+    <value condition="String.IsEqual(Skin.String(OSDAudioButtonSetting),0)">Next audio track</value>
+    <value condition="String.IsEqual(Skin.String(OSDAudioButtonSetting),1)">Open audio settings</value>
+	</variable>
+
+	<variable name="OSDAudioButtonSettingToggleVar">
+    <value condition="String.IsEqual(Skin.String(OSDAudioButtonSetting),0)">Skin.SetString(OSDAudioButtonSetting,1)</value>
+    <value condition="String.IsEqual(Skin.String(OSDAudioButtonSetting),1)">Skin.SetString(OSDAudioButtonSetting,0)</value>
+	</variable>
+
+	<variable name="OSDSubtitleButtonSettingVar">
+    <value condition="String.IsEqual(Skin.String(OSDSubtitleButtonSetting),0)">Next subtitle</value>
+    <value condition="String.IsEqual(Skin.String(OSDSubtitleButtonSetting),1)">Open subtitle settings</value>
+	</variable>
+
+	<variable name="OSDSubtitleButtonSettingToggleVar">
+    <value condition="String.IsEqual(Skin.String(OSDSubtitleButtonSetting),0)">Skin.SetString(OSDSubtitleButtonSetting,1)</value>
+    <value condition="String.IsEqual(Skin.String(OSDSubtitleButtonSetting),1)">Skin.SetString(OSDSubtitleButtonSetting,0)</value>
+	</variable>
+
+	<!-- POSTERFLOW TOGGLES -->
+	<variable name="51OnDownSettingVar.MovieTV">
+		<value condition="String.IsEqual(Skin.String(51OnDownSetting.MovieTV),0)">Scrollbar</value>
+		<value condition="String.IsEqual(Skin.String(51OnDownSetting.MovieTV),1)">Play trailer</value>
+		<value condition="String.IsEqual(Skin.String(51OnDownSetting.MovieTV),2)">Information</value>
+		<value condition="String.IsEqual(Skin.String(51OnDownSetting.MovieTV),3)">Show fanart</value>
+		<value>Scrollbar</value>
+	</variable>
+
+	<variable name="51OnDownSettingVar.Other">
+		<value condition="String.IsEqual(Skin.String(51OnDownSetting.Other),0)">Scrollbar</value>
+		<value condition="String.IsEqual(Skin.String(51OnDownSetting.Other),1)">Information</value>
+		<value condition="String.IsEqual(Skin.String(51OnDownSetting.Other),2)">Show fanart</value>
+		<value>Scrollbar</value>
+	</variable>
+
+	<variable name="51OnDownToggleVar.MovieTV">
+		<value condition="String.IsEqual(Skin.String(51OnDownSetting.MovieTV),0)">Skin.SetString(51OnDownSetting.MovieTV,1)</value>
+		<value condition="String.IsEqual(Skin.String(51OnDownSetting.MovieTV),1)">Skin.SetString(51OnDownSetting.MovieTV,2)</value>
+		<value condition="String.IsEqual(Skin.String(51OnDownSetting.MovieTV),2)">Skin.SetString(51OnDownSetting.MovieTV,3)</value>
+		<value condition="String.IsEqual(Skin.String(51OnDownSetting.MovieTV),3)">Skin.SetString(51OnDownSetting.MovieTV,0)</value>
+		<value>Skin.SetString(51OnDownSetting.MovieTV,0)</value>
+	</variable>
+
+	<variable name="51OnDownToggleVar.Other">
+		<value condition="String.IsEqual(Skin.String(51OnDownSetting.Other),0)">Skin.SetString(51OnDownSetting.Other,1)</value>
+		<value condition="String.IsEqual(Skin.String(51OnDownSetting.Other),1)">Skin.SetString(51OnDownSetting.Other,2)</value>
+		<value condition="String.IsEqual(Skin.String(51OnDownSetting.Other),2)">Skin.SetString(51OnDownSetting.Other,0)</value>
+		<value>Skin.SetString(51OnDownSetting.Other,0)</value>
+	</variable>
+
+	<!-- SLIDE TOGGLES -->
+	<variable name="53OnDownSettingVar.MovieTV">
+		<value condition="String.IsEqual(Skin.String(53OnDownSetting.MovieTV),0)">Scrollbar</value>
+		<value condition="String.IsEqual(Skin.String(53OnDownSetting.MovieTV),1)">Play trailer</value>
+		<value condition="String.IsEqual(Skin.String(53OnDownSetting.MovieTV),2)">Information</value>
+		<value>Scrollbar</value>
+	</variable>
+
+	<variable name="53OnDownSettingVar.Other">
+		<value condition="String.IsEqual(Skin.String(53OnDownSetting.Other),0)">Scrollbar</value>
+		<value condition="String.IsEqual(Skin.String(53OnDownSetting.Other),1)">Information</value>
+		<value>Scrollbar</value>
+	</variable>
+
+	<variable name="53OnDownToggleVar.MovieTV">
+		<value condition="String.IsEqual(Skin.String(53OnDownSetting.MovieTV),0)">Skin.SetString(53OnDownSetting.MovieTV,1)</value>
+		<value condition="String.IsEqual(Skin.String(53OnDownSetting.MovieTV),1)">Skin.SetString(53OnDownSetting.MovieTV,2)</value>
+		<value condition="String.IsEqual(Skin.String(53OnDownSetting.MovieTV),2)">Skin.SetString(53OnDownSetting.MovieTV,0)</value>
+		<value>Skin.SetString(53OnDownSetting.MovieTV,0)</value>
+	</variable>
+
+	<variable name="53OnDownToggleVar.Other">
+		<value condition="String.IsEqual(Skin.String(53OnDownSetting.Other),0)">Skin.SetString(53OnDownSetting.Other,1)</value>
+		<value condition="String.IsEqual(Skin.String(53OnDownSetting.Other),1)">Skin.SetString(53OnDownSetting.Other,0)</value>
+		<value>Skin.SetString(53OnDownSetting.Other,0)</value>
+	</variable>
+
+	<!-- FLIXINFO TOGGLES -->
+	<variable name="56OnDownSettingVar.MovieTV">
+		<value condition="String.IsEqual(Skin.String(56OnDownSetting.MovieTV),0)">Scrollbar</value>
+		<value condition="String.IsEqual(Skin.String(56OnDownSetting.MovieTV),1)">Play trailer</value>
+		<value condition="String.IsEqual(Skin.String(56OnDownSetting.MovieTV),2)">Information</value>
+		<value>Scrollbar</value>
+	</variable>
+
+	<variable name="56OnDownSettingVar.Other">
+		<value condition="String.IsEqual(Skin.String(56OnDownSetting.Other),0)">Scrollbar</value>
+		<value condition="String.IsEqual(Skin.String(56OnDownSetting.Other),1)">Information</value>
+		<value>Scrollbar</value>
+	</variable>
+
+	<variable name="56OnDownToggleVar.MovieTV">
+		<value condition="String.IsEqual(Skin.String(56OnDownSetting.MovieTV),0)">Skin.SetString(56OnDownSetting.MovieTV,1)</value>
+		<value condition="String.IsEqual(Skin.String(56OnDownSetting.MovieTV),1)">Skin.SetString(56OnDownSetting.MovieTV,2)</value>
+		<value condition="String.IsEqual(Skin.String(56OnDownSetting.MovieTV),2)">Skin.SetString(56OnDownSetting.MovieTV,0)</value>
+		<value>Skin.SetString(56OnDownSetting.MovieTV,0)</value>
+	</variable>
+
+	<variable name="56OnDownToggleVar.Other">
+		<value condition="String.IsEqual(Skin.String(56OnDownSetting.Other),0)">Skin.SetString(56OnDownSetting.Other,1)</value>
+		<value condition="String.IsEqual(Skin.String(56OnDownSetting.Other),1)">Skin.SetString(56OnDownSetting.Other,0)</value>
+		<value>Skin.SetString(56OnDownSetting.Other,0)</value>
+	</variable>
+
+	<variable name="StudioLogoSettingVar">
+		<value condition="String.IsEqual(Skin.String(StudioLogoSetting),0)">Off</value>
+		<value condition="String.IsEqual(Skin.String(StudioLogoSetting),1)">Movies</value>
+		<value condition="String.IsEqual(Skin.String(StudioLogoSetting),2)">TV Shows</value>
+		<value condition="String.IsEqual(Skin.String(StudioLogoSetting),3)">Movies + TV Shows</value>
+	</variable>
+
+	<variable name="StudioLogoToggleVar">
+		<value condition="String.IsEqual(Skin.String(StudioLogoSetting),0)">Skin.SetString(StudioLogoSetting,1)</value>
+		<value condition="String.IsEqual(Skin.String(StudioLogoSetting),1)">Skin.SetString(StudioLogoSetting,2)</value>
+		<value condition="String.IsEqual(Skin.String(StudioLogoSetting),2)">Skin.SetString(StudioLogoSetting,3)</value>
+		<value condition="String.IsEqual(Skin.String(StudioLogoSetting),3)">Skin.SetString(StudioLogoSetting,0)</value>
+	</variable>
+
+	<variable name="StudioLogoColorSettingVar">
+		<value condition="String.IsEqual(Skin.String(StudioLogoColorSetting),0)">Monochrome</value>
+		<value condition="String.IsEqual(Skin.String(StudioLogoColorSetting),1)">Adaptive</value>
+		<value condition="String.IsEqual(Skin.String(StudioLogoColorSetting),2)">Color</value>
+	</variable>
+
+	<variable name="StudioLogoColorToggleVar">
+		<value condition="String.IsEqual(Skin.String(StudioLogoColorSetting),0)">Skin.SetString(StudioLogoColorSetting,1)</value>
+		<value condition="String.IsEqual(Skin.String(StudioLogoColorSetting),1)">Skin.SetString(StudioLogoColorSetting,2)</value>
+		<value condition="String.IsEqual(Skin.String(StudioLogoColorSetting),2)">Skin.SetString(StudioLogoColorSetting,0)</value>
+	</variable>
+
+	<variable name="StudioLogoPathVar">
+		<value condition="String.IsEqual(Skin.String(StudioLogoColorSetting),2)">$INFO[ListItem.Studio,resource://resource.images.studios.coloured/,.png]</value>
+		<value>$INFO[ListItem.Studio,resource://resource.images.studios.white/,.png]</value>
+	</variable>
+
+	<variable name="StudioColorDiffuseVar">
+		<value condition="String.IsEqual(Skin.String(StudioLogoColorSetting),1)">$VAR[FocusColorTheme]</value>
+		<value></value>
+	</variable>
+
+
+
+	<variable name="OnRightSettingVar.MovieTV">
+		<value condition="String.IsEmpty(Skin.String(OnRightSetting.MovieTV)) | String.IsEqual(Skin.String(OnRightSetting.MovieTV),0)">Scrollbar</value>
+		<value condition="String.IsEqual(Skin.String(OnRightSetting.MovieTV),1)">Play trailer</value>
+		<value condition="String.IsEqual(Skin.String(OnRightSetting.MovieTV),2)">Information</value>
+	</variable>
+
+	<variable name="OnRightSettingVar.Other">
+		<value condition="String.IsEmpty(Skin.String(OnRightSetting.Other)) | String.IsEqual(Skin.String(OnRightSetting.Other),0)">Scrollbar</value>
+		<value condition="String.IsEqual(Skin.String(OnRightSetting.Other),1)">Information</value>
+	</variable>
+
+	<variable name="OnRightToggleVar.MovieTV">
+		<value condition="String.IsEqual(Skin.String(OnRightSetting.MovieTV),0)">Skin.SetString(OnRightSetting.MovieTV,1)</value>
+		<value condition="String.IsEqual(Skin.String(OnRightSetting.MovieTV),1)">Skin.SetString(OnRightSetting.MovieTV,2)</value>
+		<value condition="String.IsEqual(Skin.String(OnRightSetting.MovieTV),2)">Skin.SetString(OnRightSetting.MovieTV,0)</value>
+	</variable>
+
+	<variable name="OnRightToggleVar.Other">
+		<value condition="String.IsEqual(Skin.String(OnRightSetting.Other),0)">Skin.SetString(OnRightSetting.Other,1)</value>
+		<value condition="String.IsEqual(Skin.String(OnRightSetting.Other),1)">Skin.SetString(OnRightSetting.Other,0)</value>
+	</variable>
+
+	<variable name="FocusColorThemeSettingVar">
+    <value condition="String.IsEqual(Skin.String(FocusColorThemeSetting),0) + String.IsEqual(Skin.String(BackgroundSetting),0)">Accent</value>
+    <value condition="String.IsEqual(Skin.String(FocusColorThemeSetting),0) + [String.IsEqual(Skin.String(BackgroundSetting),1) | String.IsEqual(Skin.String(BackgroundSetting),2)]">Adaptive</value>
+    <value condition="String.IsEqual(Skin.String(FocusColorThemeSetting),1)">Disabled</value>
+	</variable>
+
+	<variable name="FocusColorThemeToggleVar">
+		<value condition="String.IsEqual(Skin.String(FocusColorThemeSetting),0)">Skin.SetString(FocusColorThemeSetting,1)</value>
+		<value condition="String.IsEqual(Skin.String(FocusColorThemeSetting),1)">Skin.SetString(FocusColorThemeSetting,0)</value>
+	</variable>
+
+	<variable name="MenuCaseSettingVar">
+		<value condition="String.IsEqual(Skin.String(MenuCaseSetting),0)">Default</value>
+		<value condition="String.IsEqual(Skin.String(MenuCaseSetting),1)">UPPERCASE</value>
+		<value condition="String.IsEqual(Skin.String(MenuCaseSetting),2)">lowercase</value>
+		<value condition="String.IsEqual(Skin.String(MenuCaseSetting),3)">Capitalize</value>
+	</variable>
+
+	<variable name="MenuCaseToggleVar">
+		<value condition="String.IsEqual(Skin.String(MenuCaseSetting),0)">Skin.SetString(MenuCaseSetting,1)</value>
+		<value condition="String.IsEqual(Skin.String(MenuCaseSetting),1)">Skin.SetString(MenuCaseSetting,2)</value>
+		<value condition="String.IsEqual(Skin.String(MenuCaseSetting),2)">Skin.SetString(MenuCaseSetting,3)</value>
+		<value condition="String.IsEqual(Skin.String(MenuCaseSetting),3)">Skin.SetString(MenuCaseSetting,0)</value>
+	</variable>
+
+	<variable name="MenuCaseVar">
+		<value condition="String.IsEqual(Skin.String(MenuCaseSetting),0)">$INFO[ListItem.Label]</value>
+		<value condition="String.IsEqual(Skin.String(MenuCaseSetting),1)">[UPPERCASE]$INFO[ListItem.Label][/UPPERCASE]</value>
+		<value condition="String.IsEqual(Skin.String(MenuCaseSetting),2)">[LOWERCASE]$INFO[ListItem.Label][/LOWERCASE]</value>
+		<value condition="String.IsEqual(Skin.String(MenuCaseSetting),3)">[CAPITALIZE]$INFO[ListItem.Label][/CAPITALIZE]</value>
+	</variable>
+
+	<variable name="RecentSearchesCaseVar">
+		<value condition="String.IsEqual(Skin.String(MenuCaseSetting),0)">Recent searches</value>
+		<value condition="String.IsEqual(Skin.String(MenuCaseSetting),1)">[UPPERCASE]Recent searches[/UPPERCASE]</value>
+		<value condition="String.IsEqual(Skin.String(MenuCaseSetting),2)">[LOWERCASE]Recent searches[/LOWERCASE]</value>
+		<value condition="String.IsEqual(Skin.String(MenuCaseSetting),3)">[CAPITALIZE]Recent searches[/CAPITALIZE]</value>
+	</variable>
+
+	<variable name="ArtworkSize54ToggleVar">
+		<value condition="String.IsEqual(Skin.String(ArtworkSize54Setting),0)">Skin.SetString(ArtworkSize54Setting,1)</value>
+		<value condition="String.IsEqual(Skin.String(ArtworkSize54Setting),1)">Skin.SetString(ArtworkSize54Setting,0)</value>
+	</variable>
+
+	<variable name="ArtworkSize54SettingVar">
+		<value condition="String.IsEqual(Skin.String(ArtworkSize54Setting),0)">Default</value>
+		<value condition="String.IsEqual(Skin.String(ArtworkSize54Setting),1)">Small</value>
+	</variable>
+
+	<variable name="ArtworkSize55ToggleVar">
+		<value condition="String.IsEqual(Skin.String(ArtworkSize55Setting),0)">Skin.SetString(ArtworkSize55Setting,1)</value>
+		<value condition="String.IsEqual(Skin.String(ArtworkSize55Setting),1)">Skin.SetString(ArtworkSize55Setting,0)</value>
+	</variable>
+
+	<variable name="ArtworkSize55SettingVar">
+		<value condition="String.IsEqual(Skin.String(ArtworkSize55Setting),0)">Default</value>
+		<value condition="String.IsEqual(Skin.String(ArtworkSize55Setting),1)">Small</value>
+	</variable>
+
+	<variable name="ArtworkSize500ToggleVar">
+		<value condition="String.IsEqual(Skin.String(ArtworkSize500Setting),0)">Skin.SetString(ArtworkSize500Setting,1)</value>
+		<value condition="String.IsEqual(Skin.String(ArtworkSize500Setting),1)">Skin.SetString(ArtworkSize500Setting,0)</value>
+	</variable>
+
+	<variable name="MainFanartDiffuse">
+		<value condition="String.IsEqual(Skin.String(BackgroundOpacity),0)">33FFFFFF</value>
+		<value condition="String.IsEqual(Skin.String(BackgroundOpacity),1)">4DFFFFFF</value>
+		<value condition="String.IsEqual(Skin.String(BackgroundOpacity),3)">80FFFFFF</value>
+		<value condition="String.IsEqual(Skin.String(BackgroundOpacity),4)">99FFFFFF</value>
+		<value>66FFFFFF</value>
+	</variable>
+
+	<variable name="BackgroundOpacityToggleVar">
+		<value condition="String.IsEqual(Skin.String(BackgroundOpacity),0)">Skin.SetString(BackgroundOpacity,1)</value>
+		<value condition="String.IsEqual(Skin.String(BackgroundOpacity),1)">Skin.SetString(BackgroundOpacity,2)</value>
+		<value condition="String.IsEqual(Skin.String(BackgroundOpacity),2)">Skin.SetString(BackgroundOpacity,3)</value>
+		<value condition="String.IsEqual(Skin.String(BackgroundOpacity),3)">Skin.SetString(BackgroundOpacity,4)</value>
+		<value condition="String.IsEqual(Skin.String(BackgroundOpacity),4)">Skin.SetString(BackgroundOpacity,0)</value>
+		<value>Skin.SetString(BackgroundOpacity,1)</value>
+	</variable>
+
+	<variable name="BackgroundOpacitySettingVar">
+		<value condition="String.IsEqual(Skin.String(BackgroundOpacity),0)">20%</value>
+		<value condition="String.IsEqual(Skin.String(BackgroundOpacity),1)">30%</value>
+		<value condition="String.IsEqual(Skin.String(BackgroundOpacity),3)">50%</value>
+		<value condition="String.IsEqual(Skin.String(BackgroundOpacity),4)">60%</value>
+		<value>40%</value>
+	</variable>
+
+	<variable name="BlurBrightnessVar">
+		<value condition="String.IsEqual(Skin.String(BlurBrightness),0)">33FFFFFF</value>
+		<value condition="String.IsEqual(Skin.String(BlurBrightness),1)">4DFFFFFF</value>
+		<value condition="String.IsEqual(Skin.String(BlurBrightness),3)">80FFFFFF</value>
+		<value condition="String.IsEqual(Skin.String(BlurBrightness),4)">99FFFFFF</value>
+		<value>66FFFFFF</value>
+	</variable>
+
+	<variable name="BlurBrightnessToggleVar">
+		<value condition="String.IsEqual(Skin.String(BlurBrightness),0)">Skin.SetString(BlurBrightness,1)</value>
+		<value condition="String.IsEqual(Skin.String(BlurBrightness),1)">Skin.SetString(BlurBrightness,2)</value>
+		<value condition="String.IsEqual(Skin.String(BlurBrightness),2)">Skin.SetString(BlurBrightness,3)</value>
+		<value condition="String.IsEqual(Skin.String(BlurBrightness),3)">Skin.SetString(BlurBrightness,4)</value>
+		<value condition="String.IsEqual(Skin.String(BlurBrightness),4)">Skin.SetString(BlurBrightness,0)</value>
+		<value>Skin.SetString(BlurBrightness,1)</value>
+	</variable>
+
+	<variable name="BlurBrightnessSettingVar">
+		<value condition="String.IsEqual(Skin.String(BlurBrightness),0)">20%</value>
+		<value condition="String.IsEqual(Skin.String(BlurBrightness),1)">30%</value>
+		<value condition="String.IsEqual(Skin.String(BlurBrightness),3)">50%</value>
+		<value condition="String.IsEqual(Skin.String(BlurBrightness),4)">60%</value>
+		<value>40%</value>
+	</variable>
+
+	<!-- <variable name="MainBlurDiffuse">
+		<value condition="$EXP[infodialog_active]">33FFFFFF</value>
+		<value condition="Control.IsVisible(50) + 
+		[
+			[Container.Content(movies) + String.IsEqual(Skin.String(ListArtworkChoice.movies),2)] | 
+			[Container.Content(tvshows) + String.IsEqual(Skin.String(ListArtworkChoice.tvshows),2)] | 
+			[Container.Content(seasons) + String.IsEqual(Skin.String(ListArtworkChoice.seasons),2)] | 
+			[Container.Content(episodes) + String.IsEqual(Skin.String(ListArtworkChoice.episodes),2)] | [Container.Content(files) + String.IsEqual(Skin.String(ListArtworkChoice.files),2)] | 
+			[Container.Content(favourites) + String.IsEqual(Skin.String(ListArtworkChoice.favourites),2)] | 
+			[Container.Content() + String.IsEqual(Skin.String(ListArtworkChoice.),2)] |
+			[Container.Content(addons) + String.IsEqual(Skin.String(ListArtworkChoice.addons),2)]
+		]">4DFFFFFF</value>
+		<value condition="[Control.IsVisible(50) + 
+		![
+			[Container.Content(movies) + String.IsEqual(Skin.String(ListArtworkChoice.movies),2)] | 
+			[Container.Content(tvshows) + String.IsEqual(Skin.String(ListArtworkChoice.tvshows),2)] | 
+			[Container.Content(seasons) + String.IsEqual(Skin.String(ListArtworkChoice.seasons),2)] | 
+			[Container.Content(episodes) + String.IsEqual(Skin.String(ListArtworkChoice.episodes),2)] | [Container.Content(files) + String.IsEqual(Skin.String(ListArtworkChoice.files),2)] | 
+			[Container.Content(favourites) + String.IsEqual(Skin.String(ListArtworkChoice.favourites),2)] | 
+			[Container.Content() + String.IsEqual(Skin.String(ListArtworkChoice.),2)] |
+			[Container.Content(addons) + String.IsEqual(Skin.String(ListArtworkChoice.addons),2)]
+		] | Control.IsVisible(53) | Control.IsVisible(56)] + !Window.IsVisible(systeminfo)">66FFFFFF</value>
+		<value condition="Control.IsVisible(51)">4DFFFFFF</value>
+		<value condition="[Window.IsVisible(Home) | Window.IsVisible(1121)] + String.IsEmpty(Window(Home).Property(FlixWidget))">26FFFFFF</value>
+		<value condition="[Window.IsVisible(Home) | Window.IsVisible(1121)] + !String.IsEmpty(Window(Home).Property(FlixWidget))">66FFFFFF</value>
+		<value condition="$EXP[dialog_visible]">$INFO[Window(home).Property(LastMainBlurDiffuse)]</value>
+		<value>26FFFFFF</value>
+	</variable> -->
+
+	<variable name="MainBlurDiffuse">
+		<value condition="!String.IsEqual(Skin.String(MainBlurTexture),0)"></value>
+		<value condition="String.IsEqual(Skin.String(BackgroundSetting),1)">99999999</value>
+		<value condition="$EXP[infodialog_active]">4DFFFFFF</value>
+		<value condition="$EXP[isSlide] | $EXP[isPosterInfo] | $EXP[isLandscapeInfo] | $EXP[isFlixInfo] | $EXP[isWall] | $EXP[isLandscapeWall]">$VAR[BlurBrightnessVar]</value>
+
+		<value condition="Window.IsVisible(videos) + $EXP[isList] +
+		[
+			[Container.Content(movies) + String.IsEqual(Skin.String(ListArtworkChoice.movies),2)] |
+			[Container.Content(tvshows) + String.IsEqual(Skin.String(ListArtworkChoice.tvshows),2)] |
+			[Container.Content(seasons) + String.IsEqual(Skin.String(ListArtworkChoice.seasons),2)] |
+			[Container.Content(episodes) + String.IsEqual(Skin.String(ListArtworkChoice.episodes),2)] |
+			[Container.Content(files) + String.IsEqual(Skin.String(ListArtworkChoice.files),2)] |
+			[Container.Content(favourites) + String.IsEqual(Skin.String(ListArtworkChoice.favourites),2)] |
+			[Container.Content() + String.IsEqual(Skin.String(ListArtworkChoice.),2)] |
+			[Container.Content(addons) + String.IsEqual(Skin.String(ListArtworkChoice.addons),2)]
+		]">73FFFFFF</value>
+		<value condition="Window.IsVisible(videos) + $EXP[isList] + !Window.IsVisible(systeminfo)">$VAR[BlurBrightnessVar]</value>
+
+		<value condition="!Window.IsVisible(videos) + $EXP[isList] +
+		![Window.IsVisible(tvguide) | Window.IsVisible(tvchannels) | Window.IsVisible(tvtimers) | Window.IsVisible(tvsearch)] +
+		[
+			[Container.Content(files) + String.IsEqual(Skin.String(ListArtworkChoice.files),2)] |
+			[Container.Content(favourites) + String.IsEqual(Skin.String(ListArtworkChoice.favourites),2)] |
+			[Container.Content() + String.IsEqual(Skin.String(ListArtworkChoice.),2)] |
+			[Container.Content(addons) + String.IsEqual(Skin.String(ListArtworkChoice.addons),2)]
+		]">73FFFFFF</value>
+		<value condition="!Window.IsVisible(videos) + $EXP[isList] + ![Window.IsVisible(tvguide) | Window.IsVisible(tvchannels) | Window.IsVisible(tvtimers) | Window.IsVisible(tvsearch)]">$VAR[BlurBrightnessVar]</value>
+
+		<value condition="Window.IsVisible(tvguide)">73FFFFFF</value>
+		<value condition="Window.IsVisible(tvchannels) | Window.IsVisible(tvtimers) | Window.IsVisible(tvsearch)">$VAR[BlurBrightnessVar]</value>
+		<value condition="$EXP[isPosterFlow]">73FFFFFF</value>
+		<value condition="[Window.IsVisible(Home) | Window.IsVisible(1121)] + String.IsEmpty(Window(Home).Property(FlixWidget))">$VAR[BlurBrightnessVar]</value>
+		<value condition="[Window.IsVisible(Home) | Window.IsVisible(1121)] + !String.IsEmpty(Window(Home).Property(FlixWidget))">59FFFFFF</value>
+		<value>$VAR[BlurBrightnessVar]</value>
+	</variable>
+
+	<!-- <variable name="MainBlurDiffuse">
+		<value condition="!String.IsEqual(Skin.String(MainBlurTexture),0)"></value>
+		<value condition="$EXP[infodialog_active]">4DFFFFFF</value>
+		<value condition="String.IsEqual(Container.ViewMode,$LOCALIZE[31100])">66FFFFFF</value>
+		<value condition="String.IsEqual(Container.ViewMode,$LOCALIZE[31101]) | String.IsEqual(Container.ViewMode,$LOCALIZE[311012]) | String.IsEqual(Container.ViewMode,$LOCALIZE[31107]) | String.IsEqual(Container.ViewMode,$LOCALIZE[311022]) | String.IsEqual(Container.ViewMode,$LOCALIZE[311023])">26FFFFFF</value>
+
+		<value condition="Window.IsVisible(videos) + String.IsEqual(Container.ViewMode,$LOCALIZE[535]) +
+		[
+			[Container.Content(movies) + String.IsEqual(Skin.String(ListArtworkChoice.movies),2)] |
+			[Container.Content(tvshows) + String.IsEqual(Skin.String(ListArtworkChoice.tvshows),2)] |
+			[Container.Content(seasons) + String.IsEqual(Skin.String(ListArtworkChoice.seasons),2)] |
+			[Container.Content(episodes) + String.IsEqual(Skin.String(ListArtworkChoice.episodes),2)] |
+			[Container.Content(files) + String.IsEqual(Skin.String(ListArtworkChoice.files),2)] |
+			[Container.Content(favourites) + String.IsEqual(Skin.String(ListArtworkChoice.favourites),2)] |
+			[Container.Content() + String.IsEqual(Skin.String(ListArtworkChoice.),2)] |
+			[Container.Content(addons) + String.IsEqual(Skin.String(ListArtworkChoice.addons),2)]
+		]">73FFFFFF</value>
+		<value condition="[Window.IsVisible(videos) + String.IsEqual(Container.ViewMode,$LOCALIZE[535]) +
+		[
+			[Container.Content(movies) + String.IsEqual(Skin.String(ListArtworkChoice.movies),0)] |
+			[Container.Content(tvshows) + String.IsEqual(Skin.String(ListArtworkChoice.tvshows),0)] |
+			[Container.Content(seasons) + String.IsEqual(Skin.String(ListArtworkChoice.seasons),0)] |
+			[Container.Content(episodes) + String.IsEqual(Skin.String(ListArtworkChoice.episodes),0)] |
+			[Container.Content(files) + String.IsEqual(Skin.String(ListArtworkChoice.files),0)] |
+			[Container.Content(favourites) + String.IsEqual(Skin.String(ListArtworkChoice.favourites),0)] |
+			[Container.Content() + String.IsEqual(Skin.String(ListArtworkChoice.),0)] |
+			[Container.Content(addons) + String.IsEqual(Skin.String(ListArtworkChoice.addons),0)]
+		]] + !Window.IsVisible(systeminfo)">26FFFFFF</value>
+		<value condition="[Window.IsVisible(videos) + String.IsEqual(Container.ViewMode,$LOCALIZE[535]) +
+		[
+			[Container.Content(movies) + String.IsEqual(Skin.String(ListArtworkChoice.movies),1)] |
+			[Container.Content(tvshows) + String.IsEqual(Skin.String(ListArtworkChoice.tvshows),1)] |
+			[Container.Content(seasons) + String.IsEqual(Skin.String(ListArtworkChoice.seasons),1)] |
+			[Container.Content(episodes) + String.IsEqual(Skin.String(ListArtworkChoice.episodes),1)] |
+			[Container.Content(files) + String.IsEqual(Skin.String(ListArtworkChoice.files),1)] |
+			[Container.Content(favourites) + String.IsEqual(Skin.String(ListArtworkChoice.favourites),1)] |
+			[Container.Content() + String.IsEqual(Skin.String(ListArtworkChoice.),1)] |
+			[Container.Content(addons) + String.IsEqual(Skin.String(ListArtworkChoice.addons),1)]
+		]] + !Window.IsVisible(systeminfo)">26FFFFFF</value>
+		<value condition="!Window.IsVisible(videos) + String.IsEqual(Container.ViewMode,$LOCALIZE[535]) +
+		!
+			[
+				Window.IsVisible(tvguide) | Window.IsVisible(tvchannels) | Window.IsVisible(tvtimers) | Window.IsVisible(tvsearch)
+			] +
+		[
+			[Container.Content(files) + String.IsEqual(Skin.String(ListArtworkChoice.files),2)] |
+			[Container.Content(favourites) + String.IsEqual(Skin.String(ListArtworkChoice.favourites),2)] |
+			[Container.Content() + String.IsEqual(Skin.String(ListArtworkChoice.),2)] |
+			[Container.Content(addons) + String.IsEqual(Skin.String(ListArtworkChoice.addons),2)]
+		]">73FFFFFF</value>
+		<value condition="!Window.IsVisible(videos) + String.IsEqual(Container.ViewMode,$LOCALIZE[535]) +
+		[
+			[Container.Content(files) + String.IsEqual(Skin.String(ListArtworkChoice.files),0)] |
+			[Container.Content(favourites) + String.IsEqual(Skin.String(ListArtworkChoice.favourites),0)] |
+			[Container.Content() + String.IsEqual(Skin.String(ListArtworkChoice.),0)] |
+			[Container.Content(addons) + String.IsEqual(Skin.String(ListArtworkChoice.addons),0)]
+		]">26FFFFFF</value>
+		<value condition="Window.IsVisible(tvguide)">73FFFFFF</value>
+		<value condition="Window.IsVisible(tvchannels) | Window.IsVisible(tvtimers) | Window.IsVisible(tvsearch)">26FFFFFF</value>
+		<value condition="String.IsEqual(Container.ViewMode,$LOCALIZE[310981])">73FFFFFF</value>
+		<value condition="[Window.IsVisible(Home) | Window.IsVisible(1121)] + String.IsEmpty(Window(Home).Property(FlixWidget))">33FFFFFF</value>
+		<value condition="[Window.IsVisible(Home) | Window.IsVisible(1121)] + !String.IsEmpty(Window(Home).Property(FlixWidget))">73FFFFFF</value>
+		<value>33FFFFFF</value>
+	</variable> -->
+
+	<!-- <variable name="WatchedStripVar">
+		<value condition="Integer.IsGreater(ListItem.Playcount,0)">limegreen</value>
+		<value>$VAR[FocusColorTheme]</value>
+	</variable> -->
+
+	<variable name="ArtworkSize500SettingVar">
+		<value condition="String.IsEqual(Skin.String(ArtworkSize500Setting),0)">Default</value>
+		<value condition="String.IsEqual(Skin.String(ArtworkSize500Setting),1)">Small</value>
+	</variable>
+
+	<variable name="ArtworkSize501ToggleVar">
+		<value condition="String.IsEqual(Skin.String(ArtworkSize501Setting),0)">Skin.SetString(ArtworkSize501Setting,1)</value>
+		<value condition="String.IsEqual(Skin.String(ArtworkSize501Setting),1)">Skin.SetString(ArtworkSize501Setting,2)</value>
+		<value condition="String.IsEqual(Skin.String(ArtworkSize501Setting),2)">Skin.SetString(ArtworkSize501Setting,0)</value>
+	</variable>
+
+	<variable name="ArtworkSize501SettingVar">
+		<value condition="String.IsEqual(Skin.String(ArtworkSize501Setting),0)">Default</value>
+		<value condition="String.IsEqual(Skin.String(ArtworkSize501Setting),1)">Large</value>
+		<value condition="String.IsEqual(Skin.String(ArtworkSize501Setting),2)">Small</value>
+	</variable>
+
+	<variable name="BackgroundSettingVar">
+		<value condition="String.IsEqual(Skin.String(BackgroundSetting),0)">Default</value>
+		<value condition="String.IsEqual(Skin.String(BackgroundSetting),1)">Fanart</value>
+		<value condition="String.IsEqual(Skin.String(BackgroundSetting),2)">Blur</value>
+	</variable>
+
+	<variable name="BackgroundToggleVar">
+		<value condition="String.IsEqual(Skin.String(BackgroundSetting),0)">Skin.SetString(BackgroundSetting,1)</value>
+		<value condition="String.IsEqual(Skin.String(BackgroundSetting),1)">Skin.SetString(BackgroundSetting,2)</value>
+		<value condition="String.IsEqual(Skin.String(BackgroundSetting),2)">Skin.SetString(BackgroundSetting,0)</value>
+	</variable>
+
+	<variable name="BG_LABEL">
+		<value condition="!Skin.HasSetting(Disable.AdaptiveOverlay)">opacity</value>
+		<value>brightness</value>
+	</variable>
+	
+	<variable name="SearchSettingVar">
+		<value condition="String.IsEqual(Skin.String(SearchSetting),0)">Search window</value>
+		<value condition="String.IsEqual(Skin.String(SearchSetting),1)">Search dialog</value>
+	</variable>
+
+	<variable name="SearchToggleVar">
+		<value condition="String.IsEqual(Skin.String(SearchSetting),0)">Skin.SetString(SearchSetting,1)</value>
+		<value condition="String.IsEqual(Skin.String(SearchSetting),1)">Skin.SetString(SearchSetting,0)</value>
+	</variable>
+
+	<!-- MAIN MENU SUBMENU BUTTONS -->
+	<variable name="HomePowerButtonActionVar">
+		<value condition="Skin.HasSetting(OneClickClose)">Quit()</value>
+		<value>ActivateWindow(shutdownmenu)</value>
+	</variable>
+
+	<variable name="HomeSearchButtonActionVar">
+		<value condition="String.IsEqual(Skin.String(SearchSetting),0)">RunScript(script.altus.helper,mode=open_search_window)</value>
+		<value condition="String.IsEqual(Skin.String(SearchSetting),1)">ActivateWindow(1107)</value>
+	</variable>
+
+	<!-- MAIN MENU SUBMENU BUTTON LABELS -->
+	<variable name="HomeSubmenuButtonLabelsVar">
+		<value condition="Control.HasFocus(801) + Skin.HasSetting(OneClickClose)">Exit Kodi</value>
+		<value condition="Control.HasFocus(801) + !Skin.HasSetting(OneClickClose)">Open shutdownmenu</value>
+		<value condition="Control.HasFocus(802)">Open settings</value>
+		<value condition="Control.HasFocus(803)">Open widget manager</value>
+		<value condition="Control.HasFocus(804) + String.IsEqual(Skin.String(SearchSetting),0)">Open search window</value>
+		<value condition="Control.HasFocus(804) + String.IsEqual(Skin.String(SearchSetting),1)">Open search dialog</value>
+		<value condition="Control.HasFocus(805) + Integer.IsEqual(System.AddonUpdateCount,1)">$INFO[System.AddonUpdateCount] available update</value>
+		<value condition="Control.HasFocus(805) + Integer.IsGreater(System.AddonUpdateCount,1)">$INFO[System.AddonUpdateCount] available updates</value>
+		<value condition="Control.HasFocus(806)">Toggle fullscreen</value>
+	</variable>
+
+	<!-- ADDON LAUNCHER SUBMENU BUTTON LABELS -->
+	<variable name="AddonLauncherSubmenuButtonLabelsVar">
+		<value condition="Control.HasFocus(801)">Open addon browser</value>
+		<value condition="Control.HasFocus(802)">Install from zip</value>
+		<value condition="Control.HasFocus(803)">Search addons</value>
+		<value condition="Control.HasFocus(804) + Integer.IsEqual(System.AddonUpdateCount,1)">$INFO[System.AddonUpdateCount] available update</value>
+		<value condition="Control.HasFocus(804) + Integer.IsGreater(System.AddonUpdateCount,1)">$INFO[System.AddonUpdateCount] available updates</value>
+	</variable>
+
+	<!-- SEARCH WINDOW SUBMENU BUTTON LABELS -->
+	<variable name="SearchSubmenuButtonLabelsVar">
+		<value condition="Control.HasFocus(801)">Search provider: [B]$VAR[CurrentSearchProviderVar][/B]</value>
+		<value condition="Control.HasFocus(802)">Perform a new search</value>
+		<value condition="Control.HasFocus(803)">Open TRAKT lists</value>
+		<value condition="Control.HasFocus(804)">Clear search history</value>
+		<value condition="Control.HasFocus(805)">Toggle fullscreen</value>
+	</variable>
+
+	<variable name="ContextMenuTitleVar">
+		<value condition="$EXP[isMovie] | $EXP[isTVShow]">[COLOR unfocused_text]$INFO[ListItem.Title][/COLOR]</value>
+		<value condition="$EXP[isSeason]">[COLOR unfocused_text]$INFO[ListItem.TVShowTitle][/COLOR] | [COLOR unfocused_text]$INFO[ListItem.Title][/COLOR]</value>
+		<value condition="$EXP[isEpisode]">[COLOR unfocused_text]$INFO[ListItem.TVShowTitle][/COLOR] | [COLOR unfocused_text]$INFO[ListItem.Season]x$INFO[ListItem.Episode][/COLOR]</value>
+		<value>[COLOR unfocused_text]Context menu[/COLOR]</value>
+	</variable>
+
+	<variable name="AddonsTitleVar">
+		<value condition="!String.IsEqual(ListItem.FolderPath,addons://outdated/)">$INFO[ListItem.Label]</value>
+		<value condition="String.IsEqual(ListItem.FolderPath,addons://outdated/)">$INFO[ListItem.Label] ($INFO[System.AddonUpdateCount])</value>
+		<value>$INFO[ListItem.Label]</value>
+	</variable>
+
+	<variable name="ContentTypeLabel">
+		<value condition="Container.Content(episodes) + !String.StartsWith(Container.PluginCategory,Season)"> for episode lists</value>
+    <value condition="Container.Content(episodes) + String.StartsWith(Container.PluginCategory,Season)"> for episodes</value>
+    <value condition="!Container.Content()"> for $INFO[Container.Content]</value>
+    <value condition="Container.Content()"> for menus</value>
+    <value>$LOCALIZE[14018]</value>
+	</variable>
+
+	<variable name="SeasonLabel">
+		<value condition="Integer.IsGreater(ListItem.Property(WatchedEpisodes),0) + !String.IsEqual(ListItem.Property(WatchedEpisodes),ListItem.Property(TotalEpisodes)) + !String.IsEqual(ListItem.Property(UnWatchedEpisodes),-1)">$INFO[ListItem.Property(UnwatchedEpisodes),, remaining]</value>
+		<value>$INFO[ListItem.Property(TotalEpisodes)] episodes</value>
+	</variable>
+
+	<variable name="ForcedViewLabel">
+		<value condition="[Container.Content() + !String.IsEmpty(Skin.String(Skin.ForcedView.))]">[B]$INFO[Skin.String(Skin.ForcedView.)][/B]</value>
+		<value condition="[Container.Content(tags) + !String.IsEmpty(Skin.String(Skin.ForcedView.tags))]">[B]$INFO[Skin.String(Skin.ForcedView.tags)][/B]</value>
+		<value condition="[Container.Content(years) + !String.IsEmpty(Skin.String(Skin.ForcedView.years))]">[B]$INFO[Skin.String(Skin.ForcedView.years)][/B]</value>
+		<value condition="[Container.Content(genres) + !String.IsEmpty(Skin.String(Skin.ForcedView.genres))]">[B]$INFO[Skin.String(Skin.ForcedView.genres)][/B]</value>
+		<value condition="[Container.Content(countries) + !String.IsEmpty(Skin.String(Skin.ForcedView.countries))]">[B]$INFO[Skin.String(Skin.ForcedView.countries)][/B]</value>
+		<value condition="[Container.Content(studios) + !String.IsEmpty(Skin.String(Skin.ForcedView.studios))]">[B]$INFO[Skin.String(Skin.ForcedView.studios)][/B]</value>
+		<value condition="[Container.Content(playlists) + !String.IsEmpty(Skin.String(Skin.ForcedView.playlists))]">[B]$INFO[Skin.String(Skin.ForcedView.playlists)][/B]</value>
+		<value condition="[Container.Content(movies) + !String.IsEmpty(Skin.String(Skin.ForcedView.movies))]">[B]$INFO[Skin.String(Skin.ForcedView.movies)][/B]</value>
+		<value condition="[Container.Content(sets) + !String.IsEmpty(Skin.String(Skin.ForcedView.sets))]">[B]$INFO[Skin.String(Skin.ForcedView.sets)][/B]</value>
+		<value condition="[Container.Content(tvshows) + !String.IsEmpty(Skin.String(Skin.ForcedView.tvshows))]">[B]$INFO[Skin.String(Skin.ForcedView.tvshows)][/B]</value>
+		<value condition="[Container.Content(seasons) + !String.IsEmpty(Skin.String(Skin.ForcedView.seasons))]">[B]$INFO[Skin.String(Skin.ForcedView.seasons)][/B]</value>
+		<value condition="[Container.Content(episodes) + !String.StartsWith(Container.PluginCategory,Season) + !String.IsEmpty(Skin.String(Skin.ForcedView.episodes.outside))]">[B]$INFO[Skin.String(Skin.ForcedView.episodes.outside)][/B]</value>
+		<value condition="[Container.Content(episodes) + String.StartsWith(Container.PluginCategory,Season) + !String.IsEmpty(Skin.String(Skin.ForcedView.episodes.inside))]">[B]$INFO[Skin.String(Skin.ForcedView.episodes.inside)][/B]</value>
+		<value condition="[Container.Content(artists) + !String.IsEmpty(Skin.String(Skin.ForcedView.artists))]">[B]$INFO[Skin.String(Skin.ForcedView.artists)][/B]</value>
+		<value condition="[Container.Content(albums) + !String.IsEmpty(Skin.String(Skin.ForcedView.albums))]">[B]$INFO[Skin.String(Skin.ForcedView.albums)][/B]</value>
+		<value condition="[Container.Content(songs) + !String.IsEmpty(Skin.String(Skin.ForcedView.songs))]">[B]$INFO[Skin.String(Skin.ForcedView.songs)][/B]</value>
+		<value condition="[Container.Content(musicvideos) + !String.IsEmpty(Skin.String(Skin.ForcedView.musicvideos))]">[B]$INFO[Skin.String(Skin.ForcedView.musicvideos)][/B]</value>
+		<value condition="[Container.Content(addons) + !String.IsEmpty(Skin.String(Skin.ForcedView.addons))]">[B]$INFO[Skin.String(Skin.ForcedView.addons)][/B]</value>
+		<value condition="[Container.Content(actors) + !String.IsEmpty(Skin.String(Skin.ForcedView.actors))]">[B]$INFO[Skin.String(Skin.ForcedView.actors)][/B]</value>
+		<value condition="[Container.Content(directors) + !String.IsEmpty(Skin.String(Skin.ForcedView.directors))]">[B]$INFO[Skin.String(Skin.ForcedView.directors)][/B]</value>
+		<value condition="[Container.Content(files) + !String.IsEmpty(Skin.String(Skin.ForcedView.files))]">[B]$INFO[Skin.String(Skin.ForcedView.files)][/B]</value>
+		<value condition="[Container.Content(mixed) + !String.IsEmpty(Skin.String(Skin.ForcedView.mixed))]">[B]$INFO[Skin.String(Skin.ForcedView.mixed)][/B]</value>
+		<value condition="[Container.Content(images) + !String.IsEmpty(Skin.String(Skin.ForcedView.images))]">[B]$INFO[Skin.String(Skin.ForcedView.images)][/B]</value>
+		<value condition="[Container.Content(games) + !String.IsEmpty(Skin.String(Skin.ForcedView.games))]">[B]$INFO[Skin.String(Skin.ForcedView.games)][/B]</value>
+		<value condition="[Container.Content(favourites) + !String.IsEmpty(Skin.String(Skin.ForcedView.favourites))]">[B]$INFO[Skin.String(Skin.ForcedView.favourites)][/B]</value>
+		<value condition="[Container.Content(unknown) + !String.IsEmpty(Skin.String(Skin.ForcedView.unknown))]">[B]$INFO[Skin.String(Skin.ForcedView.unknown)][/B]</value>
+		<value condition="[Container.Content(videos) + !String.IsEmpty(Skin.String(Skin.ForcedView.videos))]">[B]$INFO[Skin.String(Skin.ForcedView.videos)][/B]</value>
+		<value>$INFO[Container.Viewmode]</value>
+	</variable>	
+
+	<variable name="APIKeyLabel">
+    <value condition="String.IsEqual(Skin.String(checking_api_key),true)">Checking API Key...</value>
+    <value condition="String.IsEqual(Skin.String(valid_api_key),true)">*************************</value>
+    <value condition="String.IsEqual(Skin.String(BackgroundSetting),1) + String.IsEmpty(Skin.String(valid_api_key)) + !String.IsEmpty(Skin.String(mdblist_api_key))">[COLOR red]INVALID API KEY[/COLOR]</value>
+    <value condition="String.IsEqual(Skin.String(BackgroundSetting),0) + String.IsEmpty(Skin.String(valid_api_key)) + !String.IsEmpty(Skin.String(mdblist_api_key))">INVALID API KEY</value>
+    <value condition="String.IsEmpty(Skin.String(mdblist_api_key))">Enter key</value>
+	</variable>
+
+	<variable name="ActiveWidgetConfigVar">
+		<value condition="!String.IsEmpty(Skin.String(altus_active_widget_config))">Active config: [B]$INFO[Skin.String(altus_active_widget_config)][/B]</value>
+		<value>Active config: [B]NONE[/B]</value>
+	</variable>
+
+</includes>

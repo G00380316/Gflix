@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<zorder>3</zorder>
+	<controls>
+    <!-- <control type="label" id="402">
+      <top>-100</top>
+      <height>34</height>
+      <textcolor>00ffffff</textcolor>
+      <font>Font24</font>
+      <align>top</align>
+    </control>
+    <control type="group">
+      <visible>!String.IsEmpty(Window(home).Property(LanguageNotification))</visible>
+      <control type="label">
+        <top>909</top>
+        <right>90</right>
+        <width>816</width>
+        <height>34</height>
+        <textcolor>osd_light</textcolor>
+        <font>PlayerTime</font>
+        <align>center</align>
+        <label>$INFO[Control.GetLabel(402)]</label>
+      </control>
+    </control> -->
+    <control type="group">
+      <include>OpenClose_Right</include>
+      <!-- <include>Visible_Fade</include> -->
+      <!-- <include content="OpenClose_Slide_Right">
+        <param name="distance" value="650" />
+      </include> -->
+      <visible>String.IsEmpty(Window(home).Property(LanguageNotification))</visible>
+      <top>80</top>
+      <right>30</right>
+      <height>120</height>
+      <width>650</width>
+      <control type="image">
+        <bordersize>1</bordersize>
+        <texture border="23" colordiffuse="$VAR[FocusColorTheme]">masks/radius_23_darkest.png</texture>
+        <bordertexture border="23" colordiffuse="$VAR[FocusColorTheme]" infill="false">masks/bordertexture-23-thin.png</bordertexture>
+      </control>
+      <control type="image" id="400">
+				<description>avatar</description>
+				<left>20</left>
+				<top>20</top>
+				<width>80</width>
+				<height>80</height>
+				<aspectratio aligny="center" align="center">keep</aspectratio>
+        <texture diffuse="masks/dialogselect_img.png" />
+			</control>
+      <control type="fadelabel" id="401">
+        <top>8</top>
+        <left>120</left>
+        <right>25</right>
+        <height>34</height>
+        <textcolor>$VAR[FocusColorTheme]</textcolor>
+        <font>notification_header</font>
+        <align>top</align>
+        <scrollout>false</scrollout>
+				<pauseatend>2000</pauseatend>
+      </control>
+      <control type="fadelabel" id="402">
+        <bottom>33</bottom>
+        <left>120</left>
+        <right>25</right>
+        <height>34</height>
+        <textcolor>unfocused_text</textcolor>
+        <font>notification_footer</font>
+        <align>top</align>
+        <!-- <label>$INFO[Control.GetLabel(402)]</label> -->
+        <scrollout>false</scrollout>
+				<pauseatend>2000</pauseatend>
+      </control>
+    </control>
+  </controls>
+</window>

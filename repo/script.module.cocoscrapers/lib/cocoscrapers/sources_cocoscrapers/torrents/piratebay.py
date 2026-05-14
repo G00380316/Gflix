@@ -9,6 +9,7 @@ import re
 from urllib.parse import quote
 from cocoscrapers.modules import client, source_utils
 from cocoscrapers.modules import log_utils
+from cocoscrapers.modules import workers
 from time import time
 
 
@@ -56,7 +57,6 @@ class source:
 			if not results: return sources
 			if results[1] in ('200', '201'): files = jsloads(results[0])
 			else:
-				from cocoscrapers.modules import log_utils
 				log_utils.log('PIRATEBAY: Failed query for (%s) : %s' % (url, results))
 				return sources
 			undesirables = source_utils.get_undesirables()
@@ -146,7 +146,6 @@ class source:
 			# run_and_wait(bound_get_sources_packs, links)
 			threads = []
 			thrds_append = threads.append
-			from cocoscrapers.modules import workers
 			for url in queries:
 				link = '%s%s' % (self.base_link, url)
 				thrds_append(workers.Thread(self.get_sources_packs, link))

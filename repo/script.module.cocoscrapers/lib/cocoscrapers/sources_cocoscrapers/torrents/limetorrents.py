@@ -5,9 +5,11 @@
 """
 
 import re
-from urllib.parse import quote_plus
+from urllib.parse import quote_plus, quote
 from cocoscrapers.modules import client
 from cocoscrapers.modules import source_utils
+from cocoscrapers.modules import workers
+from cocoscrapers.modules import log_utils
 # from cocoscrapers.modules.Thread_pool import run_and_wait
 from functools import partial
 from time import time
@@ -45,14 +47,14 @@ class source:
 				self.title = data['tvshowtitle'].replace('&', 'and').replace('Special Victims Unit', 'SVU').replace('/', ' ').replace('$', 's')
 				self.episode_title = data['title']
 				self.hdlr = 'S%02dE%02d' % (int(data['season']), int(data['episode']))
-				url = (self.base_link + self.tvsearch)
+				search_path = '/search/tv/{0}/1/'
 			else:
 				self.title = data['title'].replace('&', 'and').replace('/', ' ').replace('$', 's')
 				self.episode_title = None
 				self.hdlr = self.year
-				url = (self.base_link + self.moviesearch)
+				search_path = '/search/movies/{0}/1/'
 			query = '%s %s' % (re.sub(r'[^A-Za-z0-9\s\.-]+', '', self.title), self.hdlr)
-			url = url.format(quote_plus(query))
+			url = self.base_link + search_path.format(quote_plus(query))
 			urls.append(url)
 			urls.append(url.replace('/1/', '/2/'))
 			self.undesirables = source_utils.get_undesirables()
@@ -62,8 +64,7 @@ class source:
 			threads = []
 			append = threads.append
 			for url in urls:
-				link = ('%s%s' % (self.base_link, url)).replace('+', '-')
-				append(workers.Thread(self.get_sources, link))
+				append(workers.Thread(self.get_sources, url))
 			[i.start() for i in threads]
 			[i.join() for i in threads]
 			logged = False
@@ -83,11 +84,11 @@ class source:
 		# log_utils.log('link = %s' % link)
 		try:
 			results = client.request(link, timeout=7)
+			if not results: return
 			if '503 Service Temporarily Unavailable' in results:
-				from cocoscrapers.modules import log_utils
 				log_utils.log('LIMETORRENTS (Single request failure): 503 Service Temporarily Unavailable')
 				return
-			if not results or '<table' not in results: return
+			if '<table' not in results: return
 			table = client.parseDOM(results, 'table', attrs={'class': 'table2'})[0]
 			rows = client.parseDOM(table, 'tr')
 			if not rows: return
@@ -98,11 +99,16 @@ class source:
 		for row in rows:
 			try:
 				if '<th' in row: continue
-				columns = re.findall(r'<td.*?>(.+?)</td>', row, re.DOTALL)
-
-				hash = re.search(r'/torrent/(.+?).torrent', columns[0], re.I).group(1)
-				name = re.search(r'title\s*=\s*(.+?)["\']', columns[0], re.I).group(1)
-				name = source_utils.clean_name(name)
+				
+				# Extract torrent detail page link
+				detail_link = re.search(r'href="(/[^"]+-torrent-\d+\.html)"', row, re.I)
+				if not detail_link: continue
+				detail_url = self.base_link + quote(detail_link.group(1), safe='/')
+				
+				# Extract torrent name from the link text
+				name_match = re.search(r'<a[^>]*href="[^"]*-torrent-\d+\.html"[^>]*>([^<]+)</a>', row, re.I)
+				if not name_match: continue
+				name = source_utils.clean_name(name_match.group(1))
 
 				if not source_utils.check_title(self.title, self.aliases, name, self.hdlr, self.year): continue
 				name_info = source_utils.info_from_name(name, self.title, self.year, self.hdlr, self.episode_title)
@@ -114,17 +120,49 @@ class source:
 					name_lower = name.lower()
 					if any(re.search(item, name_lower) for item in ep_strings): continue
 
-				url = 'magnet:?xt=urn:btih:%s&dn=%s' % (hash, name)
+				# Get magnet link from detail page
 				try:
-					seeders = int(columns[3].replace(',', ''))
-					if self.min_seeders > seeders: continue
-				except: seeders = 0
+					detail_results = client.request(detail_url, timeout=7)
+					if not detail_results: continue
+					
+					# Extract magnet link
+					magnet_match = re.search(r'href="(magnet:[^"]+)"', detail_results, re.I)
+					if not magnet_match: continue
+					url = magnet_match.group(1)
+					
+					# Extract hash from magnet link
+					hash_match = re.search(r'btih:([A-F0-9]+)', url, re.I)
+					if not hash_match: continue
+					hash = hash_match.group(1)
+					
+					# Extract seeders from detail page
+					seeders_match = re.search(r'Seeders\s*:\s*(\d+)', detail_results, re.I)
+					try:
+						seeders = int(seeders_match.group(1)) if seeders_match else 0
+						if self.min_seeders > seeders: continue
+					except: seeders = 0
+					
+					# Extract size from detail page
+					size_match = re.search(r'Torrent Size\s*:\s*</td>\s*<td>([^<]+)</td>', detail_results, re.I | re.DOTALL)
+					if not size_match:
+						# Try alternative pattern in case of different formatting
+						size_match = re.search(r'<td[^>]*>([0-9.]+ [A-Za-z]+)</td>', detail_results, re.I)
+					try:
+						if size_match:
+							size_text = size_match.group(1).strip()
+							dsize, isize = source_utils._size(size_text)
+						else:
+							dsize = 0
+							isize = '0'
+					except Exception as e: 
+						dsize = 0
+						isize = '0'
+						
+				except:
+					continue
 
 				quality, info = source_utils.get_release_quality(name_info, url)
-				try:
-					dsize, isize = source_utils._size(columns[2])
-					info.insert(0, isize)
-				except: dsize = 0
+				if isize != '0': info.insert(0, isize)
 				info = ' | '.join(info)
 
 				self.sources_append({'provider': 'limetorrents', 'source': 'torrent', 'seeders': seeders, 'hash': hash, 'name': name, 'name_info': name_info,
@@ -155,12 +193,12 @@ class source:
 			query = re.sub(r'[^A-Za-z0-9\s\.-]+', '', self.title)
 			if search_series:
 				queries = [
-						self.tvsearch.format(quote_plus(query + ' Season')),
-						self.tvsearch.format(quote_plus(query + ' Complete'))]
+						'/search/tv/%s/1/' % quote_plus(query + ' Season'),
+						'/search/tv/%s/1/' % quote_plus(query + ' Complete')]
 			else:
 				queries = [
-							self.tvsearch.format(quote_plus(query + ' S%s' % self.season_xx)),
-							self.tvsearch.format(quote_plus(query + ' Season %s' % self.season_x))]
+							'/search/tv/%s/1/' % quote_plus(query + ' S%s' % self.season_xx),
+							'/search/tv/%s/1/' % quote_plus(query + ' Season %s' % self.season_x)]
 			# links = []
 			# for url in queries:
 			# 	link = ('%s%s' % (self.base_link, url)).replace('+', '-')
@@ -190,12 +228,12 @@ class source:
 	def get_sources_packs(self, link):
 		try:
 			results = client.request(link, timeout=7)
+			if not results: return
 			if '503 Service Temporarily Unavailable' in results:
-				from cocoscrapers.modules import log_utils
 				req_type = 'SHOW' if self.search_series else 'SEASON'
 				log_utils.log('LIMETORRENTS (%s Pack request failure): 503 Service Temporarily Unavailable' % req_type)
 				return
-			if not results or '<table' not in results: return
+			if '<table' not in results: return
 			table = client.parseDOM(results, 'table', attrs={'class': 'table2'})[0]
 			rows = client.parseDOM(table, 'tr')
 			if not rows: return
@@ -206,11 +244,17 @@ class source:
 		for row in rows:
 			try:
 				if '<th' in row: continue
-				columns = re.findall(r'<td.*?>(.+?)</td>', row, re.DOTALL)
-
-				hash = re.search(r'/torrent/(.+?).torrent', columns[0], re.I).group(1)
-				name = re.search(r'title\s*=\s*(.+?)["\']', columns[0], re.I).group(1)
-				name = source_utils.clean_name(name)
+				
+				# Extract torrent detail page link
+				detail_link = re.search(r'href="(/[^"]+-torrent-\d+\.html)"', row, re.I)
+				if not detail_link: continue
+				detail_url = self.base_link + quote(detail_link.group(1), safe='/')
+				
+				# Extract torrent name from the link text
+				name_match = re.search(r'<a[^>]*href="[^"]*-torrent-\d+\.html"[^>]*>([^<]+)</a>', row, re.I)
+				if not name_match: continue
+				name = source_utils.clean_name(name_match.group(1))
+				
 				episode_start, episode_end = 0, 0
 				if not self.search_series:
 					if not self.bypass_filter:
@@ -229,17 +273,49 @@ class source:
 				if source_utils.remove_lang(name_info, self.check_foreign_audio): continue
 				if self.undesirables and source_utils.remove_undesirables(name_info, self.undesirables): continue
 
-				url = 'magnet:?xt=urn:btih:%s&dn=%s' % (hash, name)
+				# Get magnet link from detail page
 				try:
-					seeders = int(columns[3].replace(',', ''))
-					if self.min_seeders > seeders: continue
-				except: seeders = 0
+					detail_results = client.request(detail_url, timeout=7)
+					if not detail_results: continue
+					
+					# Extract magnet link
+					magnet_match = re.search(r'href="(magnet:[^"]+)"', detail_results, re.I)
+					if not magnet_match: continue
+					url = magnet_match.group(1)
+					
+					# Extract hash from magnet link
+					hash_match = re.search(r'btih:([A-F0-9]+)', url, re.I)
+					if not hash_match: continue
+					hash = hash_match.group(1)
+					
+					# Extract seeders from detail page
+					seeders_match = re.search(r'Seeders\s*:\s*(\d+)', detail_results, re.I)
+					try:
+						seeders = int(seeders_match.group(1)) if seeders_match else 0
+						if self.min_seeders > seeders: continue
+					except: seeders = 0
+					
+					# Extract size from detail page
+					size_match = re.search(r'Torrent Size\s*:\s*</td>\s*<td>([^<]+)</td>', detail_results, re.I | re.DOTALL)
+					if not size_match:
+						# Try alternative pattern in case of different formatting
+						size_match = re.search(r'<td[^>]*>([0-9.]+ [A-Za-z]+)</td>', detail_results, re.I)
+					try:
+						if size_match:
+							size_text = size_match.group(1).strip()
+							dsize, isize = source_utils._size(size_text)
+						else:
+							dsize = 0
+							isize = '0'
+					except Exception as e: 
+						dsize = 0
+						isize = '0'
+						
+				except:
+					continue
 
 				quality, info = source_utils.get_release_quality(name_info, url)
-				try:
-					dsize, isize = source_utils._size(columns[2])
-					info.insert(0, isize)
-				except: dsize = 0
+				if isize != '0': info.insert(0, isize)
 				info = ' | '.join(info)
 
 				item = {'provider': 'limetorrents', 'source': 'torrent', 'seeders': seeders, 'hash': hash, 'name': name, 'name_info': name_info, 'quality': quality,

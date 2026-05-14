@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+  <variable name="VideoPlayerForwardRewindVar">
+		<value condition="Player.Forwarding2x | Player.Rewinding2x">2x</value>
+		<value condition="Player.Forwarding4x | Player.Rewinding4x">4x</value>
+		<value condition="Player.Forwarding8x | Player.Rewinding8x">8x</value>
+		<value condition="Player.Forwarding16x | Player.Rewinding16x">16x</value>
+		<value condition="Player.Forwarding32x | Player.Rewinding32x">32x</value>
+	</variable>
+
+	<variable name="VideoPlayerSubtitleLanguage">
+		<value condition="VideoPlayer.SubtitlesEnabled">$INFO[VideoPlayer.SubtitlesLanguage]</value>
+		<value>$LOCALIZE[351]</value>
+	</variable>
+	
+	<variable name="PlayerEndTimeVar">
+		<value condition="!VideoPlayer.Content(livetv)">$INFO[System.Time] [COLOR $VAR[PlayerProgressColor]][B]»[/B][/COLOR] $INFO[VideoPlayer.FinishTime]</value>
+		<value condition="VideoPlayer.Content(livetv)">$INFO[System.Time] [COLOR $VAR[PlayerProgressColor]][B]»[/B][/COLOR] $INFO[PVR.EpgEventFinishTime]</value>
+	</variable>
+
+	<!-- <variable name="DO_PlayerEndTimeVar">
+		<value condition="!VideoPlayer.Content(livetv)">$INFO[Player.FinishTime,$LOCALIZE[31080]: ] [B]|[/B] $INFO[System.Time]</value>
+		<value condition="VideoPlayer.Content(livetv)">$INFO[PVR.EpgEventFinishTime,$LOCALIZE[31080]: ] [B]|[/B] $INFO[System.Time]</value>
+	</variable> -->
+
+	<variable name="SeekLabel">
+		<value condition="!String.IsEmpty(Player.SeekStepSize)">[COLOR $VAR[PlayerProgressColor]]$LOCALIZE[773][/COLOR] $INFO[Player.SeekStepSize]</value>
+		<value condition="!String.IsEmpty(Player.SeekOffset) + Player.HasPerformedSeek(3)">[COLOR $VAR[PlayerProgressColor]]$LOCALIZE[773][/COLOR] $INFO[Player.SeekOffset]</value>
+		<!-- <value condition="Player.Paused">$LOCALIZE[112]</value> -->
+		<value condition="Player.Forwarding">$LOCALIZE[31039] $VAR[VideoPlayerForwardRewindVar]</value>
+		<value condition="Player.Rewinding">$LOCALIZE[31038] $VAR[VideoPlayerForwardRewindVar]</value>
+		<value condition="Player.IsTempo">$LOCALIZE[31142]: $INFO[Player.PlaySpeed]</value>
+	</variable>
+	
+	<variable name="PlayerElapsedTimeVar">
+		<value condition="!VideoPlayer.Content(livetv) + String.IsEqual(Player.Time(h), 0)">[COLOR osd_light]$INFO[Player.Time(mm:ss)][/COLOR]</value>
+		<value condition="!VideoPlayer.Content(livetv) + !String.IsEqual(Player.Time(h), 0)">[COLOR osd_light]$INFO[Player.Time(h:mm:ss)][/COLOR]</value>
+		<value condition="VideoPlayer.Content(livetv) + String.IsEqual(Player.Time(h), 0)">[COLOR osd_light]$INFO[PVR.EpgEventElapsedTime][/COLOR]</value>
+		<value condition="VideoPlayer.Content(livetv) + !String.IsEqual(Player.Time(h), 0)">[COLOR osd_light]$INFO[PVR.EpgEventElapsedTime][/COLOR]</value>
+	</variable>
+
+	<variable name="PlayerTimeRemainingVar">
+		<value condition="!VideoPlayer.Content(livetv) + String.IsEqual(Player.TimeRemaining(h), 0)">[COLOR osd_light]$INFO[Player.TimeRemaining(mm:ss), -][/COLOR]</value>
+		<value condition="!VideoPlayer.Content(livetv) + !String.IsEqual(Player.TimeRemaining(h), 0)">[COLOR osd_light]$INFO[Player.TimeRemaining(h:mm:ss), -][/COLOR]</value>
+		<value condition="VideoPlayer.Content(livetv) + String.IsEqual(Player.TimeRemaining(h), 0)">[COLOR osd_light]$INFO[PVR.EpgEventRemainingTime, -][/COLOR]</value>
+		<value condition="VideoPlayer.Content(livetv) + !String.IsEqual(Player.TimeRemaining(h), 0)">[COLOR osd_light]$INFO[PVR.EpgEventRemainingTime, -][/COLOR]</value>
+	</variable>
+
+	<variable name="PlayerDurationVar">
+		<value condition="!VideoPlayer.Content(livetv) + String.IsEqual(Player.Duration(h), 0)">$INFO[Player.Duration(mm:ss)]</value>
+		<value condition="!VideoPlayer.Content(livetv) + !String.IsEqual(Player.Duration(h), 0)">$INFO[Player.Duration(h:mm:ss)]</value>
+		<value condition="VideoPlayer.Content(livetv)">$INFO[PVR.EpgEventDuration]</value>
+	</variable>
+
+	<variable name="PausedLabel">
+		<value condition="Player.Paused">$LOCALIZE[112]: </value>
+		<value></value>
+	</variable>
+
+	<variable name="MiniNowPlayingLabelVar">
+		<value condition="VideoPlayer.Content(episodes) + !VideoPlayer.Content(livetv)">$INFO[VideoPlayer.Season]$INFO[VideoPlayer.Episode,x,] $VAR[Altus_Video_Divider] $INFO[VideoPlayer.Title]</value>
+		<value condition="VideoPlayer.Content(livetv) + Skin.HasSetting(Disable.OSDClearlogo)">$INFO[VideoPlayer.ChannelName]</value>
+		<value condition="VideoPlayer.Content(livetv) + !Skin.HasSetting(Disable.OSDClearlogo)">$INFO[VideoPlayer.Title] $VAR[Altus_Video_Divider] $INFO[VideoPlayer.ChannelName]</value>
+	</variable>
+
+	<variable name="MainNowPlayingLabelVar">
+		<value condition="!VideoPlayer.Content(episodes) + !VideoPlayer.Content(livetv)">$INFO[VideoPlayer.Title]</value>
+		<value condition="VideoPlayer.Content(episodes) + !VideoPlayer.Content(livetv)">$INFO[VideoPlayer.TVShowTitle]</value>
+		<value condition="VideoPlayer.Content(livetv) + Skin.HasSetting(Disable.OSDClearlogo) + !Skin.HasSetting(Disable.OSDTitle)">$INFO[VideoPlayer.Title]</value>
+	</variable>
+
+	<variable name="AudioChannels_Label">
+		<value condition="Integer.IsEqual(VideoPlayer.AudioChannels,10)">9.1</value>
+		<value condition="Integer.IsEqual(VideoPlayer.AudioChannels,8)">7.1</value>
+		<value condition="Integer.IsEqual(VideoPlayer.AudioChannels,7)">6.1</value>
+		<value condition="Integer.IsEqual(VideoPlayer.AudioChannels,6)">5.1</value>
+		<value condition="Integer.IsEqual(VideoPlayer.AudioChannels,5)">4.1</value>
+		<value condition="Integer.IsEqual(VideoPlayer.AudioChannels,4)">4</value>
+		<value condition="Integer.IsEqual(VideoPlayer.AudioChannels,3)">2.1</value>
+		<value condition="Integer.IsEqual(VideoPlayer.AudioChannels,2)">2</value>
+		<value condition="Integer.IsEqual(VideoPlayer.AudioChannels,1)">1</value>
+		<value>$INFO[VideoPlayer.AudioChannels]</value>
+	</variable>
+
+	<variable name="AudioCodec_Label">
+		<value condition="String.IsEqual(VideoPlayer.AudioCodec,AC3)">Dolby Digital</value>
+		<value condition="String.IsEqual(VideoPlayer.AudioCodec,EAC3)">Dolby Digital Plus</value>
+		<value condition="String.IsEqual(VideoPlayer.AudioCodec,truehd)">Dolby TrueHD</value>
+		<value condition="String.IsEqual(VideoPlayer.AudioCodec,atmos)">Dolby Atmos</value>
+		<value condition="String.IsEqual(VideoPlayer.AudioCodec,dtshd_ma)">DTS-HD Master Audio</value>
+		<value condition="String.IsEqual(VideoPlayer.AudioCodec,dtshd)">DTS-HD</value>
+		<value condition="[String.IsEqual(VideoPlayer.AudioCodec,dts) | String.IsEqual(VideoPlayer.AudioCodec,dca)]">DTS</value>
+		<value condition="!String.IsEmpty(VideoPlayer.AudioCodec)">$INFO[VideoPlayer.AudioCodec]</value>
+		<value condition="String.Contains(Player.FilenameAndPath,.DTS-HD.MA)">DTS-HD.MA</value>
+		<value condition="String.Contains(Player.FilenameAndPath,.EAC3)">EAC3</value>
+		<value condition="String.Contains(Player.FilenameAndPath,.DD) | String.Contains(Player.FilenameAndPath,.AC3)">AC3</value>
+		<value condition="!String.IsEmpty(ListItem.AudioCodec)">$INFO[ListItem.AudioCodec]</value>
+		<value condition="String.Contains(ListItem.FilenameAndPath,.DTS-HD.MA)">DTS-HD.MA</value>
+		<value condition="String.Contains(ListItem.FilenameAndPath,.EAC3)">EAC3</value>
+		<value condition="String.Contains(ListItem.FilenameAndPath,.DD) | String.Contains(ListItem.FilenameAndPath,.AC3)">AC3</value>
+	</variable>
+
+	<variable name="Resolution_Label">
+    <value condition="[String.StartsWith(VideoPlayer.VideoResolution,8K) | String.Contains(Player.FileNameAndPath,4320p)]">8K</value>
+    <value condition="VideoPlayer.IsFullscreen + [String.StartsWith(VideoPlayer.VideoResolution,4K) | String.Contains(Player.FileNameAndPath,2160p)] + String.Contains(VideoPlayer.HDRType,dolbyvision) + String.Contains(VideoPlayer.HDRType,hdr10)">4K HYBRID</value>
+    <value condition="[String.StartsWith(VideoPlayer.VideoResolution,4K) | String.Contains(Player.FileNameAndPath,2160p)] + [String.Contains(Player.FilenameAndPath,DV) | String.Contains(Player.FilenameAndPath,Dolby.Vision)] + String.Contains(Player.FilenameAndPath,HDR)">4K HYBRID</value>
+    <value condition="VideoPlayer.IsFullscreen + [String.StartsWith(VideoPlayer.VideoResolution,4K) | String.Contains(Player.FileNameAndPath,2160p)] + String.Contains(VideoPlayer.HDRType,dolbyvision)">4K DV</value>
+    <value condition="[String.StartsWith(VideoPlayer.VideoResolution,4K) | String.Contains(Player.FileNameAndPath,2160p)] + [String.Contains(Player.FilenameAndPath,DV) | String.Contains(Player.FilenameAndPath,Dolby.Vision)]">4K DV</value>
+    <value condition="[String.StartsWith(VideoPlayer.VideoResolution,4K) | String.Contains(Player.FileNameAndPath,2160p)] + String.Contains(VideoPlayer.HDRType,hdr10)">4K HDR</value>
+    <value condition="[String.StartsWith(VideoPlayer.VideoResolution,4K) | String.Contains(Player.FileNameAndPath,2160p)] + String.Contains(Player.FilenameAndPath,HDR)">4K HDR</value>
+    <value condition="[String.StartsWith(VideoPlayer.VideoResolution,4K) | String.Contains(Player.FileNameAndPath,2160p)] + String.Contains(VideoPlayer.HDRType,hlg)">4K HLG</value>
+    <value condition="[String.StartsWith(VideoPlayer.VideoResolution,4K) | String.Contains(Player.FileNameAndPath,2160p)]">4K UHD</value>
+    <value condition="[String.StartsWith(VideoPlayer.VideoResolution,1080) | String.Contains(Player.FileNameAndPath,1080p)]">FHD</value>
+    <value condition="[String.StartsWith(VideoPlayer.VideoResolution,720) | String.Contains(Player.FileNameAndPath,720p)]">HD</value>
+    <value condition="String.StartsWith(VideoPlayer.VideoResolution,576)">SD</value>
+    <value condition="String.StartsWith(VideoPlayer.VideoResolution,540)">SD</value>
+    <value condition="String.StartsWith(VideoPlayer.VideoResolution,480)">SD</value>
+    <value condition="!String.IsEmpty(VideoPlayer.VideoResolution)">$INFO[VideoPlayer.VideoResolution]</value>
+	</variable>
+
+	<variable name="PlayerCacheColor">
+		<value condition="String.IsEmpty(Window(Home).Property(listitem_logo_color_alt_video))">osd_light</value>
+		<value>$INFO[Window(Home).Property(listitem_logo_color_alt_video)]</value>
+	</variable>
+
+	<variable name="OSDPausedTexture">
+		<value condition="Player.Paused">osd/pause.png</value>
+		<value>osd/play.png</value>
+	</variable>
+
+  <variable name="PlayerProgressColor">
+    <value condition="String.IsEqual(Skin.String(BackgroundSetting),0) + String.IsEqual(Skin.String(FocusColorThemeSetting),0)">accent_color</value>
+    <value condition="!String.IsEmpty(Window(Home).Property(listitem_logo_color_video)) + String.IsEqual(Skin.String(FocusColorThemeSetting),0) + [String.IsEqual(Skin.String(BackgroundSetting),1) | String.IsEqual(Skin.String(BackgroundSetting),2)]">$INFO[Window(Home).Property(listitem_logo_color_video)]</value>
+    <value condition="String.IsEqual(Skin.String(FocusColorThemeSetting),1)">FFA3A3A3</value>
+    <value>FFA3A3A3</value>
+  </variable>
+
+  <variable name="PlayerProgressTextColor">
+    <value condition="String.IsEqual(Skin.String(BackgroundSetting),0) + String.IsEqual(Skin.String(FocusColorThemeSetting),0)">focused_text</value>
+    <value condition="!String.IsEmpty(Window(Home).Property(listitem_logo_text_color_video)) + String.IsEqual(Skin.String(FocusColorThemeSetting),0) + [String.IsEqual(Skin.String(BackgroundSetting),1) | String.IsEqual(Skin.String(BackgroundSetting),2)]">$INFO[Window(Home).Property(listitem_logo_text_color_video)]</value>
+    <value condition="String.IsEqual(Skin.String(FocusColorThemeSetting),1)">FF141415</value>
+    <value>FF141415</value>
+  </variable>
+
+  <variable name="PlayerClearlogoVar">
+		<value condition="!String.IsEmpty(Player.Art(clearlogo))">$INFO[Player.Art(clearlogo)]</value>
+		<value condition="!String.IsEmpty(Player.Art(tvshow.clearlogo))">$INFO[Player.Art(tvshow.clearlogo)]</value>
+	</variable>
+
+	<variable name="PVRGuideIconColor">
+		<value condition="Control.HasFocus(713)">$VAR[PlayerProgressTextColor]</value>
+		<value>ccfafafa</value>
+	</variable>
+
+</includes>

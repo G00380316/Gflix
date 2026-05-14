@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+
+	<variable name="TrailerSourceToggleVar">
+		<value condition="String.IsEqual(Skin.String(TrailerSource),0) + !String.IsEmpty(Skin.String(valid_api_key))">Skin.SetString(TrailerSource,1)</value>
+		<value condition="String.IsEqual(Skin.String(TrailerSource),1)">Skin.SetString(TrailerSource,0)</value>
+		<value>Skin.SetString(TrailerSource,0)</value>
+	</variable>
+
+	<variable name="TrailerSourceSettingVar">
+		<value condition="String.IsEqual(Skin.String(TrailerSource),0)">Kodi</value>
+		<value condition="String.IsEqual(Skin.String(TrailerSource),1)">MDbList</value>
+		<value>Kodi</value>
+	</variable>
+
+	<variable name="AutoplayTrailerSource">
+		<value condition="$EXP[isEpisode] | $EXP[isSeason]"></value>
+		<value condition="String.IsEqual(Skin.String(TrailerSource),0)">PlayMedia($INFO[ListItem.Trailer],1,noresume)</value>
+		<value condition="String.IsEqual(Skin.String(TrailerSource),1)">PlayMedia($INFO[Skin.String(TrailerPlaybackURL)],1,noresume)</value>
+		<value>PlayMedia($INFO[ListItem.Trailer],1,noresume)</value>
+	</variable>
+
+</includes>

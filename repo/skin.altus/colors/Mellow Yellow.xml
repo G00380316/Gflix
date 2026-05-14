@@ -1,0 +1,9 @@
+<colors>
+	<color name="primary_background">FF3F3F20</color>
+	<color name="button_focus">FFFFFF80</color>
+	<color name="focused_text">FF141515</color>
+	<color name="accent_color">FFFFFF80</color>
+	<color name="selected">FFD0C234</color>
+	<color name="keyboard_selected">FFFFFF80</color>
+	<color name="player_cache">FF9e9e00</color>
+</colors>

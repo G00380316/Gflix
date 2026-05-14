@@ -1,0 +1,397 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+	<include name="OSDButton">
+    <textureradioonfocus colordiffuse="$VAR[PlayerProgressTextColor]">$PARAM[texture]</textureradioonfocus>
+    <textureradioonnofocus colordiffuse="ccfafafa">$PARAM[texture]</textureradioonnofocus>
+    <textureradioofffocus colordiffuse="$VAR[PlayerProgressTextColor]">$PARAM[texture]</textureradioofffocus>
+    <textureradiooffnofocus colordiffuse="ccfafafa">$PARAM[texture]</textureradiooffnofocus>
+    <textureradioondisabled colordiffuse="disabled">$PARAM[texture]</textureradioondisabled>
+    <textureradiooffdisabled colordiffuse="disabled">$PARAM[texture]</textureradiooffdisabled>
+    <texturefocus colordiffuse="$VAR[PlayerProgressColor]">osd/fullscreen/buttons/button-fo.png</texturefocus>
+    <texturenofocus/>
+    <alttexturefocus border="3" colordiffuse="$VAR[PlayerProgressColor]">osd/Button.png</alttexturefocus>
+    <width>70</width>
+    <height>70</height>
+    <radiowidth>44</radiowidth>
+    <radioheight>44</radioheight>
+    <font></font>
+    <radioposx>13</radioposx>
+    <radioposy>13</radioposy>
+    <animation center="35,34" effect="zoom" end="100" reversible="false" start="90" time="480" tween="back">Focus</animation>
+	</include>
+	<include name="DefaultSettingButton">
+		<param name="height">70</param>
+		<param name="right">0</param>
+		<param name="textoffsetx">40</param>
+		<param name="texture">masks/radius_23.png</param>
+		<definition>
+			<textoffsetx>$PARAM[textoffsetx]</textoffsetx>
+			<height>$PARAM[height]</height>
+			<right>$PARAM[right]</right>
+			<aligny>center</aligny>
+			<invalidcolor>invalid</invalidcolor>
+			<selectedcolor>selected</selectedcolor>
+			<font>font32</font>
+			<textcolor>unfocused_text</textcolor>
+			<focusedcolor>$VAR[FocusedTextColorVar]</focusedcolor>
+			<texturefocus border="23" colordiffuse="$VAR[FocusColorTheme]">$PARAM[texture]</texturefocus>
+			<texturenofocus />
+		</definition>
+	</include>
+	<include name="DefaultAddonSettingsButton">
+		<param name="height">70</param>
+		<param name="right">25</param>
+		<param name="textoffsetx">40</param>
+		<definition>
+			<textoffsetx>$PARAM[textoffsetx]</textoffsetx>
+			<height>$PARAM[height]</height>
+			<right>$PARAM[right]</right>
+			<aligny>center</aligny>
+			<invalidcolor>invalid</invalidcolor>
+			<selectedcolor>selected</selectedcolor>
+			<font>font32</font>
+			<textcolor>unfocused_text</textcolor>
+			<focusedcolor>$VAR[FocusedTextColorVar]</focusedcolor>
+			<texturefocus border="23" colordiffuse="$VAR[FocusColorTheme]">masks/radius_23.png</texturefocus>
+			<texturenofocus />
+		</definition>
+	</include>
+	<include name="DefaultSystemSettingsButton">
+		<param name="height">85</param>
+		<param name="right">25</param>
+		<param name="textoffsetx">50</param>
+		<definition>
+			<textoffsetx>$PARAM[textoffsetx]</textoffsetx>
+			<height>$PARAM[height]</height>
+			<right>$PARAM[right]</right>
+			<aligny>center</aligny>
+			<align>left</align>
+			<textcolor>unfocused_text</textcolor>
+			<focusedcolor>$VAR[FocusedTextColorVar]</focusedcolor>
+			<font>font37</font>
+			<invalidcolor>invalid</invalidcolor>
+			<selectedcolor>selected</selectedcolor>
+			<texturefocus border="23" colordiffuse="$VAR[FocusColorTheme]">masks/radius_23.png</texturefocus>
+			<texturenofocus />
+		</definition>
+	</include>
+	<include name="DialogSettingButton">
+		<param name="height">70</param>
+		<param name="textoffsetx">40</param>
+		<definition>
+			<textoffsetx>$PARAM[textoffsetx]</textoffsetx>
+			<top>0</top>
+			<height>$PARAM[height]</height>
+			<aligny>center</aligny>
+			<font>font14</font>
+			<invalidcolor>invalid</invalidcolor>
+			<selectedcolor>selected</selectedcolor>
+			<texturefocus border="23" colordiffuse="$VAR[FocusColorTheme]">masks/radius_23.png</texturefocus>
+			<texturenofocus/>
+		</definition>
+	</include>
+	<include name="DefaultSettingLabel">
+		<left>0</left>
+		<top>0</top>
+		<height>68</height>
+		<label></label>
+		<align>left</align>
+		<aligny>center</aligny>
+		<font>font32_title</font>
+		<textcolor>$VAR[FocusColorTheme]</textcolor>
+	</include>
+	<include name="SettingsItemCommon">
+		<texturenofocus />
+		<texturefocus border="23" colordiffuse="$VAR[FocusColorTheme]">masks/radius_23.png</texturefocus>
+		<height>70</height>
+		<aligny>center</aligny>
+		<textoffsetx>20</textoffsetx>
+		<radioposy>0</radioposy>
+		<focusedcolor>$VAR[FocusedTextColorVar]</focusedcolor>
+		<textcolor>unfocused_text</textcolor>
+		<alttexturefocus border="23"  colordiffuse="$VAR[FocusColorTheme]">masks/radius_23.png</alttexturefocus>
+		<alttexturenofocus />
+	</include>
+	<include name="SettingsItemCommon1">
+		<include>FocusBounce</include>
+		<texturefocus border="23" colordiffuse="$VAR[FocusColorTheme]">masks/radius_23.png</texturefocus>
+		<texturenofocus border="23" colordiffuse="$VAR[FocusColorTheme]">masks/radius_23_darker.png</texturenofocus>
+		<height>60</height>
+		<aligny>center</aligny>
+		<textoffsetx>20</textoffsetx>
+		<focusedcolor>$VAR[FocusedTextColorVar]</focusedcolor>
+		<textcolor>unfocused_text</textcolor>
+		<radioposy>0</radioposy>
+		<alttexturefocus border="23"  colordiffuse="$VAR[FocusColorTheme]">masks/radius_23.png</alttexturefocus>
+		<alttexturenofocus />
+	</include>
+	<include name="SettingsLabelCommon">
+		<height>50</height>
+		<font>font12</font>
+		<textoffsetx>30</textoffsetx>
+		<textoffsety>10</textoffsety>
+		<textcolor>$VAR[FocusColorTheme]</textcolor>
+	</include>
+	<include name="DefaultDialogButton">
+		<param name="width">219</param>
+		<param name="height">70</param>
+		<param name="wrapmultiline">false</param>
+		<param name="font">font27_title</param>
+		<param name="onclick"></param>
+		<param name="onclick2"></param>
+		<param name="visible">true</param>
+		<param name="texture">masks/radius_23.png</param>
+		<definition>
+			<control type="button" id="$PARAM[id]">
+				<width>$PARAM[width]</width>
+				<height>$PARAM[height]</height>
+				<label>$PARAM[label]</label>
+				<font>$PARAM[font]</font>
+				<textoffsetx>20</textoffsetx>
+				<onclick>$PARAM[onclick]</onclick>
+				<onclick>$PARAM[onclick2]</onclick>
+				<wrapmultiline>$PARAM[wrapmultiline]</wrapmultiline>
+				<align>center</align>
+				<aligny>center</aligny>
+				<!-- <textoffsety>15</textoffsety> -->
+				<textcolor>unfocused_text</textcolor>
+				<focusedcolor>$VAR[FocusedTextColorVar]</focusedcolor>
+				<texturefocus border="23" colordiffuse="$VAR[FocusColorTheme]">$PARAM[texture]</texturefocus>
+				<texturenofocus border="23" colordiffuse="$VAR[FocusColorTheme]">masks/radius_23_darker.png</texturenofocus>
+				<visible>$PARAM[visible]</visible>
+			</control>
+		</definition>
+	</include>
+	<include name="KeyboardButton">
+    <width>100</width>
+    <height>100</height>
+    <texturefocus colordiffuse="$VAR[FocusColorTheme]">icons/keyboard/key-fo.png</texturefocus>
+    <texturenofocus colordiffuse="$VAR[FocusColorTheme]">icons/keyboard/key-unfo.png</texturenofocus>
+    <textcolor>unfocused_text</textcolor>
+    <focusedcolor>$VAR[FocusedTextColorVar]</focusedcolor>
+    <align>center</align>
+    <textoffsety>12</textoffsety>
+    <font>font37</font>
+	</include>
+	<include name="PlaylistWindowButton">
+		<param name="width">100%</param>
+		<definition>
+			<control type="button" id="$PARAM[control_id]">
+				<width>$PARAM[width]</width>
+				<height>110</height>
+				<align>left</align>
+				<aligny>top</aligny>
+				<texturefocus colordiffuse="$VAR[FocusColorTheme]">colors/white.png</texturefocus>
+				<texturenofocus />
+				<textoffsetx>40</textoffsetx>
+				<textoffsety>35</textoffsety>
+				<label>$PARAM[label]</label>
+				<onclick>$PARAM[onclick]</onclick>
+				<selectedcolor>white</selectedcolor>
+			</control>
+		</definition>
+	</include>
+	<include name="IconButton">
+    <param name="height">100</param>
+    <param name="visible">true</param>
+    <definition>
+			<control type="radiobutton" id="$PARAM[control_id]">
+				<width>100</width>
+				<height>$PARAM[height]</height>
+				<align>center</align>
+				<aligny>center</aligny>
+				<onclick>$PARAM[onclick]</onclick>
+				<onclick>$PARAM[onclick_2]</onclick>
+				<font></font>
+				<label>$PARAM[label]</label>
+				<texturefocus colordiffuse="$VAR[FocusColorTheme]">buttons/roundbutton-fo.png</texturefocus>
+				<texturenofocus colordiffuse="33000000">buttons/roundbutton-fo.png</texturenofocus>
+				<!-- <texturenofocus/> -->
+				<radioposx>30</radioposx>
+				<radioposy>0</radioposy>
+				<radiowidth>40</radiowidth>
+				<radioheight>40</radioheight>
+				<textureradioonfocus colordiffuse="$VAR[FocusedTextColorVar]">$PARAM[icon]</textureradioonfocus>
+				<textureradioonnofocus colordiffuse="unfocused_text">$PARAM[icon]</textureradioonnofocus>
+				<textureradioofffocus colordiffuse="$VAR[FocusedTextColorVar]">$PARAM[icon]</textureradioofffocus>
+				<textureradiooffnofocus colordiffuse="unfocused_text">$PARAM[icon]</textureradiooffnofocus>
+				<visible>$PARAM[visible]</visible>
+			</control>
+    </definition>
+	</include>
+	<!-- <include name="IconButton">
+		<param name="height">120</param>
+		<param name="visible">true</param>
+		<definition>
+			<control type="radiobutton" id="$PARAM[control_id]">
+				<width>120</width>
+				<height>$PARAM[height]</height>
+				<align>center</align>
+				<aligny>center</aligny>
+				<onclick>$PARAM[onclick]</onclick>
+				<onclick>$PARAM[onclick_2]</onclick>
+				<font></font>
+				<label>$PARAM[label]</label>
+				<texturefocus colordiffuse="$VAR[FocusColorTheme]">buttons/roundbutton-fo.png</texturefocus>
+				<texturenofocus />
+				<radioposx>40</radioposx>
+				<radioposy>0</radioposy>
+				<radiowidth>40</radiowidth>
+				<radioheight>40</radioheight>
+				<textureradioonfocus colordiffuse="$VAR[FocusedTextColorVar]">$PARAM[icon]</textureradioonfocus>
+				<textureradioonnofocus colordiffuse="grey">$PARAM[icon]</textureradioonnofocus>
+				<textureradioofffocus colordiffuse="$VAR[FocusedTextColorVar]">$PARAM[icon]</textureradioofffocus>
+				<textureradiooffnofocus colordiffuse="grey">$PARAM[icon]</textureradiooffnofocus>
+				<visible>$PARAM[visible]</visible>
+			</control>
+		</definition>
+	</include> -->
+	<include name="BottomMainMenuToggleItem">
+    <param name="height">100</param>
+    <definition>
+			<control type="radiobutton" id="$PARAM[control_id]">
+				<width>100</width>
+				<height>$PARAM[height]</height>
+				<align>center</align>
+				<aligny>center</aligny>
+				<onclick>$PARAM[onclick]</onclick>
+				<font></font>
+				<label>$PARAM[label]</label>
+				<texturefocus colordiffuse="$VAR[FocusColorTheme]">buttons/roundbutton-fo.png</texturefocus>
+				<texturenofocus />
+				<radioposx>30</radioposx>
+				<radioposy>0</radioposy>
+				<radiowidth>40</radiowidth>
+				<radioheight>40</radioheight>
+				<textureradioonfocus colordiffuse="$VAR[FocusedTextColorVar]">$PARAM[icon_on]</textureradioonfocus>
+				<textureradioonnofocus colordiffuse="unfocused_text">$PARAM[icon_on]</textureradioonnofocus>
+				<textureradioofffocus colordiffuse="$VAR[FocusedTextColorVar]">$PARAM[icon_off]</textureradioofffocus>
+				<textureradiooffnofocus colordiffuse="unfocused_text">$PARAM[icon_off]</textureradiooffnofocus>
+				<selected>$PARAM[selected]</selected>
+			</control>
+    </definition>
+	</include>
+	<include name="InfoDialogButton">
+		<!-- 262 -->
+		<param name="width">220</param>
+		<param name="onclick_1_condition">true</param>
+		<param name="onclick_2_condition">true</param>
+		<param name="onclick_3_condition">true</param>
+		<definition>
+			<control type="radiobutton" id="$PARAM[id]">
+				<width>$PARAM[width]</width>
+				<height>130</height>
+				<align>center</align>
+				<aligny>top</aligny>
+				<textcolor>unfocused_text</textcolor>
+				<focusedcolor>$VAR[FocusedTextColorVar]</focusedcolor>
+				<texturefocus colordiffuse="$VAR[FocusColorTheme]">colors/white.png</texturefocus>
+				<texturenofocus colordiffuse="80000000">colors/grey.png</texturenofocus>
+				<textoffsetx>22</textoffsetx>
+				<textoffsety>78</textoffsety>
+				<radioposx>87</radioposx>
+				<radioposy>16</radioposy>
+				<radiowidth>48</radiowidth>
+				<font>font12</font>
+				<textureradioonfocus colordiffuse="$VAR[FocusedTextColorVar]">$PARAM[icon]</textureradioonfocus>
+				<textureradioonnofocus colordiffuse="unfocused_text">$PARAM[icon]</textureradioonnofocus>
+				<textureradioofffocus colordiffuse="$VAR[FocusedTextColorVar]">$PARAM[icon]</textureradioofffocus>
+				<textureradiooffnofocus colordiffuse="unfocused_text">$PARAM[icon]</textureradiooffnofocus>
+				<textureradiooffdisabled colordiffuse="disabled">$PARAM[icon]</textureradiooffdisabled>
+				<textureradioondisabled colordiffuse="disabled">$PARAM[icon]</textureradioondisabled>
+				<label>$PARAM[label]</label>
+				<onclick condition="$PARAM[onclick_1_condition]">$PARAM[onclick_1]</onclick>
+				<onclick condition="$PARAM[onclick_2_condition]">$PARAM[onclick_2]</onclick>
+				<onclick condition="$PARAM[onclick_3_condition]">$PARAM[onclick_3]</onclick>
+				<visible>$PARAM[visible]</visible>
+				<animation effect="fade" start="100" end="0" time="300" delay="300">Hidden</animation>
+			</control>
+		</definition>
+	</include>
+	<include name="InfoDialogToggleButton">
+		<param name="width">220</param>
+		<definition>
+			<control type="radiobutton" id="$PARAM[id]">
+				<width>$PARAM[width]</width>
+				<height>130</height>
+				<align>center</align>
+				<aligny>top</aligny>
+				<textcolor>unfocused_text</textcolor>
+				<focusedcolor>$VAR[FocusedTextColorVar]</focusedcolor>
+				<texturefocus colordiffuse="$VAR[FocusColorTheme]">colors/white.png</texturefocus>
+				<texturenofocus colordiffuse="80000000">colors/grey.png</texturenofocus>
+				<textoffsetx>35</textoffsetx>
+				<textoffsety>78</textoffsety>
+				<radioposx>87</radioposx>
+				<radioposy>16</radioposy>
+				<radiowidth>48</radiowidth>
+				<font>font12</font>
+				<textureradioonfocus colordiffuse="$VAR[FocusedTextColorVar]">$PARAM[icon_on]</textureradioonfocus>
+				<textureradioonnofocus colordiffuse="unfocused_text">$PARAM[icon_on]</textureradioonnofocus>
+				<textureradioofffocus colordiffuse="$VAR[FocusedTextColorVar]">$PARAM[icon_off]</textureradioofffocus>
+				<textureradiooffnofocus colordiffuse="unfocused_text">$PARAM[icon_off]</textureradiooffnofocus>
+				<textureradiooffdisabled colordiffuse="disabled">$PARAM[icon_off]</textureradiooffdisabled>
+				<textureradioondisabled colordiffuse="disabled">$PARAM[icon_on]</textureradioondisabled>
+				<selected>$PARAM[selected]</selected>
+				<label>$PARAM[label]</label>
+				<onclick>$PARAM[onclick_1]</onclick>
+				<onclick>$PARAM[onclick_2]</onclick>
+				<visible>$PARAM[visible]</visible>
+			</control>
+		</definition>
+	</include>
+	<include name="ButtonMenuList">
+		<left>40</left>
+		<top>170</top>
+		<width>418</width>
+		<height>825</height>
+		<onleft>9000</onleft>
+		<onright>Action(close)</onright>
+		<onup>9000</onup>
+		<ondown>9000</ondown>
+		<orientation>vertical</orientation>
+		<itemlayout height="75" width="418">
+			<control type="image">
+				<left>25</left>
+				<width>41</width>
+				<texture diffuse="masks/mainmenu-img.png" colordiffuse="unfocused_text">$INFO[ListItem.Property(icon)]</texture>
+				<aspectratio>keep</aspectratio>
+				<visible>!String.IsEmpty(ListItem.Property(icon))</visible>
+			</control>
+			<control type="label">
+				<left>85</left>
+				<width>418</width>
+				<align>left</align>
+				<aligny>center</aligny>
+				<textcolor>unfocused_text</textcolor>
+				<label>$INFO[ListItem.Label]</label>
+				<font>font32</font>
+			</control>
+		</itemlayout>
+		<focusedlayout height="75" width="418">
+			<control type="image">
+				<top>0</top>
+				<bottom>0</bottom>
+				<left>0</left>
+				<right>0</right>
+				<texture border="23" colordiffuse="$VAR[FocusColorTheme]">masks/radius_23.png</texture>
+			</control>
+			<control type="image">
+				<left>25</left>
+				<width>41</width>
+				<texture diffuse="masks/mainmenu-img.png" colordiffuse="$VAR[FocusedTextColorVar]">$INFO[ListItem.Property(icon)]</texture>
+				<aspectratio>keep</aspectratio>
+				<visible>!String.IsEmpty(ListItem.Property(icon))</visible>
+			</control>
+			<control type="label">
+				<left>85</left>
+				<width>418</width>
+				<align>left</align>
+				<aligny>center</aligny>
+				<label>$INFO[ListItem.Label]</label>
+				<font>font32</font>
+				<textcolor>$VAR[FocusedTextColorVar]</textcolor>
+			</control>
+		</focusedlayout>
+	</include>
+</includes>

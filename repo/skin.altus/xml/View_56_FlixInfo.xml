@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+	<include name="View_56_FlixInfo">
+		<control type="group">
+			<include>OpenClose_Right</include>
+			<include>Visible_Right</include>
+			<left>0</left>
+			<visible>Control.IsVisible(56)</visible>
+			<control type="image">
+				<top>-2</top>
+				<right>-2</right>
+				<width>1427</width>
+				<height>803</height>
+				<fadetime>500</fadetime>
+				<bordersize>2</bordersize>
+				<texture border="2" colordiffuse="artwork_dim" background="true" diffuse="overlays/flixinfo-fanartdiffuse.png" fallback="$VAR[AltusCustomBackgroundImage]">$VAR[MediaFanartVar]</texture>
+				<aspectratio align="right" aligny="top">keep</aspectratio>
+				<bordertexture colordiffuse="$VAR[FocusColorTheme]" infill="false">overlays/flixinfo-fanartdiffuse_border.png</bordertexture>
+				<include>ArtworkAnimations</include>
+			</control>
+			<control type="label">
+				<left>535</left>
+				<right>video_header_right</right>
+				<top>655</top>
+				<label>$VAR[LeftVideoHeader]</label>
+				<font>font30_title_uppercase</font>
+				<textcolor>$VAR[FocusColorTheme]</textcolor>
+				<shadowcolor>text_shadow</shadowcolor>
+				<align>left</align>
+				<scroll>true</scroll>
+				<scrollspeed>170</scrollspeed>
+				<!-- <visible>!Window.IsVisible(busydialog)</visible> -->
+			</control>
+			<control type="label">
+				<right>45</right>
+				<top>655</top>
+				<label>$VAR[RightVideoHeader]</label>
+				<font>font30_title_uppercase</font>
+				<textcolor>$VAR[FocusColorTheme]</textcolor>
+				<shadowcolor>text_shadow</shadowcolor>
+				<align>right</align>
+				<scroll>true</scroll>
+				<scrollspeed>170</scrollspeed>
+				<!-- <visible>!Window.IsVisible(busydialog)</visible> -->
+			</control>
+			<control type="fixedlist" id="56">
+				<top>700</top>
+				<left>541</left>
+				<right>0</right>
+				<onright>56</onright>
+				<onleft>56</onleft>
+				<!-- <ondown>5199</ondown> -->
+				<onup>9000</onup>
+				<orientation>horizontal</orientation>
+				<movement>5</movement>
+				<viewtype label="31107">icon</viewtype>
+				<preloaditems>2</preloaditems>
+				<pagecontrol>5199</pagecontrol>
+				<scrolltime tween="cubic" easing="out">400</scrolltime>
+				<ondown condition="[$EXP[isMovie] | $EXP[isTVShow]] + String.IsEqual(Skin.String(56OnDownSetting.MovieTV),0)">5199</ondown>
+				<ondown condition="[$EXP[isMovie] | $EXP[isTVShow]] + String.IsEqual(Skin.String(56OnDownSetting.MovieTV),1) + String.IsEmpty(Skin.String(TrailerPlaying))">Skin.SetString(TrailerPlaying, true)</ondown>
+				<ondown condition="[$EXP[isMovie] | $EXP[isTVShow]] + String.IsEqual(Skin.String(56OnDownSetting.MovieTV),1) + !Player.HasMedia + String.IsEmpty(Skin.String(TrailerPlaying))">$VAR[AutoplayTrailerSource]</ondown>
+				<ondown condition="[$EXP[isMovie] | $EXP[isTVShow]] + String.IsEqual(Skin.String(56OnDownSetting.MovieTV),1) + Player.HasMedia + !String.IsEmpty(Skin.String(TrailerPlaying))">Skin.Reset(TrailerPlaying)</ondown>
+				<ondown condition="[$EXP[isMovie] | $EXP[isTVShow]] + String.IsEqual(Skin.String(56OnDownSetting.MovieTV),1) + Player.HasMedia + !String.IsEmpty(Skin.String(TrailerPlaying))">Stop</ondown>
+				<ondown condition="[$EXP[isMovie] | $EXP[isTVShow]] + String.IsEqual(Skin.String(56OnDownSetting.MovieTV),2)">info</ondown>
+
+				
+				<ondown condition="![$EXP[isMovie] | $EXP[isTVShow]] + String.IsEqual(Skin.String(56OnDownSetting.Other),0)">5199</ondown>
+				<ondown condition="![$EXP[isMovie] | $EXP[isTVShow]] + String.IsEqual(Skin.String(56OnDownSetting.Other),1)">info</ondown>
+
+				<onback condition="Player.HasMedia + !String.IsEmpty(Skin.String(TrailerPlaying))">Stop</onback>
+				<onunfocus condition="Player.HasMedia + !String.IsEmpty(Skin.String(TrailerPlaying))">Stop</onunfocus>
+				<onunfocus condition="!String.IsEmpty(Skin.String(TrailerPlaying))">Skin.Reset(TrailerPlaying)</onunfocus>
+				<visible>
+					[Container.Content(artists) + [String.IsEqual(Skin.String(Skin.ForcedView.artists),$LOCALIZE[31107]) | String.IsEmpty(Skin.String(Skin.ForcedView.artists))]] |
+
+					[Container.Content(albums) + [String.IsEqual(Skin.String(Skin.ForcedView.albums),$LOCALIZE[31107]) | String.IsEmpty(Skin.String(Skin.ForcedView.albums))]] |
+
+					[Container.Content(sets) + [String.IsEqual(Skin.String(Skin.ForcedView.sets),$LOCALIZE[31107]) | String.IsEmpty(Skin.String(Skin.ForcedView.sets))]] |
+
+					[Container.Content(movies) + [String.IsEqual(Skin.String(Skin.ForcedView.movies),$LOCALIZE[31107]) | String.IsEmpty(Skin.String(Skin.ForcedView.movies))]] |
+
+					[Container.Content(tvshows) + [String.IsEqual(Skin.String(Skin.ForcedView.tvshows),$LOCALIZE[31107]) | String.IsEmpty(Skin.String(Skin.ForcedView.tvshows))]] |
+
+					[Container.Content(seasons) + [String.IsEqual(Skin.String(Skin.ForcedView.seasons),$LOCALIZE[31107]) | String.IsEmpty(Skin.String(Skin.ForcedView.seasons))]] |
+
+					[Container.Content(episodes) + !String.StartsWith(Container.PluginCategory,Season) + [String.IsEqual(Skin.String(Skin.ForcedView.episodes.outside),$LOCALIZE[31107]) | String.IsEmpty(Skin.String(Skin.ForcedView.episodes.outside))]] |
+
+					[Container.Content(musicvideos) + [String.IsEqual(Skin.String(Skin.ForcedView.musicvideos),$LOCALIZE[31107]) | String.IsEmpty(Skin.String(Skin.ForcedView.musicvideos))]] |
+
+					[Container.Content(images) + [String.IsEqual(Skin.String(Skin.ForcedView.images),$LOCALIZE[31107]) | String.IsEmpty(Skin.String(Skin.ForcedView.images))]] |
+
+					[Container.Content(videos) + [String.IsEqual(Skin.String(Skin.ForcedView.videos),$LOCALIZE[31107]) | String.IsEmpty(Skin.String(Skin.ForcedView.videos))]] |
+
+					[Container.Content(games) + [String.IsEqual(Skin.String(Skin.ForcedView.games),$LOCALIZE[31107]) | String.IsEmpty(Skin.String(Skin.ForcedView.games))]]
+				</visible>
+
+				<!-- DEFAULT LAYOUT -->
+				<!-- W: 204 H: 306 -->
+				<itemlayout width="226" height="337" condition="[Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | [Container.Content(episodes) + !String.StartsWith(Container.PluginCategory,Season)] | [Container.Content(musicvideos) + Skin.HasSetting(show_musicvideoposter)]]">
+					<control type="group">
+						<include content="ViewUnfocusedAnimations">
+							<param name="id" value="56"/>
+						</include>
+						<top>0</top>
+						<left>-20</left>
+						<include>SmallPosterLayout</include>
+						<!-- <include>altus.PreloadFanart</include> -->
+					</control>
+				</itemlayout>
+				<focusedlayout width="226" height="337" condition="[Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | [Container.Content(episodes) + !String.StartsWith(Container.PluginCategory,Season)] | [Container.Content(musicvideos) + Skin.HasSetting(show_musicvideoposter)]]" infoupdate="30">
+					<control type="group">
+						<depth>DepthContentPopout</depth>
+						<top>0</top>
+						<left>-20</left>
+						<include content="SmallPosterLayout">
+							<param name="focused" value="true" />
+						</include>
+						<include>VideoTrailerControl</include>
+					</control>
+				</focusedlayout>
+
+				<!-- <itemlayout width="272" height="337" condition="[Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | [Container.Content(episodes) + !String.StartsWith(Container.PluginCategory,Season)] | [Container.Content(musicvideos) + Skin.HasSetting(show_musicvideoposter)]]">
+					<control type="group">
+						<include content="ViewUnfocusedAnimations">
+							<param name="id" value="56"/>
+						</include>
+						<top>0</top>
+						<left>25</left>
+						<include>PosterLayout</include>
+						<include>altus.PreloadFanart</include>
+					</control>
+				</itemlayout>
+				<focusedlayout width="272" height="337" condition="[Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | [Container.Content(episodes) + !String.StartsWith(Container.PluginCategory,Season)] | [Container.Content(musicvideos) + Skin.HasSetting(show_musicvideoposter)]]" infoupdate="30">
+					<control type="group">
+						<depth>DepthContentPopout</depth>
+						<top>0</top>
+						<left>25</left>
+						<include content="PosterLayout">
+							<param name="focused" value="true" />
+						</include>
+					</control>
+				</focusedlayout> -->
+
+
+
+				<!-- <itemlayout width="471" height="283" condition="Container.Content(episodes) | [Container.Content(musicvideos) + Skin.HasSetting(show_musicvideoposter)]">
+					<control type="group">
+						<include content="ViewUnfocusedAnimations">
+							<param name="id" value="55"/>
+						</include>
+						<left>18</left>
+						<top>0</top>
+						<include>LandscapeLayout</include>
+					</control>
+				</itemlayout>
+				<focusedlayout width="471" height="283" condition="Container.Content(episodes) | [Container.Content(musicvideos) + Skin.HasSetting(show_musicvideoposter)]" infoupdate="30">
+					<control type="group">
+						<depth>DepthContentPopout</depth>
+						<left>18</left>
+						<top>0</top>
+						<include content="LandscapeLayout">
+							<param name="focused" value="true" />
+						</include>
+					</control>
+				</focusedlayout> -->
+				<!-- <itemlayout width="283" height="444" condition="String.IsEqual(Skin.String(ArtworkSize54Setting),0) + Skin.HasSetting(Enable.54Titles) + [Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | [Container.Content(episodes) + !String.StartsWith(Container.PluginCategory,Season)] | [Container.Content(musicvideos) + Skin.HasSetting(show_musicvideoposter)]]">
+					<control type="group">
+						<include content="ViewUnfocusedAnimations">
+							<param name="id" value="56"/>
+						</include>
+						<top>0</top>
+						<include>PosterLayout</include>
+					</control>
+				</itemlayout>
+				<focusedlayout width="283" height="444" condition="String.IsEqual(Skin.String(ArtworkSize54Setting),0) + Skin.HasSetting(Enable.54Titles) + [Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | [Container.Content(episodes) + !String.StartsWith(Container.PluginCategory,Season)] | [Container.Content(musicvideos) + Skin.HasSetting(show_musicvideoposter)]]" infoupdate="30">
+					<control type="group">
+						<depth>DepthContentPopout</depth>
+						<top>0</top>
+						<include content="PosterLayout">
+							<param name="focused" value="true" />
+						</include>
+					</control>
+				</focusedlayout> -->
+
+				<!-- SMALL LAYOUT -->
+				<!-- W: 204 H: 306 -->
+				<!-- <itemlayout width="235" height="337" condition="String.IsEqual(Skin.String(ArtworkSize54Setting),1) + !Skin.HasSetting(Enable.54Titles) + [Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | [Container.Content(episodes) + !String.StartsWith(Container.PluginCategory,Season)] | [Container.Content(musicvideos) + Skin.HasSetting(show_musicvideoposter)]]">
+					<control type="group">
+						<include content="ViewUnfocusedAnimations">
+							<param name="id" value="56"/>
+						</include>
+						<top>0</top>
+						<include>SmallPosterLayout</include>
+					</control>
+				</itemlayout>
+				<focusedlayout width="235" height="337" condition="String.IsEqual(Skin.String(ArtworkSize54Setting),1) + !Skin.HasSetting(Enable.54Titles) + [Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | [Container.Content(episodes) + !String.StartsWith(Container.PluginCategory,Season)] | [Container.Content(musicvideos) + Skin.HasSetting(show_musicvideoposter)]]" infoupdate="30">
+					<control type="group">
+						<depth>DepthContentPopout</depth>
+						<top>0</top>
+						<include content="SmallPosterLayout">
+							<param name="focused" value="true" />
+						</include>
+					</control>
+				</focusedlayout>
+				<itemlayout width="235" height="375" condition="String.IsEqual(Skin.String(ArtworkSize54Setting),1) + Skin.HasSetting(Enable.54Titles) + [Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | [Container.Content(episodes) + !String.StartsWith(Container.PluginCategory,Season)] | [Container.Content(musicvideos) + Skin.HasSetting(show_musicvideoposter)]]">
+					<control type="group">
+						<include content="ViewUnfocusedAnimations">
+							<param name="id" value="56"/>
+						</include>
+						<top>0</top>
+						<include>SmallPosterLayout</include>
+					</control>
+				</itemlayout>
+				<focusedlayout width="235" height="375" condition="String.IsEqual(Skin.String(ArtworkSize54Setting),1) + Skin.HasSetting(Enable.54Titles) + [Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | [Container.Content(episodes) + !String.StartsWith(Container.PluginCategory,Season)] | [Container.Content(musicvideos) + Skin.HasSetting(show_musicvideoposter)]]" infoupdate="30">
+					<control type="group">
+						<depth>DepthContentPopout</depth>
+						<top>0</top>
+						<include content="SmallPosterLayout">
+							<param name="focused" value="true" />
+						</include>
+					</control>
+				</focusedlayout> -->
+			</control>
+			<!-- <include content="TopBottomBars">
+				<param name="top_visible" value="false"/>
+				<param name="bottom_visible" value="!Skin.HasSetting(Enable.54Dim)"/>
+				</include> -->
+				<include content="LeftRightArrows_56">
+					<param name="list_id" value="56" />
+					<param name="posy" value="845" />
+				</include>
+			</control>
+		</include>
+</includes>

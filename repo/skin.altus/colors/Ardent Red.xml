@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<colors>
+	<color name="primary_background">FF430000</color>
+	<color name="button_focus">FFDA0000</color>
+	<color name="focused_text">FFE9E9E9</color>
+<!-- <color name="accent_color">FF6F00FF</color> indigo -->
+	<color name="accent_color">FFBA160C</color>
+	<color name="selected">FFCC4E5C</color>
+	<color name="keyboard_selected">FFDA0000</color>
+	<color name="player_cache">FFf8938c</color>
+</colors>

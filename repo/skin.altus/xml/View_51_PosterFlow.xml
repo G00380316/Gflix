@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+
+  <include name="51_Font_Default">
+    <font>font27</font>
+  </include>
+  <include name="51_Font_Large">
+    <font>font32</font>
+  </include>
+
+  <include name="ResetFanartVisible">
+		<control type="button">
+			<include>HiddenObject</include>
+			<onfocus condition="String.IsEqual(Window(Home).Property(FanartVisible),true)">ClearProperty(FanartVisible,Home)</onfocus>
+		</control>
+	</include>
+
+	
+
+	<include name="View_51_PosterFlow">
+		<control type="group">
+			<include>OpenClose_Right</include>
+			<include>Visible_Right</include>
+			<visible>Control.IsVisible(51)</visible>
+			<left>0</left>
+			<top>0</top>
+      <control type="group">
+        <animation condition="!Control.HasFocus(5199) + !$EXP[sidebar_visible] + String.IsEqual(Window(Home).Property(FanartVisible),true)">
+          <effect type="fade" start="100" end="0" time="300" tween="cubic" reversible="true" />
+        </animation>
+        <animation type="Hidden">
+          <effect type="fade" start="100" end="0" time="500" delay="500" tween="cubic" easing="out"/>
+        </animation>
+        <!-- <control type="image">
+          <height>367</height>
+          <bottom>0</bottom>
+          <texture colordiffuse="$VAR[FocusColorTheme]">colors/darkest.png</texture>
+          <visible>String.IsEqual(Skin.String(BackgroundSetting),1)</visible>
+        </control> -->
+        <control type="image">
+          <height>3</height>
+          <bottom>367</bottom>
+          <texture colordiffuse="$VAR[FocusColorTheme]">masks/posterflowdivider.png</texture>
+        </control>
+      </control>
+			<control type="wraplist" id="51">
+        <!-- -171 -->
+        <top>0</top>
+				<left>0</left>
+				<right>0</right>
+				<height>100%</height>
+        <width>2230</width>
+				<onleft>51</onleft>
+				<orientation>horizontal</orientation>
+        <focusposition>5</focusposition>
+				<onup>9000</onup>
+        <animation condition="!Control.HasFocus(5199) + !$EXP[sidebar_visible] + String.IsEqual(Window(Home).Property(FanartVisible),true)">
+          <effect type="fade" start="100" end="0" time="300" tween="cubic" reversible="true" />
+        </animation>
+				<ondown condition="[$EXP[isMovie] | $EXP[isTVShow]] + String.IsEqual(Skin.String(51OnDownSetting.MovieTV),0)">5199</ondown>
+				<ondown condition="[$EXP[isMovie] | $EXP[isTVShow]] + String.IsEqual(Skin.String(51OnDownSetting.MovieTV),1) + String.IsEmpty(Skin.String(TrailerPlaying))">Skin.SetString(TrailerPlaying, true)</ondown>
+				<ondown condition="[$EXP[isMovie] | $EXP[isTVShow]] + String.IsEqual(Skin.String(51OnDownSetting.MovieTV),1) + !Player.HasMedia + String.IsEmpty(Skin.String(TrailerPlaying))">$VAR[AutoplayTrailerSource]</ondown>
+				<ondown condition="[$EXP[isMovie] | $EXP[isTVShow]] + String.IsEqual(Skin.String(51OnDownSetting.MovieTV),1) + Player.HasMedia + !String.IsEmpty(Skin.String(TrailerPlaying))">Skin.Reset(TrailerPlaying)</ondown>
+				<ondown condition="[$EXP[isMovie] | $EXP[isTVShow]] + String.IsEqual(Skin.String(51OnDownSetting.MovieTV),1) + Player.HasMedia + !String.IsEmpty(Skin.String(TrailerPlaying))">Stop</ondown>
+				<ondown condition="[$EXP[isMovie] | $EXP[isTVShow]] + String.IsEqual(Skin.String(51OnDownSetting.MovieTV),2)">info</ondown>
+				<ondown condition="[$EXP[isMovie] | $EXP[isTVShow]] + String.IsEqual(Skin.String(51OnDownSetting.MovieTV),3)">SetProperty(FanartVisible,true,Home)</ondown>
+        <ondown condition="[$EXP[isMovie] | $EXP[isTVShow]] + String.IsEqual(Skin.String(51OnDownSetting.MovieTV),3) + String.IsEqual(Window(Home).Property(FanartVisible),true)">ClearProperty(FanartVisible,Home)</ondown>
+				<ondown condition="![$EXP[isMovie] | $EXP[isTVShow]] + String.IsEqual(Skin.String(51OnDownSetting.Other),0)">5199</ondown>
+				<ondown condition="![$EXP[isMovie] | $EXP[isTVShow]] + String.IsEqual(Skin.String(51OnDownSetting.Other),1)">info</ondown>
+				<ondown condition="![$EXP[isMovie] | $EXP[isTVShow]] + String.IsEqual(Skin.String(51OnDownSetting.Other),2)">SetProperty(FanartVisible,true,Home)</ondown>
+        <ondown condition="![$EXP[isMovie] | $EXP[isTVShow]] + String.IsEqual(Skin.String(51OnDownSetting.Other),2) + String.IsEqual(Window(Home).Property(FanartVisible),true)">ClearProperty(FanartVisible,Home)</ondown>
+				<onback condition="Player.HasMedia + !String.IsEmpty(Skin.String(TrailerPlaying))">Stop</onback>
+				<onunfocus condition="Player.HasMedia + !String.IsEmpty(Skin.String(TrailerPlaying))">Stop</onunfocus>
+				<onunfocus condition="!String.IsEmpty(Skin.String(TrailerPlaying))">Skin.Reset(TrailerPlaying)</onunfocus>
+				<viewtype label="310981">icon</viewtype>
+				<preloaditems>2</preloaditems>
+				<pagecontrol>5199</pagecontrol>
+				<scrolltime tween="cubic" easing="out">700</scrolltime>
+				<visible>
+					[Container.Content(artists) + [String.IsEqual(Skin.String(Skin.ForcedView.artists),$LOCALIZE[310981]) | String.IsEmpty(Skin.String(Skin.ForcedView.artists))]] |
+
+					[Container.Content(albums) + [String.IsEqual(Skin.String(Skin.ForcedView.albums),$LOCALIZE[310981]) | String.IsEmpty(Skin.String(Skin.ForcedView.albums))]] |
+
+					[Container.Content(sets) + [String.IsEqual(Skin.String(Skin.ForcedView.sets),$LOCALIZE[310981]) | String.IsEmpty(Skin.String(Skin.ForcedView.sets))]] |
+
+					[Container.Content(movies) + [String.IsEqual(Skin.String(Skin.ForcedView.movies),$LOCALIZE[310981]) | String.IsEmpty(Skin.String(Skin.ForcedView.movies))]] |
+
+					[Container.Content(tvshows) + [String.IsEqual(Skin.String(Skin.ForcedView.tvshows),$LOCALIZE[310981]) | String.IsEmpty(Skin.String(Skin.ForcedView.tvshows))]] |
+
+					[Container.Content(seasons) + [String.IsEqual(Skin.String(Skin.ForcedView.seasons),$LOCALIZE[310981]) | String.IsEmpty(Skin.String(Skin.ForcedView.seasons))]] |
+
+					[Container.Content(episodes) + !String.StartsWith(Container.PluginCategory,Season) + [String.IsEqual(Skin.String(Skin.ForcedView.episodes.outside),$LOCALIZE[310981]) | String.IsEmpty(Skin.String(Skin.ForcedView.episodes.outside))]] |
+
+					[Container.Content(musicvideos) + [String.IsEqual(Skin.String(Skin.ForcedView.musicvideos),$LOCALIZE[310981]) | String.IsEmpty(Skin.String(Skin.ForcedView.musicvideos))]] |
+
+					[Container.Content(images) + [String.IsEqual(Skin.String(Skin.ForcedView.images),$LOCALIZE[310981]) | String.IsEmpty(Skin.String(Skin.ForcedView.images))]] |
+
+					[Container.Content(videos) + [String.IsEqual(Skin.String(Skin.ForcedView.videos),$LOCALIZE[310981]) | String.IsEmpty(Skin.String(Skin.ForcedView.videos))]] |
+
+					[Container.Content(games) + [String.IsEqual(Skin.String(Skin.ForcedView.games),$LOCALIZE[310981]) | String.IsEmpty(Skin.String(Skin.ForcedView.games))]]
+				</visible>
+        <!-- 245 -->
+        <!-- 120 -->
+				<itemlayout width="145" condition="Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | [Container.Content(episodes) + !String.StartsWith(Container.PluginCategory,Season)] | [Container.Content(musicvideos) + Skin.HasSetting(show_musicvideoposter)]">
+					<control type="group">
+						<left>0</left>
+						<!-- <top>120</top> -->
+						<include>PosterFlowLayout</include>
+					</control>
+				</itemlayout>
+				<focusedlayout width="472" condition="Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | [Container.Content(episodes) + !String.StartsWith(Container.PluginCategory,Season)] | [Container.Content(musicvideos) + Skin.HasSetting(show_musicvideoposter)]" infoupdate="30">
+					<control type="group">
+						<depth>DepthContentPopout</depth>
+						<left>0</left>
+						<top>0</top>
+						<include content="PosterFlowLayout">
+							<param name="focused" value="true" />
+						</include>
+            <!-- <include>ResetFanartVisible</include> -->
+            <include>VideoTrailerControl</include>
+					</control>
+				</focusedlayout>
+				<!-- <itemlayout height="410" width="310" condition="Container.Content(artists) | Container.Content(albums)">
+					<control type="group">
+						<top>150</top>
+						<left>40</left>
+						<include>SquareLayout</include>
+					</control>
+				</itemlayout>
+				<focusedlayout height="410" width="310" condition="Container.Content(artists) | Container.Content(albums)">
+					<control type="group">
+						<depth>DepthContentPopout</depth>
+						<top>150</top>
+						<left>40</left>
+						<include content="SquareLayout">
+							<param name="focused" value="true" />
+						</include>
+					</control>
+				</focusedlayout> -->
+			</control>
+      <control type="image">
+        <visible>String.IsEqual(Window(Home).Property(FanartVisible),true) + !Control.HasFocus(5199) + !$EXP[sidebar_visible]</visible>
+        <animation effect="fade" time="300" tween="cubic">VisibleChange</animation>
+				<include>FullScreenDimensions</include>
+				<fadetime>500</fadetime>
+				<texture colordiffuse="artwork_dim" diffuse="overlays/posterflow-fanartdiffuse.png" background="true" fallback="$VAR[AltusCustomBackgroundImage]">$VAR[MediaFanartVar]</texture>
+				<aspectratio>stretch</aspectratio>
+				<include>ArtworkAnimations</include>
+			</control>
+      <control type="group">
+        <top>702</top>
+        <left>77</left>
+        <right>77</right>
+        <!-- <bottom>160</bottom> -->
+        <control type="grouplist">
+          <left>0</left>
+          <top>0</top>
+          <bottom>0</bottom>
+          <orientation>vertical</orientation>
+          <align>center</align>
+          <itemgap>10</itemgap>
+          <control type="label">
+            <align>center</align>
+            <height>60</height>
+            <label>$VAR[LeftVideoHeader]</label>
+            <font>font32_title_uppercase</font>
+            <textcolor>$VAR[FocusColorTheme]</textcolor>
+            <shadowcolor>text_shadow</shadowcolor>
+            <!-- <visible>!Window.IsVisible(busydialog)</visible> -->
+          </control>
+          <include condition="!String.IsEmpty(Skin.String(valid_api_key))" content="HorizontalRatings">
+            <param name="align" value="center"/>
+          </include>
+          <control type="label">
+            <align>center</align>
+            <height>35</height>
+            <label>$VAR[VideoInfoPanelTop]</label>
+            <include condition="String.IsEqual(Skin.String(FontSizeSetting),0)">51_Font_Default</include>
+						<include condition="String.IsEqual(Skin.String(FontSizeSetting),1)">51_Font_Large</include>
+            <textcolor>$VAR[FocusColorTheme]</textcolor>
+            <scroll>true</scroll>
+            <scrollspeed>150</scrollspeed>
+          </control>
+          <control type="textbox">
+            <height max="116">auto</height>
+            <include condition="String.IsEqual(Skin.String(FontSizeSetting),0)">51_Font_Default</include>
+						<include condition="String.IsEqual(Skin.String(FontSizeSetting),1)">51_Font_Large</include>
+            <textcolor>unfocused_text</textcolor>
+            <align>center</align>
+            <label>$VAR[RI_Plot]</label>
+            <autoscroll delay="12000" time="5000" repeat="12000">Skin.HasSetting(autoscroll)</autoscroll>
+            <visible>$EXP[isPosterFlow]</visible>
+          </control>
+          <control type="label">
+            <align>center</align>
+            <height>50</height>
+            <label>$VAR[RightVideoHeader]</label>
+            <font>font32_title_uppercase</font>
+            <textcolor>$VAR[FocusColorTheme]</textcolor>
+            <shadowcolor>text_shadow</shadowcolor>
+            <!-- <visible>!Window.IsVisible(busydialog)</visible> -->
+          </control>
+        </control>
+      </control>
+		</control>
+	</include>
+
+</includes>

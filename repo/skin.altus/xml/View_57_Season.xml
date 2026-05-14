@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+
+  <include name="View_57_Season">
+    <control type="group">
+      <left>0</left>
+      <visible>Control.IsVisible(57)</visible>
+      <!-- Season Control List (Horizontal) -->
+      <control type="group">
+        <left>-3</left>
+        <top>222</top>
+        <include>Visible_Right</include>
+        <include>OpenClose_Right</include>
+        <control type="fixedlist" id="57">
+          <top>0</top>
+          <left>0</left>
+          <width>100%</width>
+          <height>85</height>
+          <onfocus>RunScript(script.altus.helper,mode=season_monitor&amp;container_id=57)</onfocus>
+          <onleft>57</onleft>
+          <onright>57</onright>
+          <onup>9000</onup>
+          <ondown>SetFocus(5057,$INFO[Window.Property(altus.season.unwatched_index)],absolute)</ondown>
+          <orientation>horizontal</orientation>
+          <focusposition>0</focusposition>
+          <movement>10</movement>
+          <preloaditems>2</preloaditems>
+          <viewtype label="311024">icon</viewtype>
+          <visible>[Container.Content(seasons) + [String.IsEqual(Skin.String(Skin.ForcedView.seasons),$LOCALIZE[311024]) | String.IsEmpty(Skin.String(Skin.ForcedView.seasons))]]</visible>
+          <scrolltime tween="cubic" easing="out">500</scrolltime>
+          <itemlayout width="168" height="85" condition="Container.Content(seasons)">
+            <control type="group">
+              <left>53</left>
+              <width>135</width>
+              <height>85</height>
+              <control type="image">
+                <texture border="20" colordiffuse="60000000">masks/radius_20.png</texture>
+              </control>
+              <!-- Unwatched / partially watched -->
+              <control type="label">
+                <left>0</left>
+                <right>0</right>
+                <height>85</height>
+                <aligny>center</aligny>
+                <font>font40_title</font>
+                <textcolor>unfocused_text</textcolor>
+                <label>S$INFO[ListItem.Season]</label>
+                <align>center</align>
+                <shadowcolor>text_shadow</shadowcolor>
+                <visible>!String.IsEqual(ListItem.Property(UnwatchedEpisodes),0) | String.IsEmpty(ListItem.Property(UnwatchedEpisodes))</visible>
+              </control>
+              <!-- Fully watched (dimmed) -->
+              <control type="label">
+                <left>0</left>
+                <right>0</right>
+                <height>85</height>
+                <aligny>center</aligny>
+                <font>font40_title</font>
+                <textcolor>66E0E0E8</textcolor>
+                <label>S$INFO[ListItem.Season]</label>
+                <align>center</align>
+                <shadowcolor>text_shadow</shadowcolor>
+                <visible>String.IsEqual(ListItem.Property(UnwatchedEpisodes),0)</visible>
+              </control>
+            </control>
+          </itemlayout>
+          <focusedlayout width="168" height="85" condition="Container.Content(seasons)" infoupdate="30">
+            <control type="group">
+              <left>53</left>
+              <width>135</width>
+              <height>85</height>
+              <control type="image">
+                <texture border="20" colordiffuse="$VAR[FocusColorTheme]">masks/radius_20.png</texture>
+                <animation effect="fade" start="100" end="60" time="40" condition="Control.HasFocus(5057) | Control.HasFocus(5157) | $EXP[sidebar_visible]">Conditional</animation>
+              </control>
+              <control type="label">
+                <left>0</left>
+                <right>0</right>
+                <height>85</height>
+                <aligny>center</aligny>
+                <font>font40_title</font>
+                <textcolor>$VAR[FocusedTextColorVar]</textcolor>
+                <label>S$INFO[ListItem.Season]</label>
+                <align>center</align>
+                <shadowcolor>text_shadow</shadowcolor>
+                <scrollspeed>150</scrollspeed>
+                <scroll>$PARAM[focused]</scroll>
+              </control>
+            </control>
+          </focusedlayout>
+        </control>
+      </control>
+      <!-- Main Episode List -->
+      <control type="group">
+        <include>Visible_Right</include>
+        <include>OpenClose_Right</include>
+        <control type="fixedlist" id="5057">
+          <top>329</top>
+          <width>100%</width>
+          <left>0</left>
+          <height>594</height> <!-- Adjusted height for 2 rows -->
+          <onup>SetFocus(5057,0,absolute),57</onup>
+          <onup>57</onup>
+          <onback>SetFocus(5057,0,absolute),57</onback>
+          <onback>57</onback>
+          <onright>5057</onright>
+          <ondown>5157</ondown>
+          <focusposition>0</focusposition>
+          <movement>2</movement>
+          <preloaditems>2</preloaditems>
+          <pagecontrol>5157</pagecontrol>
+          <orientation>horizontal</orientation>
+          <scrolltime tween="cubic" easing="inout">400</scrolltime>
+          <animation condition="Container(5057).IsUpdating" reversible="true" pulse="true">
+            <effect type="fade" start="100" end="80" time="700" tween="sine" easing="inout" />
+            <effect type="fadediffuse" start="FFE9E9E9" end="FF777777" time="700" />
+          </animation>
+          <itemlayout width="615" height="297">
+            <control type="group">
+              <include content="ViewUnfocusedAnimations">
+                <param name="id" value="57"/>
+              </include>
+              <left>33</left>
+              <include>BigLandscapeLayout</include>
+            </control>
+          </itemlayout>
+          <focusedlayout width="615" height="297" infoupdate="30">
+            <control type="group">
+              <animation condition="Skin.HasSetting(Enable.57Dim) + String.IsEqual(Skin.String(BackgroundSetting),1) + [Control.HasFocus(57) | $EXP[sidebar_visible] | Control.HasFocus(5157)]" reversible="true">
+                <effect type="fadediffuse" start="FFE9E9E9" end="FF777777" time="0" />
+              </animation>
+              <animation condition="Skin.HasSetting(Enable.57Dim) + [String.IsEqual(Skin.String(BackgroundSetting),0) | String.IsEqual(Skin.String(BackgroundSetting),2)] + [Control.HasFocus(57) | $EXP[sidebar_visible] | Control.HasFocus(5157)]" reversible="true">
+                <effect type="fade" start="100" end="50" time="0" tween="sine" easing="inout" />
+              </animation>
+              <depth>DepthContentPopout</depth>
+              <left>33</left>
+              <include content="BigLandscapeLayout">
+                <param name="focused" value="true" />
+                <param name="list_id" value="5057" />
+              </include>
+              <include>FocusBounce</include>
+            </control>
+          </focusedlayout>
+          <content>$INFO[Window.Property(altus.season.path)]</content>
+        </control>
+        <control type="group">
+          <top>40</top>
+          <control type="image">
+            <top>17</top>
+            <left>50</left>
+            <width>600</width>
+            <height>128</height>
+            <fadetime>200</fadetime>
+            <texture background="true">$INFO[Window(Home).Property(listitem_clearlogo_cropped)]</texture>
+            <aspectratio align="left" aligny="center">keep</aspectratio>
+            <visible>!Skin.HasSetting(Disable.57Clearlogo) + !String.IsEmpty(Listitem.Art(tvshow.clearlogo))</visible>
+            <animation effect="fade" start="0" end="100" time="300">VisibleChange</animation>
+          </control>
+          <control type="label">
+            <top>50</top>
+            <left>50</left>
+            <width>700</width>
+            <height>150</height>
+            <align>left</align>
+            <font>font_clock</font>
+            <label>$INFO[ListItem.TVShowTitle]</label>
+            <visible>[Skin.HasSetting(Disable.57Clearlogo) | String.IsEmpty(Listitem.Art(tvshow.clearlogo))]</visible>
+            <animation effect="fade" start="0" end="100" time="300">VisibleChange</animation>
+          </control>
+        </control>
+        <control type="group" >
+          <left>50</left>
+          <top>685</top>
+          <height>145</height>
+          <orientation>vertical</orientation>
+          <align>left</align>
+          <control type="textbox">
+            <right>45</right>
+            <align>left</align>
+            <label>$VAR[SeasonPlot]</label>
+            <font>font32_eps</font>
+            <textcolor>unfocused_text</textcolor>
+            <aligny>center</aligny>
+            <autoscroll delay="10000" time="4000" repeat="10000">Control.HasFocus(5057)</autoscroll>
+            <visible>!Skin.HasSetting(Disable.57Plot)</visible>
+            <animation effect="fade" start="0" end="100" time="300">VisibleChange</animation>
+          </control>
+          <control type="label">
+            <right>53</right>
+            <top>177</top>
+            <align>right</align>
+            <label>[UPPERCASE]$VAR[FilterLabel][COLOR unfocused_text]$VAR[SeasonLabel][/COLOR]$VAR[ClockCrumbs][/UPPERCASE]</label>
+            <font>font32_title</font>
+            <aligny>center</aligny>
+            <textcolor>$VAR[FocusColorTheme]</textcolor>
+            <visible>true</visible>
+            <animation condition="Skin.HasSetting(Disable.57Plot)" effect="slide" end="0,-145" time="300">Conditional</animation>
+          </control>
+          <control type="label">
+            <top>177</top>
+            <align>left</align>
+            <label>$VAR[SeasonInfoPanelTop]</label>
+            <font>font32_title</font>
+            <textcolor>$VAR[FocusColorTheme]</textcolor>
+            <aligny>center</aligny>
+            <visible>true</visible>
+            <animation condition="Skin.HasSetting(Disable.57Plot)" effect="slide" end="0,-145" time="300">Conditional</animation>
+          </control>
+        </control>
+        <control type="image">
+          <left>1587</left>
+          <top>60</top>
+          <width>256</width>
+          <height>119</height>
+          <aspectratio align="right" aligny="center">keep</aspectratio>
+          <texture colordiffuse="$VAR[StudioColorDiffuseVar]">$VAR[StudioLogoPathVar]</texture>
+          <visible>!Skin.HasSetting(Disable.57StudioLogo) + !String.IsEmpty(ListItem.Studio)</visible>
+          <animation effect="fade" start="0" end="100" time="300">VisibleChange</animation>
+          <align>right</align>
+        </control>
+      </control>
+      <control type="scrollbar" id="5157">
+        <left>355</left>
+        <bottom>-6</bottom>
+        <height>12</height>
+        <width>1565</width>
+        <orientation>horizontal</orientation>
+        <texturesliderbackground />
+        <animation effect="slide" end="0,6" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(5157)">conditional</animation>
+        <onup>5057</onup>
+        <ondown>5057</ondown>
+      </control>
+    </control>
+  </include>
+
+</includes>

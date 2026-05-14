@@ -1,3 +1,13 @@
+[COLOR red][B]Version 1.0.39[/B][/COLOR]
+- Removed Bitlord, isohunt, torrentquest, torrentfunk, and yourbitorrent.
+- Corrected limetorrents scraper.
+- Corrected error in code for eztv.
+- Change torrentgalaxy to use a clone and json instead of html parsing.
+- Added Prowlarr scraper from Magneto Scrapers. All credit to kodifitzwell.
+
+[COLOR red][B]Version 1.0.38[/B][/COLOR]
+- ThreadPool code changed to avoid hang on exit.
+
 [COLOR red][B]Version 1.0.37[/B][/COLOR]
 - ThreadPool code reversion.
 

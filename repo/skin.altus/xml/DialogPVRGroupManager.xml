@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<defaultcontrol always="true">29</defaultcontrol>
+	<include>Animation_DialogPopupOpenClose</include>
+	<controls>
+		<control type="group">
+			<centertop>50%</centertop>
+			<height>1045</height>
+			<centerleft>50%</centerleft>
+			<width>1890</width>
+			<include content="DialogBackgroundCommons">
+				<param name="header_label" value="$VAR[PVRGroupMgrHeader]$INFO[Container(13).NumItems, (,)]" />
+				<param name="header_id" value="1" />
+				<param name="width" value="1890" />
+				<param name="height" value="1045" />
+				<param name="header_top" value="15" />
+				<param name="divider_top" value="90" />
+			</include>
+			<control type="image">
+				<left>410</left>
+				<top>175</top>
+				<width>1</width>
+				<height>836</height>
+				<texture colordiffuse="$VAR[FocusColorTheme]">colors/dark.png</texture>
+			</control>
+			<control type="image">
+				<left>970</left>
+				<top>175</top>
+				<width>1</width>
+				<height>836</height>
+				<texture colordiffuse="$VAR[FocusColorTheme]">colors/dark.png</texture>
+			</control>
+			<control type="image">
+				<left>1530</left>
+				<top>175</top>
+				<width>1</width>
+				<height>836</height>
+				<texture colordiffuse="$VAR[FocusColorTheme]">colors/dark.png</texture>
+			</control>
+			<control type="group">
+				<left>40</left>
+				<top>105</top>
+				<control type="label">
+					<description>name label</description>
+					<left>0</left>
+					<top>0</top>
+					<width>330</width>
+					<height>70</height>
+					<label>$LOCALIZE[31089]: [COLOR white]$INFO[Container(13).NumItems][/COLOR]</label>
+					<align>center</align>
+					<aligny>center</aligny>
+					<textcolor>$VAR[FocusColorTheme]</textcolor>
+				</control>
+				<!-- LEFT -->
+				<control type="list" id="13">
+					<left>0</left>
+					<top>70</top>
+					<width>330</width>
+					<height>836</height>
+					<onup>13</onup>
+					<ondown>13</ondown>
+					<onleft>9000</onleft>
+					<onright>73</onright>
+					<pagecontrol>73</pagecontrol>
+					<scrolltime>200</scrolltime>
+					<itemlayout width="330" height="76">
+						<control type="label">
+							<left>20</left>
+							<right>20</right>
+							<height>76</height>
+							<aligny>center</aligny>
+							<font>font32</font>
+							<textcolor>unfocused_text</textcolor>
+							<label>$INFO[ListItem.Label]</label>
+						</control>
+					</itemlayout>
+					<focusedlayout width="330" height="76">
+						<control type="image">
+							<texture border="23" colordiffuse="$VAR[FocusColorTheme]">masks/radius_23.png</texture>
+							<!-- <visible>Control.HasFocus(13)</visible> -->
+							<animation effect="fade" start="100" end="60" time="0" condition="!Control.HasFocus(13)">conditional</animation>
+						</control>
+						<control type="label">
+							<left>20</left>
+							<right>20</right>
+							<height>76</height>
+							<aligny>center</aligny>
+							<font>font32</font>
+							<label>$INFO[ListItem.Label]</label>
+							<textcolor>$VAR[FocusedTextColorVar]</textcolor>
+							<scroll>true</scroll>
+						</control>
+					</focusedlayout>
+				</control>
+			</control>
+			<!-- MIDDLE -->
+			<control type="group">
+				<description>Channels list</description>
+				<left>450</left>
+				<top>105</top>
+				<include content="ChannelManagerList">
+					<param name="header_id" value="21" />
+					<param name="list_id" value="11" />
+					<param name="scrollbar_id" value="71" />
+					<param name="onright" value="12" />
+					<param name="onleft" value="73" />
+				</include>
+			</control>
+			<!-- RIGHT -->
+			<control type="group">
+				<description>Grouped Channels list</description>
+				<left>1010</left>
+				<top>105</top>
+				<include content="ChannelManagerList">
+					<param name="header_id" value="22" />
+					<param name="list_id" value="12" />
+					<param name="scrollbar_id" value="72" />
+					<param name="onright" value="9000" />
+					<param name="onleft" value="71" />
+				</include>
+			</control>
+			<!-- LEFT -->
+			<control type="scrollbar" id="73">
+				<left>410</left>
+				<top>175</top>
+				<width>1</width>
+				<height>836</height>
+				<onleft>13</onleft>
+				<onright>11</onright>
+				<ondown>73</ondown>
+				<onup>73</onup>
+				<orientation>vertical</orientation>
+			</control>
+			<!-- MIDDLE -->
+			<control type="scrollbar" id="71">
+				<left>970</left>
+				<top>175</top>
+				<width>1</width>
+				<height>836</height>
+				<onleft>11</onleft>
+				<onright>12</onright>
+				<ondown>71</ondown>
+				<onup>71</onup>
+				<orientation>vertical</orientation>
+			</control>
+			<!-- RIGHT -->
+			<control type="scrollbar" id="72">
+				<left>1530</left>
+				<top>175</top>
+				<width>1</width>
+				<height>836</height>
+				<onleft>12</onleft>
+				<onright>9000</onright>
+				<ondown>72</ondown>
+				<onup>72</onup>
+				<orientation>vertical</orientation>
+			</control>
+			<control type="grouplist" id="9000">
+				<left>1570</left>
+				<top>95</top>
+				<width>280</width>
+				<height>715</height>
+				<itemgap>dialogbuttons_itemgap</itemgap>
+				<align>center</align>
+				<orientation>vertical</orientation>
+				<onleft>12</onleft>
+				<onright>13</onright>
+				<onup>9000</onup>
+				<ondown>9000</ondown>
+				<control type="button" id="29">
+					<description>OK</description>
+					<width>280</width>
+					<include>SettingsItemCommon1</include>
+					<font>font27_title</font>
+					<label>$LOCALIZE[186]</label>
+				</control>
+				<control type="button" id="26">
+					<description>Add Group</description>
+					<width>280</width>
+					<include>SettingsItemCommon1</include>
+					<font>font27_title</font>
+					<label>$LOCALIZE[31044]</label>
+				</control>
+				<control type="button" id="27">
+					<description>Rename Group</description>
+					<width>280</width>
+					<include>SettingsItemCommon1</include>
+					<font>font27_title</font>
+					<label>$LOCALIZE[31045]</label>
+				</control>
+				<control type="radiobutton" id="25">
+					<description>Hide Group</description>
+					<width>280</width>
+					<include>SettingsItemCommon1</include>
+					<font>font27_title</font>
+					<label>$LOCALIZE[19289]</label>
+					<radiowidth>100</radiowidth>
+					<radioposy>13</radioposy>
+					<radioposx>185</radioposx>
+				</control>
+				<control type="button" id="28">
+					<description>Delete Group</description>
+					<width>280</width>
+					<include>SettingsItemCommon1</include>
+					<font>font27_title</font>
+					<label>$LOCALIZE[31046]</label>
+				</control>
+				<control type="button" id="35">
+					<description>Regenerate Group Thumbnail</description>
+					<width>280</width>
+					<include>SettingsItemCommon1</include>
+					<font>font27_title</font>
+					<label>$LOCALIZE[13315]</label>
+				</control>
+				<control type="togglebutton" id="34">
+					<description>TV/Radio toggle</description>
+					<width>280</width>
+					<include>SettingsItemCommon1</include>
+					<font>font27_title</font>
+					<label>$LOCALIZE[19174]</label>
+					<altlabel>$LOCALIZE[19173]</altlabel>
+					<usealttexture>!String.IsEmpty(Window.Property(IsRadio))</usealttexture>
+				</control>
+			</control>
+			<control type="image">
+				<left>1585</left>
+				<width>250</width>
+				<bottom>34</bottom>
+				<texture>$INFO[Container(13).ListItem.Icon]</texture>
+				<bordertexture border="23" colordiffuse="dialog_bg">masks/radius_23_darker.png</bordertexture>
+				<bordersize>2</bordersize>
+				<aspectratio aligny="bottom">keep</aspectratio>
+			</control>
+		</control>
+		<control type="label" id="20">
+			<description>Fake Label used to pass on name label</description>
+			<visible>false</visible>
+		</control>
+	</controls>
+</window>

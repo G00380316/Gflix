@@ -811,7 +811,7 @@ fix to properly get English videos as fallback
 - Fix possible exception that may occur if video thumbnails fail to update
 - Fix unsubscribing from My Subscriptions
 - Fix folders for channel shorts and live stream</news></extension>
-</addon><addon id="plugin.video.zoro" version="1.1.5" name="Zoro" provider-name="Ghost">
+</addon><addon id="plugin.video.zoro" version="1.1.8" name="Zoro" provider-name="Ghost">
 	<requires>
 		<import addon="xbmc.python" version="3.0.0" />
 		<import addon="script.module.requests" />
@@ -830,7 +830,7 @@ fix to properly get English videos as fallback
 		<news>INFO: For latest changes see Changelog within add-on.</news>
 		<assets><icon>icon.png</icon><fanart>fanart.jpg</fanart><screenshot>screenshot.jpg</screenshot></assets>
 	</extension>
-</addon><addon id="repository.G00380316" name="Gflix" version="2.9.9" provider-name="G00380316">
+</addon><addon id="repository.G00380316" name="Gflix" version="3.0.1" provider-name="G00380316">
     <extension point="xbmc.addon.repository" name="Gflix Repository">
         <dir>
             <info compressed="false">https://raw.githubusercontent.com/G00380316/gflix/main/repo/zips/addons.xml</info>
@@ -1082,6 +1082,28 @@ fix to properly get English videos as fallback
             <fanart>fanart.jpg</fanart>
         </assets>
     </extension>
+</addon><addon id="script.altus.helper" name="Altus Helper" version="0.3.8" provider-name="Ivar Brandt">
+    <requires>
+        <import addon="xbmc.python" version="3.0.0" />
+        <import addon="script.module.requests" version="2.19.1" />
+        <import addon="script.module.pil" version="1.1.7" />
+    </requires>
+    <extension point="xbmc.python.library" library="resources/lib/default.py" />
+    <extension point="xbmc.service" library="resources/lib/service.py" start="startup" />
+    <extension point="xbmc.addon.metadata">
+        <news />
+        <platform>all</platform>
+        <license>GPL-2.0-only</license>
+        <forum />
+        <source />
+        <assets>
+            <icon>resources/media/icon.png</icon>
+            
+        </assets>
+        <description lang="en_GB">Altus Helper for the Altus Skin.</description>
+        <description lang="en_NZ">Altus Helper for the Altus Skin.</description>
+        <description lang="en_US">Altus Helper for the Altus Skin.</description>
+    </extension>
 </addon><addon id="script.bingie.helper" name="Bingie Helper" version="1.1.2" provider-name="cartman.dos, matke">
 	<requires>
 		<import addon="xbmc.python" version="3.0.0" />
@@ -1321,7 +1343,7 @@ fix to properly get English videos as fallback
       <icon>resources/icon.png</icon>
     </assets>
   </extension>
-</addon><addon id="script.module.cocoscrapers" name="CocoScrapers Module" version="1.0.37" provider-name="CocoJoe">
+</addon><addon id="script.module.cocoscrapers" name="CocoScrapers Module" version="1.0.39" provider-name="CocoJoe">
 	<requires>
 		<import addon="xbmc.python" version="3.0.0" />
 		<import addon="script.module.requests" />
@@ -1814,6 +1836,31 @@ v1.1.3 (2020-10-14)
             <screenshot>resources/media/upnext-developer.jpg</screenshot>
         </assets>
     </extension>
+</addon><addon id="skin.altus" version="0.7.1" name="Altus" provider-name="Ivar Brandt">
+	<requires>
+		<import addon="xbmc.gui" version="5.17.0" />
+		<import addon="resource.images.weathericons.white" version="0.0.1" />
+		<import addon="script.altus.helper" version="0.3.8" />
+	</requires>
+	<extension effectslowdown="1" point="xbmc.gui.skin" debugging="false">
+		
+		<res width="1920" height="1080" aspect="16:9" default="true" folder="xml" />
+		
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<platform>all</platform>
+		<license>CC BY-SA 4.0, GNU GENERAL PUBLIC LICENSE Version 2.0</license>
+		<assets>
+			<icon>resources/icon.jpg</icon>
+			
+		</assets>
+		<summary lang="en_GB">Altus skin by Ivar Brandt</summary>
+		<summary lang="en_NZ">Altus skin by Ivar Brandt</summary>
+		<summary lang="en_US">Altus skin by Ivar Brandt</summary>
+		<description lang="en_GB">Altus Skin</description>
+		<description lang="en_NZ">Altus Skin</description>
+		<description lang="en_US">Altus Skin</description>
+	</extension>
 </addon><addon id="skin.arctic.fuse.2" name="Arctic Fuse 2" provider-name="jurialmunkey" version="2.10.9">
     <requires>
         <import addon="xbmc.gui" version="5.17.0" />

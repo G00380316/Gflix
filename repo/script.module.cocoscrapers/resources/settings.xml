@@ -177,16 +177,6 @@
 					<default>false</default>
 					<control type="toggle"/>
 				</setting>
-				<setting id="provider.bitcq" type="boolean" label="32137" help="">
-					<level>0</level>
-					<default>false</default>
-					<control type="toggle"/>
-				</setting>
-				<setting id="provider.bitlord" type="boolean" label="32103" help="">
-					<level>0</level>
-					<default>false</default>
-					<control type="toggle"/>
-				</setting>
 				<setting id="provider.bitsearch" type="boolean" label="32138" help="">
 					<level>0</level>
 					<default>true</default>
@@ -200,11 +190,6 @@
 				<setting id="provider.eztv" type="boolean" label="32107" help="">
 					<level>0</level>
 					<default>true</default>
-					<control type="toggle"/>
-				</setting>
-				<setting id="provider.isohunt2" type="boolean" label="32110" help="">
-					<level>0</level>
-					<default>false</default>
 					<control type="toggle"/>
 				</setting>
 				<setting id="provider.kickass2" type="boolean" label="32111" help="">
@@ -230,6 +215,11 @@
 				<setting id="mediafusion.usecustomurl" type="boolean" label="32572" help="" parent="provider.mediafusion">
 					<level>0</level>
 					<default>false</default>
+					<dependencies>
+						<dependency type="visible">
+							<condition operator="is" setting="provider.mediafusion">true</condition>
+						</dependency>
+					</dependencies>
 					<control type="toggle"/>
 				</setting>
 				<setting id="mediafusion.customurl" type="string" label="32571" help="" parent="provider.mediafusion">
@@ -304,14 +294,44 @@
 					<default>false</default>
 					<control type="toggle"/>
 				</setting>
+				<setting id="provider.prowlarr" type="boolean" label="32576">
+					<level>0</level>
+					<default>false</default>
+					<control type="toggle"/>
+				</setting>
+				<setting id="prowlarr.url" type="string" label="32578" help="" parent="provider.prowlarr">
+					<level>0</level>
+					<default/>
+					<constraints>
+						<allowempty>true</allowempty>
+					</constraints>
+					<dependencies>
+						<dependency type="visible">
+							<condition operator="is" setting="provider.prowlarr">true</condition>
+						</dependency>
+					</dependencies>
+					<control type="edit" format="string">
+						<heading>32578</heading>
+					</control>
+				</setting>
+				<setting id="prowlarr.token" type="string" label="32577" help="" parent="provider.prowlarr">
+					<level>0</level>
+					<default/>
+					<constraints>
+						<allowempty>true</allowempty>
+					</constraints>
+					<dependencies>
+						<dependency type="visible">
+							<condition operator="is" setting="provider.prowlarr">true</condition>
+						</dependency>
+					</dependencies>
+					<control type="edit" format="string">
+						<heading>32577</heading>
+					</control>
+				</setting>
 				<setting id="provider.torrentdownload" type="boolean" label="32123" help="">
 					<level>0</level>
 					<default>true</default>
-					<control type="toggle"/>
-				</setting>
-				<setting id="provider.torrentfunk" type="boolean" label="32124" help="">
-					<level>0</level>
-					<default>false</default>
 					<control type="toggle"/>
 				</setting>
 				<setting id="provider.torrentgalaxy" type="boolean" label="32125" help="">
@@ -334,17 +354,7 @@
 					</dependencies>
 					<control type="toggle"/>
 				</setting>
-				<setting id="provider.torrentquest" type="boolean" label="32114" help="">
-					<level>0</level>
-					<default>true</default>
-					<control type="toggle"/>
-				</setting>
 				<setting id="provider.torrentproject2" type="boolean" label="32136" help="">
-					<level>0</level>
-					<default>false</default>
-					<control type="toggle"/>
-				</setting>
-				<setting id="provider.yourbittorrent" type="boolean" label="32126" help="">
 					<level>0</level>
 					<default>false</default>
 					<control type="toggle"/>

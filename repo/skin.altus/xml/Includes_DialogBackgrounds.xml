@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+
+	<variable name="DialogBackgroundTexture">
+		<value condition="!Player.HasMedia + [String.IsEqual(Skin.String(BackgroundSetting),1) | String.IsEqual(Skin.String(BackgroundSetting),2)] + !String.IsEmpty(Window(home).Property(listitem_blurred))">$INFO[Window(home).Property(listitem_blurred)]</value>
+		<value condition="Player.HasMedia + [String.IsEqual(Skin.String(BackgroundSetting),1) | String.IsEqual(Skin.String(BackgroundSetting),2)] + !String.IsEmpty(Window(home).Property(listitem_blurred))">colors/darker.png</value>
+		<value>colors/darker.png</value>
+	</variable>
+
+  <variable name="DialogBackgroundDiffuse">
+		<value condition="!Player.HasMedia + [String.IsEqual(Skin.String(BackgroundSetting),1) | String.IsEqual(Skin.String(BackgroundSetting),2)] + !String.IsEmpty(Window(home).Property(listitem_blurred))">E6888888</value>
+		<value condition="Player.HasMedia + [String.IsEqual(Skin.String(BackgroundSetting),1) | String.IsEqual(Skin.String(BackgroundSetting),2)] + String.IsEqual(Skin.String(FocusColorThemeSetting),0)">$INFO[Window(Home).Property(listitem_logo_color_video)]</value>
+		<value condition="!Player.HasMedia + [String.IsEqual(Skin.String(BackgroundSetting),1) | String.IsEqual(Skin.String(BackgroundSetting),2)] + String.IsEmpty(Window(home).Property(listitem_blurred))">CC000000</value>
+		<value>accent_color</value>
+	</variable>
+
+  <include name="DialogBackgroundCommons">
+		<param name="left">0</param>
+		<param name="top">0</param>
+		<param name="right">0</param>
+		<param name="bottom">0</param>
+		<param name="width">100%</param>
+		<param name="height">100%</param>
+		<param name="darken_bg">true</param>
+		<param name="colordiffuse">$VAR[FocusColorTheme]</param>
+		<param name="border_colordiffuse">$VAR[FocusColorTheme]</param>
+		<param name="diffuse_texture">masks/radius_46.png</param>
+		<param name="border_texture">masks/bordertexture-46-thin.png</param>
+		<param name="border_value">46</param>
+		<param name="visible">true</param>
+		<param name="divider_visible">true</param>
+		<param name="header_top">60</param>
+		<param name="divider_top">135</param>
+		<definition>
+			<control type="image">
+				<left>-2000</left>
+				<top>-2000</top>
+				<width>6000</width>
+				<height>6000</height>
+				<animation effect="slide" end="-20000,-20000" time="0" condition="String.IsEqual(Window(Home).Property(altus.pvr.hiding_ctx),true)">Conditional</animation>
+				<animation effect="fade" time="400">VisibleChange</animation>
+				<animation effect="fade" start="0" end="100" time="400">WindowOpen</animation>
+				<animation effect="fade" start="100" end="0" time="300">WindowClose</animation>
+				<texture colordiffuse="A6FFFFFF">colors/black.png</texture>
+				<visible>$PARAM[darken_bg]</visible>
+			</control>
+			<control type="button">
+				<left>-2000</left>
+				<top>-2000</top>
+				<width>6000</width>
+				<height>6000</height>
+				<texturefocus />
+				<texturenofocus />
+				<onclick>Action(close)</onclick>
+			</control>
+			<control type="group">
+				<width>$PARAM[width]</width>
+				<height>$PARAM[height]</height>
+				<control type="image">
+					<left>$PARAM[left]</left>
+					<top>$PARAM[top]</top>
+					<right>$PARAM[right]</right>
+					<bottom>$PARAM[bottom]</bottom>
+					<visible>$PARAM[visible]</visible>
+					<bordersize>2</bordersize>
+					<texture border="$PARAM[border_value]" colordiffuse="$PARAM[colordiffuse]">$PARAM[diffuse_texture]</texture>
+					<bordertexture border="$PARAM[border_value]" colordiffuse="$PARAM[border_colordiffuse]" infill="false">$PARAM[border_texture]</bordertexture>
+				</control>
+				<control type="image">
+					<left>40</left>
+					<right>40</right>
+					<top>$PARAM[divider_top]</top>
+					<height>1</height>
+					<texture colordiffuse="$VAR[FocusColorTheme]">colors/dark.png</texture>
+					<visible>$PARAM[divider_visible]</visible>
+				</control>
+				<control type="label" id="$PARAM[header_id]">
+					<left>40</left>
+					<right>40</right>
+					<top>$PARAM[header_top]</top>
+					<height>70</height>
+					<label>$PARAM[header_label]</label>
+					<align>left</align> 
+					<aligny>center</aligny>
+					<font>font36_title_uppercase</font>
+					<textcolor>unfocused_text</textcolor>
+					<shadowcolor>black</shadowcolor>
+					<scroll>true</scroll>
+					<scrollspeed>100</scrollspeed>
+				</control>
+			</control>
+		</definition>
+	</include>
+
+</includes>

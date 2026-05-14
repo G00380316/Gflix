@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<timers>
+    <timer>
+        <name>autoclosevideoosd</name>
+        <description>Timer to auto close the video OSD (if enabled in the skin settings)</description>
+        <start reset="true">Window.IsActive(videoosd) + Skin.HasSetting(OSDAutoClose) + !String.IsEqual(window(home).Property(settingslist_content),osd) + !Window.IsActive(osdsubtitlesettings) + !Window.IsActive(osdaudiosettings) + !Window.IsActive(osdvideosettings) + !Window.IsActive(OSDCMSSettings)</start>
+        <reset>Window.IsActive(videoosd) + !System.IdleTime(1) + Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(autoclosevideoosd), 1) | String.IsEqual(window(home).Property(settingslist_content),osd) | Window.IsActive(osdsubtitlesettings) | Window.IsActive(osdaudiosettings) | Window.IsActive(osdvideosettings) | Window.IsActive(OSDCMSSettings)</reset>
+        <stop>!Window.IsActive(videoosd) | String.IsEmpty(Skin.String(OSDAutoCloseTime)) + Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(autoclosevideoosd), 4) | !String.IsEmpty(Skin.String(OSDAutoCloseTime)) + Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(autoclosevideoosd),Skin.Numeric(OSDAutoCloseTime))</stop>
+        <onstop>Dialog.Close(videoosd)</onstop>
+    </timer>
+    <!-- <timer>
+        <name>1110_topbaroverlay</name>
+        <description>A timer that is activated when the topbaroverlay is loaded and stops automatically after 5 seconds (or playback is resumed)</description>
+        <stop>!Player.Paused | Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(1110_topbaroverlay),5)</stop>
+    </timer> -->
+    <timer>
+        <name>reset_osd_just_closed</name>
+        <description>Clears the osd_just_closed flag ~1 second after VideoOSD closes, so a later pause gets a proper DialogSeekBar fade-in.</description>
+        <stop>Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(reset_osd_just_closed),1)</stop>
+        <onstop>ClearProperty(osd_just_closed,home)</onstop>
+    </timer>
+    <timer>
+        <name>autolock_view_timer</name>
+        <start reset="true">Control.HasFocus($PARAM[list_id])</start>
+        <stop>Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(autolock_view_timer),1)</stop>
+        <!-- <onstop>Notification(View Locked,$INFO[Container.Content] - $INFO[Container.Viewmode],3000)</onstop> -->
+        <!-- <onstop>Notification(View locked$VAR[ContentTypeLabel], [UPPERCASE]$INFO[Container.Viewmode][/UPPERCASE], 2000)</onstop> -->
+        <onstop>RunScript(script.altus.helper,mode=save_view)</onstop>
+    </timer>
+    
+</timers>

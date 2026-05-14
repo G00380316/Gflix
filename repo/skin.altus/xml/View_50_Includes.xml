@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+
+  <include name="50_ContentList">
+    <!-- <param name="list_id">$PARAM[list_id]</param> -->
+    <definition>
+      <focusedlayout condition="[Container.Content(movies) + String.IsEqual(Skin.String(ListArtworkChoice.movies),2) + !String.StartsWith(Container.PluginName,plugin.video.the-loop)] | 
+      Container.Content(sets) | 
+      [Container.Content(tvshows) + String.IsEqual(Skin.String(ListArtworkChoice.tvshows),2)] | 
+      [Container.Content(seasons) + String.IsEqual(Skin.String(ListArtworkChoice.seasons),2)] | 
+      [Container.Content(episodes) + String.IsEqual(Skin.String(ListArtworkChoice.episodes),2)] | 
+      Container.Content(musicvideos) | 
+      Container.Content(games) | 
+      Window.IsActive(videoplaylist) | 
+      Window.IsActive(musicplaylist)" height="210" width="610" infoupdate="30">
+      <control type="group">
+        <top>5</top>
+        <left>150</left>
+        <!-- <control type="group">
+          <animation effect="fade" start="100" end="0" time="0">UnFocus</animation>
+        </control> -->
+        <include content="50_ContentList_Include">
+          <param name="list_id" value="$PARAM[list_id]" />
+          <param name="focused" value="true" />
+        </include>
+      </control>
+      </focusedlayout>
+      <itemlayout condition="[Container.Content(movies) + String.IsEqual(Skin.String(ListArtworkChoice.movies),2) + !String.StartsWith(Container.PluginName,plugin.video.the-loop)] | 
+      Container.Content(sets) | 
+      [Container.Content(tvshows) + String.IsEqual(Skin.String(ListArtworkChoice.tvshows),2)] | 
+      [Container.Content(seasons) + String.IsEqual(Skin.String(ListArtworkChoice.seasons),2)] | 
+      [Container.Content(episodes) + String.IsEqual(Skin.String(ListArtworkChoice.episodes),2)] | 
+      Container.Content(musicvideos) | 
+      Container.Content(games) | 
+      Window.IsActive(videoplaylist) | 
+      Window.IsActive(musicplaylist)" height="67" width="610" >
+        <control type="group">
+          <include content="50_ContentList_Include">
+            <param name="list_id" value="$PARAM[list_id]" />
+          </include>
+        </control>
+      </itemlayout>
+    </definition>
+  </include>
+
+
+  <include name="50_ContentList_Include">
+    <param name="focused">false</param>
+    <param name="list_id">$PARAM[list_id]</param>
+    <definition>
+      <control type="group">
+        <control type="image">
+          <left>-115</left>
+          <top>3</top>
+          <!-- 236 -->
+          <width>127</width>
+          <!-- 354 -->
+          <height>190</height>
+          <texture background="true">$VAR[FlixPosterVar]</texture>
+          <bordersize>3</bordersize>
+          <aspectratio scalediffuse="false">scale</aspectratio>
+          <bordertexture colordiffuse="$VAR[FocuscolorTheme]" border="15" infill="false">colors/white.png</bordertexture>
+          <!-- <animation condition="Container($PARAM[list_id]).IsUpdating + String.IsEmpty(Skin.String(TrailerPlaying))" effect="fade" time="700" start="50" end="100" pulse="true">Conditional</animation> -->
+          <visible>$PARAM[focused] + Control.IsVisible($PARAM[list_id])</visible>
+        </control>
+        <!-- <control type="image">
+          <top>-4</top>
+          <bottom>12</bottom>
+          <width>5</width>
+          <left>-140</left>
+          <texture colordiffuse="$VAR[FocusColorTheme]">colors/white.png</texture>
+          <visible>!String.IsEmpty(ListItem.Plot) + Control.IsVisible($PARAM[list_id]) + !Control.HasFocus(50600)</visible>
+          <animation effect="fade" start="100" end="0" time="300" condition="!Control.IsVisible($PARAM[list_id])">Conditional</animation>
+        </control>
+        <control type="image">
+          <top>-4</top>
+          <height>61</height>
+          <width>4</width>
+          <left>11</left>
+          <texture colordiffuse="$VAR[FocusColorTheme]">colors/white.png</texture>
+          <visible>String.IsEmpty(ListItem.Plot) + Control.IsVisible($PARAM[list_id]) + !Control.HasFocus(50600)</visible>
+          <animation effect="fade" start="100" end="0" time="300" condition="!Control.IsVisible($PARAM[list_id])">Conditional</animation>
+        </control> -->
+        <!-- <control type="image">
+          <top>-4</top>
+          <bottom>7</bottom>
+          <width>4</width>
+          <left>11</left>
+          <texture colordiffuse="$VAR[FocusColorTheme]">colors/white.png</texture>
+          <visible>[$EXP[isContent] | [Container.Content(episodes) + !String.StartsWith(Container.PluginCategory,Season)]] + Control.IsVisible($PARAM[list_id]) + !Control.HasFocus(50600)</visible>
+          <animation effect="fade" start="100" end="0" time="300" condition="!Control.IsVisible($PARAM[list_id])">Conditional</animation>
+        </control>
+        <control type="image">
+          <top>-4</top>
+          <height>61</height>
+          <width>4</width>
+          <left>11</left>
+          <texture colordiffuse="$VAR[FocusColorTheme]">colors/white.png</texture>
+          <visible>![$EXP[isContent] | [Container.Content(episodes) + !String.StartsWith(Container.PluginCategory,Season)]] + Control.IsVisible($PARAM[list_id]) + !Control.HasFocus(50600)</visible>
+          <animation effect="fade" start="100" end="0" time="300" condition="!Control.IsVisible($PARAM[list_id])">Conditional</animation>
+        </control> -->
+        <control type="label">
+          <left>70</left>
+          <width>810</width>
+          <centertop>13%</centertop>
+          <bottom>0</bottom>
+          <aligny>center</aligny>
+          <scroll>$PARAM[focused]</scroll>
+          <scrollspeed>300</scrollspeed>
+          <font>font36_title</font>
+          <label>$VAR[ListLabelVar]</label>
+          <shadowcolor>text_shadow</shadowcolor>
+          <visible>$PARAM[focused] + Control.IsVisible($PARAM[list_id])</visible>
+        </control>
+        <control type="label">
+          <left>70</left>
+          <width>810</width>
+          <top>0</top>
+          <bottom>0</bottom>
+          <aligny>center</aligny>
+          <font>font32</font>
+          <textcolor>lightgrey</textcolor>
+          <label>$VAR[ListLabelVar]</label>
+          <shadowcolor>text_shadow</shadowcolor>
+          <visible>![$PARAM[focused] + Control.IsVisible($PARAM[list_id])]</visible>
+        </control>
+        <!-- <control type="textbox">
+          <left>70</left>
+          <width>810</width>
+          <centertop>13%</centertop>
+          <height>50</height>
+          <aligny>center</aligny>
+          <font>font36_title</font>
+          <label>$VAR[ListLabelVar]</label>
+          <shadowcolor>text_shadow</shadowcolor>
+          <autoscroll delay="3000" time="3000" repeat="3000">$PARAM[focused]</autoscroll>
+        </control> -->
+        <control type="label">
+          <left>33</left>
+          <width>810</width>
+          <centertop>33%</centertop>
+          <bottom>0</bottom>
+          <aligny>center</aligny>
+          <scroll>$PARAM[focused]</scroll>
+          <scrollspeed>300</scrollspeed>
+          <font>font23</font>
+          <label>$VAR[InfoPanelTop]</label>
+          <textcolor>$VAR[FocusColorTheme]</textcolor>
+          <shadowcolor>text_shadow</shadowcolor>
+          <visible>$PARAM[focused] + Control.IsVisible($PARAM[list_id])</visible>
+        </control>
+
+
+<!-- <include content="50_ContentList">
+						<param name="list_id" value="$PARAM[list_id]" />
+					</include> -->
+
+        
+        <control type="textbox">
+          <top>89</top>
+          <left>33</left>
+          <width>810</width>
+          <bottom>10</bottom>
+          <aligny>center</aligny>
+          <font>font23</font>
+          <label>$VAR[RI_Plot]</label>
+          <textcolor>unfocused_text</textcolor>
+          <shadowcolor>text_shadow</shadowcolor>
+          <autoscroll delay="7000" time="3000" repeat="7000">$PARAM[focused]</autoscroll>
+          <visible>![Container.OnNext | Container.OnPrevious] + Control.HasFocus($PARAM[list_id])</visible>
+        </control>
+        <control type="textbox">
+          <top>89</top>
+          <left>33</left>
+          <width>810</width>
+          <bottom>10</bottom>
+          <aligny>center</aligny>
+          <font>font23</font>
+          <label>$VAR[RI_Plot]</label>
+          <textcolor>unfocused_text</textcolor>
+          <shadowcolor>text_shadow</shadowcolor>
+          <visible>[Container.OnNext | Container.OnPrevious] | !Control.HasFocus($PARAM[list_id])</visible>
+        </control>
+        <!-- <control type="textbox">
+          <top>55</top>
+          <left>33</left>
+          <width>810</width>
+          <bottom>5</bottom>
+          <aligny>center</aligny>
+          <font>font23</font>
+          <label>$VAR[RI_Plot]</label>
+          <textcolor>unfocused_text</textcolor>
+          <shadowcolor>text_shadow</shadowcolor>
+          <autoscroll delay="7000" time="3000" repeat="7000">$PARAM[focused]</autoscroll>
+          <visible>[$PARAM[focused] + Control.IsVisible($PARAM[list_id])] + String.StartsWith(Container.PluginName,plugin.video.dramacool)</visible>
+        </control> -->
+        <control type="image">
+          <left>33</left>
+          <top>14</top>
+          <width>21</width>
+          <height>21</height>
+          <texture>$VAR[ListWatchedIconVar]</texture>
+          <visible>$PARAM[focused] + Control.IsVisible($PARAM[list_id])</visible>
+        </control>
+        <control type="image">
+          <left>33</left>
+          <top>14</top>
+          <width>21</width>
+          <height>21</height>
+          <texture>$VAR[ListWatchedIconVar]</texture>
+          <animation effect="fade" time="150">VisibleChange</animation>
+          <visible>$PARAM[focused] + Control.IsVisible($PARAM[list_id])</visible>
+        </control>
+        <control type="image">
+          <left>33</left>
+          <centertop>49%</centertop>
+          <width>21</width>
+          <height>21</height>
+          <texture colordiffuse="lightgrey">$VAR[ListWatchedIconVar]</texture>
+          <visible>![$PARAM[focused] + Control.IsVisible($PARAM[list_id])]</visible>
+        </control>
+      </control>
+    </definition>
+  </include>
+
+</includes>

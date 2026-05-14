@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<defaultcontrol always="true">11</defaultcontrol>
+	<controls>
+		<control type="group">
+			<animation effect="fade" start="100" end="0" time="200" tween="sine" condition="$EXP[infodialog_active]">Conditional</animation>
+			<control type="group">
+				<depth>DepthOSD</depth>
+				<include>OpenClose_Left</include>
+				<include content="DialogBackgroundCommons">
+					<param name="header_label" value="" />
+					<param name="header_id" value="" />
+					<param name="right" value="645" />
+					<param name="divider_visible" value="false" />
+					<param name="colordiffuse" value="66FFFFFF" />
+					<param name="border_texture"/>
+					<param name="diffuse_texture" value="lists/contentpanel-fade.png" />
+				</include>
+				<control type="fixedlist" id="11">
+					<left>40</left>
+					<top>105</top>
+					<width>812</width>
+					<bottom>40</bottom>
+					<onleft condition="Control.IsVisible(60)">60</onleft>
+					<onleft condition="!Control.IsVisible(60)">PreviousChannelGroup</onleft>
+					<onright>NextChannelGroup</onright>
+					<onup>11</onup>
+					<ondown>11</ondown>
+					<movement>12</movement>
+					<focusposition>3</focusposition>
+					<pagecontrol>60</pagecontrol>
+					<scrolltime tween="cubic" easing="out">500</scrolltime>
+					<include content="PVRListItemLayouts">
+						<param name="list_id" value="11" />
+						<param name="label1" value="$INFO[ListItem.Label]" />
+						<param name="has_status_icon" value="true" />
+						<param name="info_update" value="5000" />
+					</include>
+				</control>
+				<control type="scrollbar" id="60">
+					<left>0</left>
+					<!-- <left>941</left> -->
+					<top>0</top>
+					<width>8</width>
+					<bottom>0</bottom>
+					<onleft>NextChannelGroup</onleft>
+					<onright>11</onright>
+					<texturesliderbackground />
+					<!-- <animation effect="zoom" start="80,100" end="70,100" center="982,0" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(60)">conditional</animation> -->
+					<animation effect="fade" time="300" start="0" end="100" tween="cubic" easing="inout">VisibleChange</animation>
+					<visible>Control.HasFocus(60) | Container.Scrolling</visible>
+				</control>
+			</control>
+			<control type="group">
+				<depth>DepthOSD</depth>
+				<include>Animation_TopSlide</include>
+				<top>15</top>
+				<control type="label" id="2">
+					<description>header label</description>
+					<textoffsetx>40</textoffsetx>
+					<width>970</width>
+					<height>70</height>
+					<font>topbar_chrome</font>
+					<aligny>center</aligny>
+					<label>$VAR[BreadcrumbsPVRChannelsOSDVar]</label>
+					<textcolor>$VAR[PlayerProgressColor]</textcolor>
+				</control>
+			</control>
+		</control>
+		<include>PVRChannelNumberInput</include>
+	</controls>
+</window>
