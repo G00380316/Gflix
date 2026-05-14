@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+  <include name="MovieWidgets">
+    <include content="WidgetListPoster">
+      <param name="content_path" value="plugin://plugin.video.pov/?name=32458&amp;iconImage=trending.png&amp;mode=build_movie_list&amp;action=trakt_movies_trending"/>
+      <param name="widget_header" value="Trending movies"/>
+      <param name="widget_target" value="videos"/>
+      <param name="list_id" value="19011"/>
+    </include>
+    <include content="WidgetListPoster">
+      <param name="content_path" value="plugin://plugin.video.pov/?name=32458&amp;iconImage=trending.png&amp;mode=build_tvshow_list&amp;action=trakt_tv_trending"/>
+      <param name="widget_header" value="Trending shows"/>
+      <param name="widget_target" value="videos"/>
+      <param name="list_id" value="19012"/>
+    </include>
+    <include content="WidgetListLandscape">
+      <param name="content_path" value="plugin://plugin.video.pov/?iconImage=next_episodes.png&amp;mode=build_next_episode&amp;name=Up+next"/>
+      <param name="widget_header" value="Up next"/>
+      <param name="widget_target" value="videos"/>
+      <param name="list_id" value="19013"/>
+    </include>
+  </include>
+</includes>

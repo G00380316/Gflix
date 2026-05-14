@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+  <include name="MoviesMainMenu">
+    <item>
+      <label>Browse...</label>
+      <onclick>ActivateWindow(Videos,plugin://plugin.video.pov,return)</onclick>
+      <property name="menu_id">$NUMBER[19000]</property>
+      <property name="id">movies</property>
+      <visible>!Skin.HasSetting(HomeMenuNoMovieButton)</visible>
+    </item>
+  </include>
+</includes>
