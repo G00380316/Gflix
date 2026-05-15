@@ -1,0 +1,668 @@
+# Kodi Media Center language file
+# Addon Name: Backup
+# Addon id: script.xbmcbackup
+# Addon Provider: robweber
+# Translators:
+# A B, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: XBMC Addons\n"
+"Report-Msgid-Bugs-To: translations@kodi.tv\n"
+"POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2024-04-29 14:53+0000\n"
+"Last-Translator: Oskari Lavinto <olavinto@protonmail.com>\n"
+"Language-Team: Finnish <https://kodi.weblate.cloud/projects/kodi-add-ons-scripts/script-xbmcbackup/fi_fi/>\n"
+"Language: fi_fi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.5.2\n"
+
+msgctxt "Addon Summary"
+msgid "Backup and restore your Kodi database and configuration files in the event of a crash or file corruption."
+msgstr "Varmuuskopioi ja palauttaa Kodin tietokannan ja asetukset kaatumisen tai tiedostojen vaurioitumisen varalta."
+
+msgctxt "Addon Description"
+msgid "Ever hosed your Kodi configuration and wished you'd had a backup? Now you can with one easy click. You can export your database, playlist, thumbnails, addons and other configuration details to any source writeable by Kodi or directly to Dropbox cloud storage. Backups can be run on demand or via a scheduler. "
+msgstr "Oletko joskus hukannut Kodin asetukset ja harmitellut varmuuskopioiden puutetta? Nyt se onnistuu helposti napin painalluksella. Voit tallentaa tietokannan, toistolistat, kuvat, lisäosat ja muut tiedot mihin tahansa kohteeseen, johon Kodilla on kirjoitusoikeus tai vaihtoehtoisesti myös Dropbox-pilvipalveluun. Varmuuskopiointi onnistuu manuaalisesti ja ajoitetusti. "
+
+msgctxt "#30010"
+msgid "Backup"
+msgstr "Varmuuskopiointi"
+
+msgctxt "#30011"
+msgid "General"
+msgstr "Yleiset"
+
+msgctxt "#30012"
+msgid "File Selection"
+msgstr "Tiedostovalinta"
+
+msgctxt "#30013"
+msgid "Scheduling"
+msgstr "Ajoitus"
+
+msgctxt "#30014"
+msgid "Simple"
+msgstr "Yksinkertainen"
+
+msgctxt "#30015"
+msgid "Advanced"
+msgstr "Edistynyt"
+
+msgctxt "#30016"
+msgid "Backup"
+msgstr "Varmuuskopioi"
+
+msgctxt "#30017"
+msgid "Restore"
+msgstr "Palauta"
+
+msgctxt "#30018"
+msgid "Browse Path"
+msgstr "Valitse sijainti"
+
+msgctxt "#30019"
+msgid "Type Path"
+msgstr "Syötä sijainti"
+
+msgctxt "#30020"
+msgid "Browse Remote Path"
+msgstr "Valitse etäsijainti"
+
+msgctxt "#30021"
+msgid "Backup Folder Name"
+msgstr "Varmuuskopiokansion nimi"
+
+msgctxt "#30022"
+msgid "Progress Display"
+msgstr "Edistymisnäyttö"
+
+msgctxt "#30023"
+msgid "Mode"
+msgstr "Tila"
+
+msgctxt "#30024"
+msgid "Type Remote Path"
+msgstr "Syötä etäsijainti"
+
+msgctxt "#30025"
+msgid "Remote Path Type"
+msgstr "Etäsijainnin tyyppi"
+
+msgctxt "#30026"
+msgid "Backups to keep (0 for all)"
+msgstr "Säilytettävien varmuuskopioiden määrä (0 säilyttää kaikki)"
+
+msgctxt "#30027"
+msgid "Dropbox"
+msgstr "Dropbox"
+
+msgctxt "#30028"
+msgid "Dropbox Key"
+msgstr "Dropbox-avain"
+
+msgctxt "#30029"
+msgid "Dropbox Secret"
+msgstr "Dropbox-salasana"
+
+msgctxt "#30030"
+msgid "User Addons"
+msgstr "Käyttäjän lisäosat"
+
+msgctxt "#30031"
+msgid "Addon Data"
+msgstr "Lisäosien tiedot"
+
+msgctxt "#30032"
+msgid "Database"
+msgstr "Tietokanta"
+
+msgctxt "#30033"
+msgid "Playlist"
+msgstr "Toistolista"
+
+msgctxt "#30034"
+msgid "Thumbnails/Fanart"
+msgstr "Pienois-/fanart-kuvat"
+
+msgctxt "#30035"
+msgid "Config Files"
+msgstr "Asetustiedostot"
+
+msgctxt "#30036"
+msgid "Disclaimer"
+msgstr "Vastuuvapauslauseke"
+
+msgctxt "#30037"
+msgid "Canceling this menu will close and save changes"
+msgstr "Peruuta-valinta sulkee edistyneen muokkauksen ja tallentaa muutokset"
+
+msgctxt "#30038"
+msgid "Advanced Settings Detected"
+msgstr "Havaittiin lisäasetuksia"
+
+msgctxt "#30039"
+msgid "The advancedsettings file should be restored first"
+msgstr "Advancedsettings-tiedosto on palautettava ensin"
+
+msgctxt "#30040"
+msgid "Select Yes to restore this file and restart Kodi"
+msgstr "Palauta tämä tiedosto ja käynnistä Kodi uudelleen valitsemalla \"Kyllä\""
+
+msgctxt "#30041"
+msgid "Select No to continue"
+msgstr "Jatka valitsemalla \"Ei\""
+
+msgctxt "#30042"
+msgid "Resume Restore"
+msgstr "Jatka palautusta"
+
+msgctxt "#30043"
+msgid "The Backup addon has detected an unfinished restore"
+msgstr "Varmuuskopiointilisäosa on havainnut kesken jääneen palautuksen"
+
+msgctxt "#30044"
+msgid "Would you like to continue?"
+msgstr "Haluatko jatkaa?"
+
+msgctxt "#30045"
+msgid "Error: Remote or zip file path doesn't exist"
+msgstr "Virhe: Etä- tai zip-tiedostosijaintia ei ole olemassa"
+
+msgctxt "#30046"
+msgid "Starting"
+msgstr "Aloitetaan"
+
+msgctxt "#30047"
+msgid "Local Dir"
+msgstr "Paikallinen kansio"
+
+msgctxt "#30048"
+msgid "Remote Dir"
+msgstr "Etäkansio"
+
+msgctxt "#30049"
+msgid "Gathering file list"
+msgstr "Kerätään tiedostolistaa"
+
+msgctxt "#30050"
+msgid "Remote Path exists - may have old files in it!"
+msgstr "Etäsijainti on jo olemassa ja se saattaa sisältää vanhoja tiedostoja!"
+
+msgctxt "#30051"
+msgid "Creating Files List"
+msgstr "Luodaan tiedostolistaa"
+
+msgctxt "#30052"
+msgid "Writing file"
+msgstr "Tallennetaan tiedostoa"
+
+msgctxt "#30053"
+msgid "Starting scheduled backup"
+msgstr "Ajoitettu varmuuskopiointi alkaa"
+
+msgctxt "#30054"
+msgid "Removing backup"
+msgstr "Poistetaan varmuuskopiota"
+
+msgctxt "#30056"
+msgid "Scan or click this URL to authorize, click OK AFTER completion"
+msgstr "Todenna lukemalla tai painamalla tämä URL-osoite ja todennuksen VALMISTUTTUA OK"
+
+msgctxt "#30057"
+msgid "Click OK AFTER completion"
+msgstr "Paina sen VALMISTUTTUA OK"
+
+msgctxt "#30058"
+msgid "Developer Code Needed"
+msgstr "Tarvitaan kehittäjäkoodi"
+
+msgctxt "#30059"
+msgid "Visit https://www.dropbox.com/developers"
+msgstr "Avaa https://www.dropbox.com/developers"
+
+msgctxt "#30060"
+msgid "Enable Scheduler"
+msgstr "Käytä ajoitusta"
+
+msgctxt "#30061"
+msgid "Schedule"
+msgstr "Ajoitus"
+
+msgctxt "#30062"
+msgid "Hour of Day"
+msgstr "Vuorokaudenaika"
+
+msgctxt "#30063"
+msgid "Day of Week"
+msgstr "Viikonpäivä"
+
+msgctxt "#30064"
+msgid "Cron Schedule"
+msgstr "Cron-ajoitus"
+
+msgctxt "#30065"
+msgid "Sunday"
+msgstr "Sunnuntai"
+
+msgctxt "#30066"
+msgid "Monday"
+msgstr "Maanantai"
+
+msgctxt "#30067"
+msgid "Tuesday"
+msgstr "Tiistai"
+
+msgctxt "#30068"
+msgid "Wednesday"
+msgstr "Keskiviikko"
+
+msgctxt "#30069"
+msgid "Thursday"
+msgstr "Torstai"
+
+msgctxt "#30070"
+msgid "Friday"
+msgstr "Perjantai"
+
+msgctxt "#30071"
+msgid "Saturday"
+msgstr "Lauantai"
+
+msgctxt "#30072"
+msgid "Every Day"
+msgstr "Päivittäin"
+
+msgctxt "#30073"
+msgid "Every Week"
+msgstr "Viikottain"
+
+msgctxt "#30074"
+msgid "First Day of Month"
+msgstr "Kuukauden ensimmäisenä päivänä"
+
+msgctxt "#30075"
+msgid "Custom Schedule"
+msgstr "Mukautettu ajoitus"
+
+msgctxt "#30076"
+msgid "Shutdown After Backup"
+msgstr "Sammuta varmuuskopioinnin jälkeen"
+
+msgctxt "#30077"
+msgid "Restart Kodi"
+msgstr "Käynnistä Kodi uudelleen"
+
+msgctxt "#30078"
+msgid "A restart is recommended, select Yes to close Kodi"
+msgstr "Kodin uudelleenkäynnistys on suositeltavaa. Sulje Kodi valitsemalla \"Kyllä\"."
+
+msgctxt "#30079"
+msgid "Just Today"
+msgstr "Vain tänään"
+
+msgctxt "#30080"
+msgid "Profiles"
+msgstr "Profiilit"
+
+msgctxt "#30081"
+msgid "Scheduler will run again on"
+msgstr "Suoritetaan seuraavan kerran"
+
+msgctxt "#30082"
+msgid "Progress Bar"
+msgstr "Edistymispalkki"
+
+msgctxt "#30083"
+msgid "Background Progress Bar"
+msgstr "Edistymispalkki taustalla"
+
+msgctxt "#30084"
+msgid "None (Silent)"
+msgstr "Ei mitään (huomaamaton)"
+
+msgctxt "#30085"
+msgid "Version Warning"
+msgstr "Versiovaroitus"
+
+msgctxt "#30086"
+msgid "This version of Kodi is different than the one used to create the archive"
+msgstr "Tämä Kodi-versio on poikkeaa varmuuskopion luoneesta versiosta"
+
+msgctxt "#30087"
+msgid "Compress Archives"
+msgstr "Pakkaa tiedostot"
+
+msgctxt "#30088"
+msgid "Copying Zip Archive"
+msgstr "Kopioidaan zip-tiedostoa"
+
+msgctxt "#30089"
+msgid "Write Error Detected"
+msgstr "Havaittiin tallennusvirhe"
+
+msgctxt "#30090"
+msgid "The destination may not be writeable"
+msgstr "Tallennuskohteeseen ei ehkä ole kirjoitusoikeutta"
+
+msgctxt "#30091"
+msgid "Zip archive could not be copied"
+msgstr "Zip-tiedostoa ei voitu kopioida"
+
+msgctxt "#30092"
+msgid "Not all files were copied"
+msgstr "Kaikkia tiedostoja ei kopioitu"
+
+msgctxt "#30093"
+msgid "Delete Authorization Info"
+msgstr "Poista todennustiedot"
+
+msgctxt "#30094"
+msgid "This will delete any OAuth token files"
+msgstr "Tämä poistaa kaikki OAuth-tunnistetiedostot"
+
+msgctxt "#30095"
+msgid "Do you want to do this?"
+msgstr "Haluatko tehdä tämän?"
+
+msgctxt "#30096"
+msgid "Old Zip Archive could not be deleted"
+msgstr "Vanhaa zip-tiedostoa ei voitu poistaa"
+
+msgctxt "#30097"
+msgid "This needs to happen before a backup can run"
+msgstr "Tämä on tehtävä ennen varmuuskopiointia"
+
+msgctxt "#30098"
+msgid "Google Drive"
+msgstr "Google Drive"
+
+msgctxt "#30099"
+msgid "Open Settings"
+msgstr "Avaa asetukset"
+
+msgctxt "#30100"
+msgid "Extracting Archive"
+msgstr "Puretaan tiedostoa"
+
+msgctxt "#30101"
+msgid "Error extracting the zip archive"
+msgstr "Virhe purettaessa zip-tiedostoa"
+
+msgctxt "#30102"
+msgid "Click OK to enter code"
+msgstr "Syötä koodi panamalla OK"
+
+msgctxt "#30103"
+msgid "Validation Code"
+msgstr "Vahvistuskoodi"
+
+msgctxt "#30104"
+msgid "Authorize Now"
+msgstr "Todenna nyt"
+
+msgctxt "#30105"
+msgid "Authorize this remote service in the settings first"
+msgstr "Todenna tämä etäpalvelu ensin asetuksista"
+
+msgctxt "#30106"
+msgid "is authorized"
+msgstr "on todennettu"
+
+msgctxt "#30107"
+msgid "error authorizing"
+msgstr "todennusvirhe"
+
+msgctxt "#30108"
+msgid "Visit https://console.developers.google.com/"
+msgstr "Avaa https://console.developers.google.com/"
+
+msgctxt "#30109"
+msgid "Run on startup if missed"
+msgstr "Suorita käynnistettäessä, jos jäänyt tekemättä"
+
+msgctxt "#30110"
+msgid "Set Name"
+msgstr "Määrityksen nimi"
+
+msgctxt "#30111"
+msgid "Root folder selection"
+msgstr "Valitse juurikansio"
+
+msgctxt "#30112"
+msgid "Browse Folder"
+msgstr "Valitse sijainti"
+
+msgctxt "#30113"
+msgid "Enter Own"
+msgstr "Syötä oma sijainti"
+
+msgctxt "#30114"
+msgid "starts in Kodi home"
+msgstr "juurikansiona Kodin special://home-kansio"
+
+msgctxt "#30115"
+msgid "enter path to start there"
+msgstr "syötä juurikansion sijainti itse"
+
+msgctxt "#30116"
+msgid "Enter root path"
+msgstr "Syötä juurikansio"
+
+msgctxt "#30117"
+msgid "Path Error"
+msgstr "Virhe sijainnissa"
+
+msgctxt "#30118"
+msgid "Path does not exist"
+msgstr "Sijaintia ei ole olemassa"
+
+msgctxt "#30119"
+msgid "Select root"
+msgstr "Valitse juurikansio"
+
+msgctxt "#30120"
+msgid "Add Exclude Folder"
+msgstr "Lisää ohitettava kansio"
+
+msgctxt "#30121"
+msgid "Root Folder"
+msgstr "Juurikansio"
+
+msgctxt "#30122"
+msgid "Edit"
+msgstr "Muokkaa"
+
+msgctxt "#30123"
+msgid "Delete"
+msgstr "Poista"
+
+msgctxt "#30124"
+msgid "Choose Action"
+msgstr "Valitse toiminto"
+
+msgctxt "#30125"
+msgid "Advanced Editor"
+msgstr "Edistyneiden sääntöjen määritys"
+
+msgctxt "#30126"
+msgid "Add Set"
+msgstr "Lisää määritys"
+
+msgctxt "#30127"
+msgid "Delete Set"
+msgstr "Poista määritys"
+
+msgctxt "#30128"
+msgid "Are you sure you want to delete?"
+msgstr "Haluatko varmasti poistaa?"
+
+msgctxt "#30129"
+msgid "Exclude"
+msgstr "Ohita"
+
+msgctxt "#30130"
+msgid "The root folder cannot be changed"
+msgstr "Juurikansiota ei voida muuttaa"
+
+msgctxt "#30131"
+msgid "Choose Sets to Restore"
+msgstr "Valitse palautettavat määritykset"
+
+msgctxt "#30132"
+msgid "Version 1.5.0 requires you to setup your file selections again - this is a breaking change"
+msgstr "Versio 1.5.0 edellyttää tiedostovalintojen uudelleenmääritystä - tämä on toiminnan rikkova muutos"
+
+msgctxt "#30133"
+msgid "Game Saves"
+msgstr "Pelien tallennukset"
+
+msgctxt "#30134"
+msgid "Include"
+msgstr "Sisällytä"
+
+msgctxt "#30135"
+msgid "Add Include Folder"
+msgstr "Lisää sisällytettävä kansio"
+
+msgctxt "#30136"
+msgid "Path must be within root folder"
+msgstr "Sijainnnin on oltava juurikansion alla"
+
+msgctxt "#30137"
+msgid "This path is part of a rule already"
+msgstr "Sijainti on jo osa jotain sääntöä"
+
+msgctxt "#30138"
+msgid "Set Name exists already"
+msgstr "Tämän niminen määritys on jo olemassa"
+
+msgctxt "#30139"
+msgid "Copy Simple Config"
+msgstr "Kopioi yksikertaisen tilan määritykset"
+
+msgctxt "#30140"
+msgid "This will copy the default Simple file selection to the Advanced Editor"
+msgstr "Tämä kopioi yksinkertaisen tilan tiedostovalinnat edistyneiksi määrityksiksi, joita voit sen jälkeen muokata."
+
+msgctxt "#30141"
+msgid "This will erase any current Advanced Editor settings"
+msgstr "Poistaa kaikki nykyiset edistyneet määritykset"
+
+msgctxt "#30142"
+msgid "Enable Verbose Logging"
+msgstr "Käytä laajaa lokikirjausta"
+
+msgctxt "#30143"
+msgid "Exclude a specific folder from this backup set"
+msgstr "Ohita yksittäinen kansio tässä varmuuskopioinnissa"
+
+msgctxt "#30144"
+msgid "Include a specific folder to this backup set"
+msgstr "Lisää yksittäinen kansio tähän varmuuskopiointiin"
+
+msgctxt "#30145"
+msgid "Type"
+msgstr "Tyyppi"
+
+msgctxt "#30146"
+msgid "Include Sub Folders"
+msgstr "Alikansioiden sisällytys"
+
+msgctxt "#30147"
+msgid "Toggle Sub Folders"
+msgstr "Kytke alikansiot"
+
+msgctxt "#30148"
+msgid "Ask before restoring Kodi UI settings"
+msgstr "Vahvista Kodin ulkoasuasetusten palautus"
+
+msgctxt "#30149"
+msgid "Restore Kodi UI Settings"
+msgstr "Palauta Kodin käyttöliittymäasetukset"
+
+msgctxt "#30150"
+msgid "Restore saved Kodi system settings from backup?"
+msgstr "Palautetaanko Kodin järjestelmäasetukset varmuuskopiosta?"
+
+msgctxt "#30151"
+msgid "Enable Verbose Logging"
+msgstr "Käytä laajaa lokikirjausta"
+
+msgctxt "#30152"
+msgid "Set Zip File Location"
+msgstr "Määritä zip-tiedoston sijainti"
+
+msgctxt "#30153"
+msgid "Full path to where the zip file will be staged during backup or restore - must be local to this device"
+msgstr "Täydellinen, paikallinen polku zip-tiedoston pakkauksessa ja palautuksessa käytettävään käsittelysijaintiin."
+
+msgctxt "#30154"
+msgid "Always prompt if Kodi settings should be restored - no by default"
+msgstr "Vahvista Kodin asetusten palautus aina - oletusarvoisesti ei vahvisteta"
+
+msgctxt "#30155"
+msgid "Adds additional information to the log file"
+msgstr "Tallentaa lokitiedostoon laajemmat tiedot"
+
+msgctxt "#30156"
+msgid "Must save key/secret first, then return to settings to authorize"
+msgstr "Avain/salaisuus on ensin tallennettava, jonka jälkeen todennus voidaan suorittaa asetuksista"
+
+msgctxt "#30157"
+msgid "Simple uses pre-defined folder locations, use Advanced Editor to define custom paths"
+msgstr "Yksinkertainen tila käyttää esimääritettyjä kansioiden sijainteja. Edistyneessä tilassa voit määrittää omat sijainnit."
+
+msgctxt "#30158"
+msgid "Run backup on daily, weekly, monthly, or custom schedule"
+msgstr "Suorita varmuuskopiointi päivittäin, viikottain, kuukausittain tai oman ajoituksen mukaisesti"
+
+msgctxt "#30159"
+msgid "Backup started with unknown mode"
+msgstr "Varmuuskopiointi käynnistyi tuntemattomassa tilassa"
+
+msgctxt "#30160"
+msgid "Backup Filename Suffix"
+msgstr "Varmuuskopiotiedoston jälkiliite"
+
+msgctxt "#30161"
+msgid "Amend a string to the end of each backup folder or ZIP file"
+msgstr "Jokaisen varmuuskopiokansion tai ZIP-tiedoston perään lisättävä merkkijono."
+
+msgctxt "#30162"
+msgid "this could take some time"
+msgstr "tämä saattaa kestää jonkin aikaa"
+
+msgctxt "#30163"
+msgid "Current folder"
+msgstr "Nykyinen kansio"
+
+#~ msgctxt "#30078"
+#~ msgid "You should restart Kodi to continue"
+#~ msgstr "Sinun on käynnistettävä Kodi uudelleen jatkaaksesi"
+
+#~ msgctxt "#30036"
+#~ msgid "Custom Directory 1"
+#~ msgstr "Oma polku 1"
+
+#~ msgctxt "#30037"
+#~ msgid "Custom Directory 2"
+#~ msgstr "Oma polku 2"
+
+#~ msgctxt "#30045"
+#~ msgid "Error: Remote path doesn't exist"
+#~ msgstr "Virhe! Polkua ei ole olemassa"
+
+#~ msgctxt "#30056"
+#~ msgid "Check log for Dropbox authorize URL"
+#~ msgstr "Katso Dropboxin aktivointiosoite lokitiedostosta"
+
+#~ msgctxt "#30057"
+#~ msgid "Click OK when authorized"
+#~ msgstr "Valitse OK, kun aktivointi on valmis"
+
+#~ msgctxt "#30058"
+#~ msgid "Dropbox Developer Code Needed"
+#~ msgstr "Tarvitaan Dropboxin kehittäjäkoodi"
