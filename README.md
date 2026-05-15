@@ -145,6 +145,7 @@ Use the following skins to customize Kodi. Some skins are optimized for specific
 | **POV**         | [POV Add-on Installation & Setup](https://troypoint.com/pov-kodi-addon/)   |
 | **Umbrella**    | [Umbrella Add-on Installation & Setup](https://troypoint.com/umbrella-kodi-addon/) |
 | **Zoro**        | [Zoro Add-on Installation & Setup](https://troypoint.com/zoro-kodi-addon/) |
+| **FenLightAM**        | [FEN Add-on Installation & Setup](https://troypoint.com/fen-kodi-addon/) |
 
 > ⚠️ Skip repository installation steps if the add-on is already included in this repo.  
 > ⚠️ Some skins are specifically built for certain add-ons; use the recommended combination for best experience.
