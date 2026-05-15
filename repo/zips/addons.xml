@@ -324,7 +324,49 @@ fix to properly get English videos as fallback
             <screenshot>resources/screenshot-03.jpg</screenshot>
         </assets>
     </extension>
-</addon><addon id="plugin.video.fenlight" name="FenLightAM" provider-name="Tikipeter/AnonyMouse" version="2.1.59">
+</addon><addon id="plugin.program.theredwizard" name="[COLOR red]The Red Wizard[/COLOR]" version="4.3.0" provider-name="Slam, Sarge, Funsterbe, BYB, Zaxxon709, [COLOR red]The Red Wizard[/COLOR]">
+	<requires>
+		<import addon="xbmc.python" version="3.0.1" />
+	</requires>
+	<extension point="xbmc.python.pluginsource" library="addon.py">
+		<provides>executable</provides>
+	</extension>
+	<extension point="xbmc.service" library="service.py" />
+	<extension point="xbmc.addon.metadata">
+		<summary lang="en_GB">[COLOR red]The Red Wizard for Kodi 21 Omega and Kodi 22 Piers[/COLOR]</summary>
+		<description lang="en_GB">[COLOR red]The Red Wizard for installing, updating and maintaining The Red Wizard Kodi 21 Omega and Kodi 22 Piers builds[/COLOR]</description>
+		<disclaimer lang="en_GB">[COLOR red]The author of this add-on does not host any content and has no affiliation with the content providers[/COLOR]</disclaimer>
+		<language>en</language>
+		<platform>all</platform>
+		<license>GPL-2.0-or-later</license>
+		<forum>https://t.me/+XiuBf9KvPfw2MzVk</forum>
+		<website>https://redwizard.xyz/</website> 
+		<email>info@redwizard.xyz</email>
+		<source>https://github.com/Slamious/plugin.program.simplewizard</source>
+		<news>[COLOR red]2026-05-02
+- Reorganisation and rewrite of menus:
+ * (Kodi) Maintenance and (Wizard) Tools separated into separate submenus
+ * Add-on Whitelist moved to the Main menu
+ * Notification moved to the Wizard menu
+ * Enable/Disable Skin Override Protection made visible (Tools submenu, thanks Zaxxon709)
+- Supports Kodi 21 Omega and Kodi 22 Piers
+- The Red Wizard has a new home! Go to https://redwizard.xyz[/COLOR]</news>
+		<assets>
+				<icon>resources/media/icon.png</icon>
+				<fanart>resources/media/fanart.jpg</fanart>
+				<screenshot>resources/media/screenshot01.jpg</screenshot>
+				<screenshot>resources/media/screenshot02.jpg</screenshot>
+				<screenshot>resources/media/screenshot03.jpg</screenshot>
+				<screenshot>resources/media/screenshot04.jpg</screenshot>
+				<screenshot>resources/media/screenshot05.jpg</screenshot>
+				<screenshot>resources/media/screenshot06.jpg</screenshot>
+				<screenshot>resources/media/screenshot07.jpg</screenshot>
+				<screenshot>resources/media/screenshot08.jpg</screenshot>
+				<screenshot>resources/media/screenshot09.jpg</screenshot>
+				<screenshot>resources/media/screenshot10.jpg</screenshot>
+		</assets>
+	</extension>
+</addon><addon id="plugin.video.fenlight" name="FenLightAM - [COLOR red]UNOFFICIAL[/COLOR]" provider-name="AnonyMouse" version="20.2.034">
     <requires>
         <import addon="xbmc.python" version="3.0.0" />
         <import addon="script.module.pil" version="1.1.7" />
@@ -346,7 +388,20 @@ fix to properly get English videos as fallback
             <icon>resources/media/addon_icons/fenlight_icon_01.png</icon>
             <fanart>resources/media/fenlight_fanart_01.jpg</fanart>
         </assets>
-        <news>INFO: For latest changes see Changelog within Tools of add-on.</news>
+        <news>[B]*** This will probably be the last [COLOR red]The Red Wizard[/COLOR] update to FenLightAM - [COLOR red]UNOFFICIAL[/COLOR] ***[/B]
+
+FenLightAM - UNOFFICIAL is now fully working and all functionality has been restored. We will not revoke our Trakt or TMDb keys because someone says something we do not like on Reddit. FenLightAM - UNOFFICIAL has been tested with Kodi 22 Omega and should work perfectly for a very long time.
+
+While I am grateful to Tikipeter and his various pseudonyms and aliases for creating and maintaining Fen and FenLight/FenLightAM, his actions are negatively impacting Kodi end-users. He will do it again. I am proud to have bypassed Tikipeter's block of TMDb Helper.
+
+When the time comes (and as of 13th May 2026), I suggest moving to one of:
+
+* Red Light from The Red Repo - fully maintained fork of FenLight
+* The Gears from the Chains Repository - fully maintained fork of FenLightAM
+* POV from the Kodifitzwell repository - fully maintained fork of Fen
+* Umbrella from the Umbrella Repository - fully maintained fork of Venom
+
+Many thanks to the developers who assisted with the TMDb Helper patch and restoring the icons. They would prefer to remain AnonyMouse ;) but they know who they are.</news>
     </extension>
 </addon><addon id="plugin.video.giptv" name="GIPTV" version="2.9.8" provider-name="G00380316">
 	<requires>
@@ -830,7 +885,7 @@ fix to properly get English videos as fallback
 		<news>INFO: For latest changes see Changelog within add-on.</news>
 		<assets><icon>icon.png</icon><fanart>fanart.jpg</fanart><screenshot>screenshot.jpg</screenshot></assets>
 	</extension>
-</addon><addon id="repository.G00380316" name="Gflix" version="3.0.1" provider-name="G00380316">
+</addon><addon id="repository.G00380316" name="Gflix" version="3.0.2" provider-name="G00380316">
     <extension point="xbmc.addon.repository" name="Gflix Repository">
         <dir>
             <info compressed="false">https://raw.githubusercontent.com/G00380316/gflix/main/repo/zips/addons.xml</info>
@@ -943,6 +998,49 @@ fix to properly get English videos as fallback
         <description>kodifitzwell repository</description>
         <assets><icon>icon.png</icon></assets>
     </extension>
+</addon><addon id="repository.redwizard" name="[COLOR red]The Red Repo[/COLOR]" version="1.2.2" provider-name="[COLOR red]The Red Wizard[/COLOR]">
+	<extension point="xbmc.addon.repository" name="The Red Repo">
+		<dir>
+			<info compressed="false">https://repo.redwizard.xyz/redwizardrepo/main/addons.xml</info>
+			<checksum>https://repo.redwizard.xyz/redwizardrepo/main/addons.xml.md5</checksum>
+			<datadir zip="true">https://repo.redwizard.xyz/redwizardrepo/main/</datadir>
+		</dir>
+		<dir minversion="20.9.0" maxversion="21.8.9">
+			<info compressed="false">https://repo.redwizard.xyz/redwizardrepo/21omega/addons.xml</info>
+			<checksum>https://repo.redwizard.xyz/redwizardrepo/21omega/addons.xml.md5</checksum>
+			<datadir zip="true">https://repo.redwizard.xyz/redwizardrepo/21omega/</datadir>
+		</dir>
+		<dir minversion="21.9.0" maxversion="22.8.9">
+			<info compressed="false">https://repo.redwizard.xyz/redwizardrepo/22piers/addons.xml</info>
+			<checksum>https://repo.redwizard.xyz/redwizardrepo/22piers/addons.xml.md5</checksum>
+			<datadir zip="true">https://repo.redwizard.xyz/redwizardrepo/22piers/</datadir>
+		</dir>
+		<dir>
+			<info compressed="false">https://raw.githubusercontent.com/Gujal00/smrzips/master/addons.xml</info>
+			<checksum>https://raw.githubusercontent.com/Gujal00/smrzips/master/addons.xml.md5</checksum>
+			<datadir zip="true">https://raw.githubusercontent.com/Gujal00/smrzips/master/zips/</datadir>
+		</dir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary lang="en_GB">[COLOR red]The Red Wizard Builds and Add-ons[/COLOR]</summary>
+		<description lang="en_GB">[COLOR red]The Red Repo for The Red Wizard builds and add-ons[/COLOR]</description>
+		<disclaimer lang="en_GB">[COLOR red]The author of this add-on does not host any content and has no affiliation with the content providers[/COLOR]</disclaimer>
+		<news>[COLOR red]2026-03-23
+- Change to the add-on description
+- Typos corrected in the news section and changelog
+- Chains Repository and The 7o9 Repo now available to install from The Red Repo
+- The Red Wizard has a new home! Go to https://redwizard.xyz[/COLOR]</news>
+		<platform>all</platform>
+		<language>en</language>
+		<license>GNU GENERAL PUBLIC LICENSE Version 3</license>
+		<email>info@redwizard.xyz</email>
+		<website>https://www.redwizard.xyz/</website>
+		<forum>https://t.me/+XiuBf9KvPfw2MzVk</forum>
+		<assets>
+			<icon>icon.png</icon>
+			<fanart>fanart.jpg</fanart>
+		</assets>
+	</extension>
 </addon><addon id="repository.thecrew" name="[COLOR orchid]THE CREW REPO[/COLOR]" provider-name="The Crew" version="0.3.7">
 	<extension point="xbmc.addon.repository" name="The Crew">
 			<dir minversion="18.9.9">
