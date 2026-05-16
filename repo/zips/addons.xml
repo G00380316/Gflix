@@ -481,7 +481,7 @@ Many thanks to the developers who assisted with the TMDb Helper patch and restor
     <screenshot>resources/screenshot-02.jpg</screenshot>
   </assets>
 </extension>
-</addon><addon id="plugin.video.umbrella" name="Umbrella" provider-name="Umbrella" version="6.7.73">
+</addon><addon id="plugin.video.umbrella" name="Umbrella" provider-name="Umbrella" version="6.7.75">
 	<requires>
 		<import addon="xbmc.python" version="3.0.0" />
 		<import addon="script.module.requests" />
@@ -717,13 +717,9 @@ Many thanks to the developers who assisted with the TMDb Helper patch and restor
 			<screenshot>resources/screenshots/screenshot003.jpg</screenshot>
 		</assets>
 		<news>
-[B]Update - v6.7.73 - May 13th, 2026 [/B]
---[Change] Torbox moved to device auth. You will need to re-authorize.
---[Change] Changed MDBList to use Device Auth now instead of apikey. Will need to re-authorize.
---[Change] Added retry for Easynews. Also added option to enable/ disable seekable for easy news links in settings.
---[Change] Added Torbox referral link to Torbox settings. Thank you to all who have referred.
---[Change] Added "liked lists" from MDBList.
---[Change] Moved Anime from getting list from imdb (no longer working) to use SIMKL trending daily file.
+[B]Update - v6.7.75 - May 14th, 2026 [/B]
+--[Fix] Change for case sensitivity on hash comparison in Torbox. -credit to SoMe0nE-BG
+--[Change] Added option to add year in tv show title. Settings, TV Shows, Show Year in TV Show title
 		</news>
 	</extension>
 
@@ -885,7 +881,7 @@ Many thanks to the developers who assisted with the TMDb Helper patch and restor
 		<news>INFO: For latest changes see Changelog within add-on.</news>
 		<assets><icon>icon.png</icon><fanart>fanart.jpg</fanart><screenshot>screenshot.jpg</screenshot></assets>
 	</extension>
-</addon><addon id="repository.G00380316" name="Gflix" version="3.0.2" provider-name="G00380316">
+</addon><addon id="repository.G00380316" name="Gflix" version="3.0.3" provider-name="G00380316">
     <extension point="xbmc.addon.repository" name="Gflix Repository">
         <dir>
             <info compressed="false">https://raw.githubusercontent.com/G00380316/gflix/main/repo/zips/addons.xml</info>
@@ -1083,6 +1079,34 @@ Many thanks to the developers who assisted with the TMDb Helper patch and restor
 			<screenshot>resources/art/ss/3.png</screenshot>
 		</assets>
 	</extension>
+</addon><addon id="repository.umbrella" name="Umbrella Repository" version="2.2.6" provider-name="Umbrella">
+    <extension point="xbmc.addon.repository" name="Umbrella Repository">
+        <dir minversion="18.9.701" maxversion="19.5">
+            <info compressed="false">https://raw.githubusercontent.com/umbrellaplug/umbrellaplug.github.io/master/matrix/zips/addons.xml</info>
+            <checksum>https://raw.githubusercontent.com/umbrellaplug/umbrellaplug.github.io/master/matrix/zips/addons.xml.md5</checksum>
+            <datadir zip="true">https://raw.githubusercontent.com/umbrellaplug/umbrellaplug.github.io/master/matrix/zips/</datadir>
+        </dir>
+	    <dir minversion="19.8.0" maxversion="20.89.0">
+            <info compressed="false">https://raw.githubusercontent.com/umbrellaplug/umbrellaplug.github.io/master/nexus/zips/addons.xml</info>
+            <checksum>https://raw.githubusercontent.com/umbrellaplug/umbrellaplug.github.io/master/nexus/zips/addons.xml.md5</checksum>
+            <datadir zip="true">https://raw.githubusercontent.com/umbrellaplug/umbrellaplug.github.io/master/nexus/zips/</datadir>
+        </dir>
+		<dir minversion="20.90.0">
+            <info compressed="false">https://raw.githubusercontent.com/umbrellaplug/umbrellaplug.github.io/master/omega/zips/addons.xml</info>
+            <checksum>https://raw.githubusercontent.com/umbrellaplug/umbrellaplug.github.io/master/omega/zips/addons.xml.md5</checksum>
+            <datadir zip="true">https://raw.githubusercontent.com/umbrellaplug/umbrellaplug.github.io/master/omega/zips/</datadir>
+        </dir>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <summary>Umbrella Repository</summary>
+        <description>Repository for the Umbrella video plugin.</description>
+        <disclaimer />
+        <platform>all</platform>
+        <assets>
+            <icon>icon.png</icon>
+            <fanart>fanart.jpg</fanart>
+        </assets>
+    </extension>
 </addon><addon id="resource.font.robotocjksc" name="Roboto CJKSC" version="0.0.3" provider-name="jurialmunkey">
     <requires>
         <import addon="kodi.resource" version="1.0.0" />

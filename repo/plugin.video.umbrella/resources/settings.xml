@@ -1376,6 +1376,11 @@
 					<default>false</default>
 					<control type="toggle"/>
 				</setting>
+				<setting id="tvshows.show.year" type="boolean" label="40679" help="">
+					<level>0</level>
+					<default>false</default>
+					<control type="toggle"/>
+				</setting>
 				<setting id="showunaired" type="boolean" label="32570" help="">
 					<level>0</level>
 					<default>false</default>
@@ -2118,11 +2123,6 @@
 					<control type="toggle"/>
 				</setting>
 				<setting id="source.prioritize.hevc" type="boolean" label="32229" help="">
-					<level>0</level>
-					<default>false</default>
-					<control type="toggle"/>
-				</setting>
-				<setting id="source.prioritize.direct" type="boolean" label="40400" help="">
 					<level>0</level>
 					<default>false</default>
 					<control type="toggle"/>
@@ -3100,38 +3100,22 @@
 					</dependencies>
 					<control type="toggle"/>
 				</setting>
-				<setting id="sources.group.sort" type="integer" label="32133" help="">
+				<setting id="sources.sort.order" type="integer" label="40672" help="">
 					<level>0</level>
 					<default>0</default>
 					<constraints>
 						<options>
-							<option label="32021">0</option>
-							<option label="32022">1</option>
+							<option label="40673">0</option>
+							<option label="40674">1</option>
+							<option label="40675">2</option>
+							<option label="40676">3</option>
+							<option label="40677">4</option>
+							<option label="40678">5</option>
 						</options>
 					</constraints>
-					<dependencies>
-						<dependency type="visible">
-							<condition on="property" name="InfoBool">true</condition>
-						</dependency>
-					</dependencies>
 					<control type="list" format="string">
-						<heading>32133</heading>
+						<heading>40672</heading>
 					</control>
-				</setting>
-				<setting id="sources.size.sort" type="boolean" label="32134" help="">
-					<level>0</level>
-					<default>true</default>
-					<control type="toggle"/>
-				</setting>
-				<setting id="sources.sizeSort.reverse" type="boolean" label="32212" help="" parent="sources.size.sort">
-					<level>0</level>
-					<default>false</default>
-					<dependencies>
-						<dependency type="visible">
-							<condition operator="is" setting="sources.size.sort">true</condition>
-						</dependency>
-					</dependencies>
-					<control type="toggle"/>
 				</setting>
 				<setting id="uncached.seeder.sort" type="boolean" label="32213" help="">
 					<level>0</level>
@@ -5070,14 +5054,6 @@
 					<control type="button" format="action">
 						<close>true</close>
 					</control>
-				</setting>
-				<setting id="tbReferralLinkButton" type="action" label="40671" help="">
-					<level>0</level>
-					<data>RunPlugin(plugin://plugin.video.umbrella/?action=tb_ReferralLink)</data>
-					<constraints>
-						<allowempty>true</allowempty>
-					</constraints>
-					<control type="button" format="action"/>
 				</setting>
 			</group>
 		</category>

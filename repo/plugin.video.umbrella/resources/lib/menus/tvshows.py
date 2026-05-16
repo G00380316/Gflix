@@ -41,6 +41,7 @@ class TVshows:
 		self.prefer_tmdbArt = getSetting('prefer.tmdbArt') == 'true'
 		self.unairedcolor = getSetting('unaired.identify')
 		self.showunaired = getSetting('showunaired') == 'true'
+		self.tvshows_show_year = getSetting('tvshows.show.year') == 'true'
 		self.highlight_color = control.setting('highlight.color')
 		self.date_time = datetime.now()
 		self.today_date = (self.date_time).strftime('%Y-%m-%d')
@@ -2286,6 +2287,7 @@ class TVshows:
 			try:
 				imdb, tmdb, tvdb, year, trailer = i.get('imdb', ''), i.get('tmdb', ''), i.get('tvdb', ''), i.get('year', ''), i.get('trailer', '')
 				title = label = i.get('tvshowtitle') or i.get('title')
+				if self.tvshows_show_year and year: label = '%s (%s)' % (label, year)
 				systitle = quote_plus(title)
 				if isProgress:
 					pass

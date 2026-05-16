@@ -124,6 +124,7 @@ class SourceResultsXML(BaseDialog):
 					if 'tvshowtitle' in self.meta and 'season' in self.meta and 'episode' in self.meta:
 						sysname = quote_plus(self.meta.get('tvshowtitle'))
 						poster = self.meta.get('season_poster') or self.meta.get('poster')
+						if 'year' in self.meta: sysname += quote_plus(' (%s)' % self.meta['year'])
 						sysname += quote_plus(' S%02dE%02d' % (int(self.meta['season']), int(self.meta['episode'])))
 					elif 'year' in self.meta: sysname += quote_plus(' (%s)' % self.meta['year'])
 					try: new_sysname = quote_plus(chosen_source.getProperty('umbrella.name'))
@@ -137,6 +138,7 @@ class SourceResultsXML(BaseDialog):
 					if 'tvshowtitle' in self.meta and 'season' in self.meta and 'episode' in self.meta:
 						sysname = quote_plus(self.meta.get('tvshowtitle'))
 						poster = self.meta.get('season_poster') or self.meta.get('poster')
+						if 'year' in self.meta: sysname += quote_plus(' (%s)' % self.meta['year'])
 						sysname += quote_plus(' S%02dE%02d' % (int(self.meta['season']), int(self.meta['episode'])))
 					elif 'year' in self.meta: sysname += quote_plus(' (%s)' % self.meta['year'])
 					try: new_sysname = quote_plus(chosen_source.getProperty('umbrella.name'))

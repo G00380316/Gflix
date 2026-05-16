@@ -1244,22 +1244,35 @@ class Sources:
 		self.filter += local # library and video scraper sources
 		self.sources = self.filter
 
-		if getSetting('sources.group.sort') == '1':
-			torr_filter = []
-			torr_filter += [i for i in self.sources if 'torrent' in i['source']]  #torrents first
-			if getSetting('sources.size.sort') == 'true': torr_filter.sort(key=lambda k: round(k.get('size', 0)), reverse=True)
-			aact_filter = []
-			aact_filter += [i for i in self.sources if i['direct'] == True]  #account scrapers and local/library next
-			if getSetting('sources.size.sort') == 'true': aact_filter.sort(key=lambda k: round(k.get('size', 0)), reverse=True)
-			prem_filter = []
-			prem_filter += [i for i in self.sources if 'torrent' not in i['source'] and i['debridonly'] is True]  #prem.hosters last
-			if getSetting('sources.size.sort') == 'true': prem_filter.sort(key=lambda k: round(k.get('size', 0)), reverse=True)
-			self.sources = torr_filter
-			self.sources += aact_filter
-			self.sources += prem_filter
-		elif getSetting('sources.size.sort') == 'true':
-			reverse_sort = True if getSetting('sources.sizeSort.reverse') == 'false' else False
-			self.sources.sort(key=lambda k: round(k.get('size', 0), 2), reverse=reverse_sort)
+		quality_rank_maps = {
+			'0': {'4K': 0, '1080p': 1, '720p': 2, 'SCR': 3, 'SD': 4, 'CAM': 5},
+			'1': {'4K': 5, '1080p': 0, '720p': 1, 'SCR': 2, 'SD': 3, 'CAM': 4},
+			'2': {'4K': 5, '1080p': 4, '720p': 0, 'SCR': 1, 'SD': 2, 'CAM': 3},
+			'3': {'4K': 5, '1080p': 4, '720p': 3, 'SCR': 0, 'SD': 1, 'CAM': 2},
+		}
+		_preferred_q = getSetting('hosts.quality') or '0'
+		_qmap = quality_rank_maps.get(_preferred_q, quality_rank_maps['0'])
+		if self.prem_providers and isinstance(self.prem_providers[0], tuple):
+			_sorted_pp = sorted(self.prem_providers, key=lambda k: k[1])
+			_prov_list = [i[0] for i in _sorted_pp]
+		else:
+			_prov_list = list(self.prem_providers)
+		def _qrank(src): return _qmap.get(src.get('quality', 'SD'), 5)
+		def _prank(src):
+			key = src.get('debrid', '') or src.get('provider', '')
+			try: return _prov_list.index(key)
+			except: return 10**6
+		def _srank(src): return -round(float(src.get('size', 0)))
+		_sort_order = int(getSetting('sources.sort.order') or '0')
+		_sort_keys = (
+			lambda k: (_qrank(k), _prank(k), _srank(k)),
+			lambda k: (_qrank(k), _srank(k), _prank(k)),
+			lambda k: (_prank(k), _qrank(k), _srank(k)),
+			lambda k: (_prank(k), _srank(k), _qrank(k)),
+			lambda k: (_srank(k), _qrank(k), _prank(k)),
+			lambda k: (_srank(k), _prank(k), _qrank(k)),
+		)
+		self.sources.sort(key=_sort_keys[_sort_order])
 
 		if getSetting('source.prioritize.av1') == 'true': # filter to place AV1 sources first
 			filter = []
@@ -1287,18 +1300,10 @@ class Sources:
 			filter += [i for i in self.sources if i not in filter]
 			self.sources = filter
 
-		self.sources = self.sort_byQuality(source_list=self.sources)
-
 		filter = [] # filter to place cloud files first
 		filter += [i for i in self.sources if i['source'] == 'cloud']
 		filter += [i for i in self.sources if i not in filter]
 		self.sources = filter
-
-		if getSetting('source.prioritize.direct') == 'true': # filter to place plex sources first
-			filter = [] # filter to place cloud files first
-			filter += [i for i in self.sources if i['source'] == 'direct']
-			filter += [i for i in self.sources if i not in filter]
-			self.sources = filter
 
 		self.sources = self.sources[:4000]
 		control.hide()
